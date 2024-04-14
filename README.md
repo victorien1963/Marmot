@@ -1,5 +1,5 @@
-# dAIVinci
-TDRI dAI Vinci
+# Marmot
+Marmot
 
 # initial
 1. run "yarn install" at the tap layer, packages' dependencies will be automatically installed.
