@@ -1,33 +1,16 @@
 /* eslint-disable no-promise-executor-return */
-import React, { useEffect, useState, useMemo, useContext } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { useLocation } from 'react-router-dom'
 import { Spinner, ProgressBar } from 'react-bootstrap'
-import { DraftContext } from './ContextProvider'
 
 function Loading({ setting }) {
   const { show, step, handleInterrupt } = setting
-  const DC = useContext(DraftContext)
-  const location = useLocation()
-  const modules = {
-    '/Module1': 'module1',
-    '/Module2': 'module2',
-    '/Module3': 'module3',
-    '/Module4': 'module4',
-  }
   const {
     process = 0,
     max = 99,
     time = 50,
     ts = Date.now(),
-  } = useMemo(
-    () =>
-      DC.process[DC.draftId] &&
-      DC.process[DC.draftId][modules[location.pathname]]
-        ? DC.process[DC.draftId][modules[location.pathname]]
-        : {},
-    [DC.process]
-  )
+  } = useMemo(() => {}, [])
 
   const [progress, setprogress] = useState(
     process + Math.min((Date.now() - ts) / (time * 100), 1) * (max - process)

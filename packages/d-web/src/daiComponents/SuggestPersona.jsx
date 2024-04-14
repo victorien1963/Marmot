@@ -13,7 +13,7 @@ import {
   faTimes,
 } from '@fortawesome/free-solid-svg-icons'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { DraftContext } from './ContextProvider'
+import { DraftContext } from '../components/ContextProvider'
 import ImgWithFunc from './ImgWithFuncs'
 import VideoWithFunc from './VideoWithFuncs'
 import FloatInput from './FloatInput'

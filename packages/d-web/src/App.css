@@ -442,6 +442,24 @@
   padding-bottom: 0% !important;
 }
 
+.bg-user-marmot {
+  background-color: #bde3ff !important;
+}
+
+.bg-admin-marmot {
+  background-color: #aff4c6 !important;
+}
+
+.btn-marmot1 {
+  background-color: #ffcd29 !important;
+  color: #fff !important;
+}
+
+.btn-marmot2 {
+  background-color: #9747ff !important;
+  color: #fff !important;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -1,66 +1,58 @@
-import React, { useEffect, useMemo, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Row, Col } from 'react-bootstrap'
 import SideNavBar from './SideNavBar'
 import TopBar from './TopBar'
-import GPTHelper from './GPTHelper'
-import { AuthContext, DraftContext } from './ContextProvider'
+// import GPTHelper from '../daiComponents/GPTHelper'
+import { AuthContext } from './ContextProvider'
 
 function AppWrapper({ children }) {
   const { auth } = useContext(AuthContext)
   const location = useLocation()
   const navigate = useNavigate()
-  const { draftId } = useContext(DraftContext)
 
-  const isInDraft = useMemo(
-    () =>
-      ['/Module1', '/Module2', '/Module3', '/Module4'].includes(
-        location.pathname
-      ),
-    [location]
-  )
   useEffect(() => {
-    if (draftId && !isInDraft) {
-      navigate('/Module1')
-    }
-    if ((!auth.authed || !draftId) && isInDraft) {
+    if (!auth.authed) {
       navigate('/')
     }
-  }, [auth, location, draftId])
+  }, [auth, location])
 
   return auth.authed ? (
     <div
-      className="d-flex position-relative overflow-hidden"
+      className="d-flex flex-column position-relative overflow-hidden"
       style={{
         height: '100vh',
         width: '100vw',
       }}
     >
-      <Col xs={1}>
-        <SideNavBar setting={{}} />
-      </Col>
-      <Col xs={11} className="d-flex flex-column px-0">
-        {isInDraft && (
-          <Row
-            className="h-8 ps-4"
-            style={{ borderBottom: '1px solid #eee', minHeight: '8%' }}
-          >
-            <TopBar />
-          </Row>
+      <Row className="ps-4" style={{ minHeight: '8%', maxHeight: '8%' }}>
+        <TopBar />
+      </Row>
+      <Row className="flex-fill">
+        {location.pathname !== '/' && (
+          <Col xs={1}>
+            <SideNavBar setting={{}} />
+          </Col>
         )}
-        <Row
-          className={`${
-            isInDraft ? 'h-86' : 'h-96'
-          } p-4 overflow-hidden position-relative`}
+        <Col
+          xs={location.pathname !== '/' ? 11 : 12}
+          className="d-flex flex-column px-0"
         >
-          {children}
-        </Row>
-        <div className="small fw-bold text-dai-light pt-2">
-          Copyright © 2023 TDRI. all rights reserved.
-        </div>
-      </Col>
-      <GPTHelper setting={{}} />
+          <Row
+            className="p-4 py-0 overflow-hidden position-relative"
+            style={{
+              height: '100%',
+            }}
+          >
+            {children}
+          </Row>
+          {/* <div className="small fw-bold text-dai-light pt-2">
+            Copyright © 2023 TDRI. all rights reserved.
+          </div> */}
+        </Col>
+      </Row>
+      {/* <GPTHelper setting={{}} /> */}
     </div>
   ) : (
     <div

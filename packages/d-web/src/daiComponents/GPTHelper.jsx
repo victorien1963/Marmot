@@ -7,8 +7,8 @@ import {
   faPaperPlane,
   faRobot,
 } from '@fortawesome/free-solid-svg-icons'
-import Searchbar from './SearchBar'
-import { SocketContext } from './ContextProvider'
+import Searchbar from '../components/SearchBar'
+import { SocketContext } from '../components/ContextProvider'
 import { robot } from '../asset'
 
 function GPTHelper() {

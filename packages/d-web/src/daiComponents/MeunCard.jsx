@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, Button } from 'react-bootstrap'
 import Avatar from './Avatar'
-import { AuthContext } from './ContextProvider'
+import { AuthContext } from '../components/ContextProvider'
 
 function MenuCard() {
   const { auth } = useContext(AuthContext)

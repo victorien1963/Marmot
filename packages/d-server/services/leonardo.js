@@ -114,11 +114,11 @@ const reducer = async () => {
     })
 }
 
-const imageJob = schedule.scheduleJob('*/1 * * * *', async () => {
-    reducer()
-})
+// const imageJob = schedule.scheduleJob('*/1 * * * *', async () => {
+//     reducer()
+// })
   
 module.exports = {
     generate,
-    imageJob,
+    // imageJob,
 }

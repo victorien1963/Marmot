@@ -1,69 +1,91 @@
 /* eslint-disable prefer-destructuring */
-import React, { useContext, useMemo, useRef } from 'react'
+import React, { useContext } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Button, DropdownButton } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faReply } from '@fortawesome/free-solid-svg-icons'
-import { AuthContext, DraftContext } from './ContextProvider'
-import Avatar from './Avatar'
-import MenuCard from './MeunCard'
-import fileFuncs from '../services/file'
+import { Button, DropdownButton, ListGroupItem } from 'react-bootstrap'
+import { faCircleRadiation } from '@fortawesome/free-solid-svg-icons'
+import { AuthContext } from './ContextProvider'
+import Avatar from '../daiComponents/Avatar'
+import MenuCard from '../daiComponents/MeunCard'
 
 function SideNavBar() {
   const location = useLocation()
   const navigate = useNavigate()
   const { auth, setAuth } = useContext(AuthContext)
 
-  const isInDraft = useMemo(
-    () =>
-      ['/Module1', '/Module2', '/Module3', '/Module4'].includes(
-        location.pathname
-      ),
-    [location]
-  )
-  const locationNames = {
-    '/Module1': 'module1',
-    '/Module2': 'module2',
-    '/Module3': 'module4',
-    '/Module4': 'module3',
-  }
-
-  const ref = useRef(null)
-
-  const { module1, module2, module3, module4, draftId, setDraft, setDraftId } =
-    useContext(DraftContext)
-  const handleCsvUpload = () => {
-    if (!ref.current) return
-    setDraft(
+  const contents = {
+    user: [
       {
-        [locationNames[location.pathname]]: {
-          generating: true,
-          step: '上傳檔案中',
-        },
+        title: '內容規劃',
+        subTitle: '前期計畫 + 製作',
+        icon: faCircleRadiation,
+        link: '/user/content',
       },
-      draftId
-    )
-    fileFuncs.readFile(
-      ref.current.files[0],
-      [locationNames[location.pathname]],
-      (res) => {
-        setDraft(
-          {
-            [locationNames[location.pathname]]: {
-              ...res[locationNames[location.pathname]],
-              generating: false,
-              step: '',
-            },
-          },
-          draftId
-        )
-      }
-    )
+      {
+        title: '製作',
+        subTitle: 'AI影片剪輯',
+        icon: faCircleRadiation,
+        link: '/user/making',
+      },
+      {
+        title: '數據分析',
+        subTitle: '報表 + 成效報告',
+        icon: faCircleRadiation,
+        link: '/user/analyze',
+      },
+      {
+        title: '收費內容',
+        subTitle: '頻道會員 + 課程',
+        icon: faCircleRadiation,
+        link: '/user/paycontent',
+      },
+      {
+        title: '產品',
+        subTitle: '電商整合',
+        icon: faCircleRadiation,
+        link: '/user/product',
+      },
+      {
+        title: '品牌合作',
+        subTitle: '業配商案',
+        icon: faCircleRadiation,
+        link: '/user/brand',
+      },
+    ],
+    admin: [
+      {
+        title: '行銷數據洞察',
+        subTitle: 'ORCA',
+        icon: faCircleRadiation,
+        link: '/',
+      },
+      {
+        title: '行銷資源整合',
+        subTitle: 'LUCA + DCP Partner Sales',
+        icon: faCircleRadiation,
+        link: '/',
+      },
+      {
+        title: '廣告合作',
+        subTitle: '網紅商案媒合',
+        icon: faCircleRadiation,
+        link: '/admin/cooperate',
+      },
+      {
+        title: '產品',
+        subTitle: '電商整合',
+        icon: faCircleRadiation,
+        link: '/admin/product',
+      },
+    ],
   }
 
   return (
     <div
-      className="w-100 h-100 d-flex flex-column border py-3 ps-2"
+      className={`w-100 h-100 d-flex flex-column py-3 ps-2 ${
+        location.pathname.includes('admin')
+          ? 'bg-admin-marmot'
+          : 'bg-user-marmot'
+      }`}
       style={{
         backgroundColor: '#eeeeee',
       }}
@@ -89,80 +111,25 @@ function SideNavBar() {
           <MenuCard />
         </DropdownButton>
       </div>
-      {isInDraft && (
-        <>
-          {[
-            { label: 'PESTEL', link: '/Module1' },
-            { label: '競品分析', link: '/Module2' },
-            { label: '顧客旅程', link: '/Module3' },
-            { label: '人物誌', link: '/Module4' },
-          ].map(({ label, link }) => (
-            <Button
-              key={link}
-              active={location.pathname === link}
-              onClick={() => navigate(link)}
-              className="w-75 mx-auto my-2"
-              variant="outline-dai"
-              size="sm"
-            >
-              {label}
-            </Button>
-          ))}
-          <Button
-            onClick={() => setDraftId('')}
-            className="w-75 mx-auto my-2"
-            variant="outline-dai"
-            size="sm"
-          >
-            <FontAwesomeIcon icon={faReply} />
-            &ensp;專案列表
-          </Button>
-          <Button
-            onClick={() => ref.current.click()}
-            className="w-75 mx-auto mb-2 mt-auto"
-            variant="outline-dai"
-            size="sm"
-          >
-            上傳檔案
-          </Button>
-          <input
-            ref={ref}
-            style={{
-              visibility: 'hidden',
-              width: '0',
-              height: '0',
-            }}
-            type="file"
-            id="xlsx"
-            name="xlsx"
-            accept=".xlsx"
-            onChange={(e) => {
-              handleCsvUpload(e)
-              e.target.value = ''
-            }}
-          />
-          <Button
-            onClick={() =>
-              fileFuncs.makeFile(
-                {
-                  module1,
-                  module2,
-                  module3,
-                  module4,
-                },
-                [locationNames[location.pathname]],
-                (downloadFunc) => downloadFunc()
-              )
-            }
-            className="w-75 mx-auto my-2"
-            variant="outline-dai"
-            size="sm"
-          >
-            匯出檔案
-          </Button>
-          {/* <hr className="hrClass-dashed my-3" /> */}
-        </>
-      )}
+      {(location.pathname.includes('admin')
+        ? contents.admin
+        : contents.user
+      ).map(({ title, link }) => (
+        <ListGroupItem
+          action
+          key={link}
+          active={location.pathname === link}
+          onClick={() => navigate(link)}
+          className="mx-auto my-2 text-start text-nowrap"
+          style={{
+            width: '88%',
+          }}
+          size="sm"
+        >
+          ● {title}
+        </ListGroupItem>
+      ))}
+      {/* <hr className="hrClass-dashed my-3" /> */}
       <Button
         onClick={() => {
           document.cookie = `token=; Domain=${window.location.hostname}; Path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`
@@ -171,7 +138,7 @@ function SideNavBar() {
           })
           window.location.replace('/')
         }}
-        className={`w-75 mx-auto ${isInDraft ? '' : 'mt-auto'} my-2`}
+        className="w-75 mx-auto mt-auto mb-2"
         variant="outline-dai"
         size="sm"
       >

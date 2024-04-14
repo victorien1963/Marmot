@@ -1,8 +1,19 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
-import { Home, Register, Module1, Module2, Module3, Module4 } from './pages'
-import { AppWrapper, ContextProvider } from './components'
+import { Home, Register } from './pages'
+import {
+  AppWrapper,
+  ContextProvider,
+  Content,
+  Making,
+  Analyze,
+  PayContent,
+  Product,
+  Brand,
+  Cooperate,
+  AdminProduct,
+} from './components'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-bootstrap-typeahead/css/Typeahead.css'
 
@@ -15,10 +26,14 @@ function App() {
             <Routes className="px-0">
               <Route path="/" element={<Home />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/module1" element={<Module1 />} />
-              <Route path="/module2" element={<Module2 />} />
-              <Route path="/module3" element={<Module4 />} />
-              <Route path="/module4" element={<Module3 />} />
+              <Route path="/user/content" element={<Content />} />
+              <Route path="/user/making" element={<Making />} />
+              <Route path="/user/analyze" element={<Analyze />} />
+              <Route path="/user/paycontent" element={<PayContent />} />
+              <Route path="/user/product" element={<Product />} />
+              <Route path="/user/brand" element={<Brand />} />
+              <Route path="/admin/cooperate" element={<Cooperate />} />
+              <Route path="/admin/product" element={<AdminProduct />} />
               <Route path="/*" element={<Home />} />
             </Routes>
           </AppWrapper>
