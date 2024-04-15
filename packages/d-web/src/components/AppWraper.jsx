@@ -36,7 +36,7 @@ function AppWrapper({ children }) {
           </Col>
         )}
         <Col
-          xs={location.pathname !== '/' ? 11 : 12}
+          xs={location.pathname !== '/' ? 10 : 12}
           className="d-flex flex-column px-0"
         >
           <Row
