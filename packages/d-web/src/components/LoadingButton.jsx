@@ -7,6 +7,7 @@ function LoadingButton(props) {
   const [clicked, setclicked] = useState(false)
   return (
     <Button
+      size="sm"
       style={{ minWidth: '4rem', ...style }}
       variant={variant}
       className={className}

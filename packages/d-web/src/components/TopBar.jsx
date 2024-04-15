@@ -16,28 +16,29 @@ function TopBar() {
 
   return (
     <Row
-      className={`w-100 h-100 d-flex flex-nowrap py-2 ${
-        location.pathname.includes('admin')
-          ? 'bg-admin-marmot'
-          : 'bg-user-marmot'
-      }`}
+      className="bg-black w-100 h-100 d-flex flex-nowrap px-0"
+      // ${
+      //   location.pathname.includes('admin')
+      //     ? 'bg-admin-marmot'
+      //     : 'bg-user-marmot'
+      // }`}
     >
       {location.pathname === '/' && (
         <div className="d-flex fw-bold text-start h-100">
-          <h4 className="my-auto">儀表板</h4>
+          <h3 className="my-auto text-light">MARMOT</h3>
         </div>
       )}
       {location.pathname !== '/' && (
         <div className="my-auto fw-bold text-start h-100">
           {location.pathname.includes('admin') ? (
-            <div className="bg-admin-marmot d-flex flex-column justify-content-center">
-              <h5>廣告商</h5>
-              <h5>&ensp;品牌</h5>
+            <div className="bg-light d-flex flex-column justify-content-center">
+              <h5>Advertisers</h5>
+              <h5>&ensp; Brands</h5>
             </div>
           ) : (
-            <div className="bg-user-marmot d-flex flex-column justify-content-center">
-              <h5>&ensp;創作者</h5>
-              <h5>媒體公司</h5>
+            <div className="bg-light d-flex flex-column justify-content-center">
+              <h5>&ensp;Creators</h5>
+              <h5>Media Companies</h5>
             </div>
           )}
         </div>

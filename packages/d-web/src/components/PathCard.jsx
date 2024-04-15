@@ -21,7 +21,7 @@ function PathCard({ setting }) {
       className={`text-center h-100 p-0 border m-auto ${
         type === 'user' ? 'bg-user-marmot' : 'bg-admin-marmot'
       }`}
-      style={{ width: '350px' }}
+      style={{ width: '350px', opacity: '.9' }}
     >
       <Card.Body className="h-100 d-flex flex-column">
         <Row className="h-100">
@@ -44,8 +44,8 @@ function PathCard({ setting }) {
                     textDecoration: 'none',
                   }}
                 >
-                  <Button variant="marmot2 rounded-pill w-75 mx-auto">
-                    預 覽
+                  <Button size="sm" variant="dark w-100 mx-auto">
+                    Quick View
                   </Button>
                 </Link>
               </Col>
@@ -57,8 +57,8 @@ function PathCard({ setting }) {
                     textDecoration: 'none',
                   }}
                 >
-                  <Button variant="marmot1 rounded-pill w-75 mx-auto">
-                    進 入
+                  <Button size="sm" variant="enter w-100 mx-auto">
+                    Enter
                   </Button>
                 </Link>
               </Col>

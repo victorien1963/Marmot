@@ -128,10 +128,10 @@ function Register() {
             disabled={
               !data.name || !data.confirm || !data.email || !data.password
             }
-            btnText="註冊"
+            btnText="Register"
           />
           <div className="d-flex justify-content-center small">
-            已有帳號？
+            Already have account?
             <span
               style={{
                 cursor: 'pointer',
@@ -140,7 +140,7 @@ function Register() {
               onClick={() => navigate('/')}
               aria-hidden
             >
-              登入
+              Login
             </span>
           </div>
         </Form>

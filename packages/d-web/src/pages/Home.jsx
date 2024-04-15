@@ -6,7 +6,7 @@ import 'moment-timezone'
 import {
   Form,
   InputGroup,
-  Image,
+  // Image,
   Container,
   Row,
   Col,
@@ -23,7 +23,8 @@ import {
 import { AuthContext, ToastContext } from '../components/ContextProvider'
 import apiServices from '../services/apiServices'
 import { LoadingButton, PathCard } from '../components'
-import { logoFull } from '../asset'
+// import { logoFull } from '../asset'
+// import bg_video from '../asset/images/AdobeStock_3989.mp4'
 
 function Warn({ setting }) {
   const { size = 'md', show = false, handleClose } = setting
@@ -85,16 +86,16 @@ function Home() {
   const [reveal, setReveal] = useState(false)
   const fields = [
     {
-      label: '帳號',
+      label: 'account',
       type: 'text',
       name: 'email',
-      placeholder: '帳號',
+      placeholder: 'account',
     },
     {
-      label: '密碼',
+      label: 'password',
       type: 'password',
       name: 'password',
-      placeholder: '密碼',
+      placeholder: 'password',
     },
   ]
   const [data, setData] = useState({
@@ -123,64 +124,64 @@ function Home() {
   const contents = {
     user: [
       {
-        title: '內容規劃',
-        subTitle: '前期計畫 + 製作',
+        title: 'Planning',
+        subTitle: 'Pre-production stage',
         icon: faCircleRadiation,
         link: '/user/content',
       },
       {
-        title: '製作',
-        subTitle: 'AI影片剪輯',
+        title: 'Production',
+        subTitle: 'AI Video Studio',
         icon: faCircleRadiation,
         link: '/user/making',
       },
       {
-        title: '數據分析',
-        subTitle: '報表 + 成效報告',
+        title: 'Analytics',
+        subTitle: 'Performance reports',
         icon: faCircleRadiation,
         link: '/user/analyze',
       },
       {
-        title: '收費內容',
-        subTitle: '頻道會員 + 課程',
+        title: 'Premium Content',
+        subTitle: 'Membership + Courses',
         icon: faCircleRadiation,
         link: '/user/paycontent',
       },
       {
-        title: '產品',
-        subTitle: '電商整合',
+        title: 'Merchandise',
+        subTitle: 'E-commerce',
         icon: faCircleRadiation,
         link: '/user/product',
       },
       {
-        title: '品牌合作',
-        subTitle: '業配商案',
+        title: 'Brand opportunities',
+        subTitle: 'Sponsorships',
         icon: faCircleRadiation,
         link: '/user/brand',
       },
     ],
     admin: [
       {
-        title: '行銷數據洞察',
+        title: 'CRM / Customer analysis',
         subTitle: 'ORCA',
         icon: faCircleRadiation,
         link: '/',
       },
       {
-        title: '行銷資源整合',
+        title: 'Ad placement',
         subTitle: 'LUCA + DCP Partner Sales',
         icon: faCircleRadiation,
         link: '/',
       },
       {
-        title: '廣告合作',
-        subTitle: '網紅商案媒合',
+        title: 'Influencer collaboration',
+        subTitle: 'Creator connect',
         icon: faCircleRadiation,
         link: '/admin/cooperate',
       },
       {
-        title: '產品',
-        subTitle: '電商整合',
+        title: 'Merchandise',
+        subTitle: 'E-commerce',
         icon: faCircleRadiation,
         link: '/admin/product',
       },
@@ -188,21 +189,31 @@ function Home() {
   }
 
   return (
-    <Container className="bg-dots-light h-100 w-100 d-flex flex-column position-relative">
+    <Container
+      id="home_bg"
+      className="bg-black bg-marmot h-100 w-100 d-flex flex-column position-relative"
+    >
       {auth.authed ? (
         <>
+          {/* <video width="750" height="500" autoPlay muted loop>
+            <source src={bg_video} type="video/mov" />
+          </video> */}
           <Row className="h-50">
             <Col
               className="bg-user-marmot d-flex flex-column justify-content-center"
               xs={2}
+              style={{ opacity: '.9' }}
             >
-              <h3>創作者</h3>
-              <h3>媒體公司</h3>
+              <h4>Creators</h4>
+              <h4>Media Companies</h4>
             </Col>
             <Col xs={10}>
-              <Row className="h-100 py-3">
+              <Row
+                className="h-100 py-3"
+                style={{ backgroundColor: '#cfe9ff98' }}
+              >
                 {contents.user.map((c) => (
-                  <Col key={c.title} xs={4} className="p-3 border-end">
+                  <Col key={c.title} xs={4} className="p-3">
                     <PathCard
                       setting={{
                         ...c,
@@ -218,14 +229,20 @@ function Home() {
             <Col
               className="bg-admin-marmot d-flex flex-column justify-content-center"
               xs={2}
+              style={{ opacity: '.9' }}
             >
-              <h3>廣告商</h3>
-              <h3>品牌</h3>
+              <h4>Advertisers</h4>
+              <h4>Brands</h4>
             </Col>
             <Col xs={10}>
-              <Row className="h-100 py-3">
+              <Row
+                className="h-100 py-3"
+                style={{
+                  backgroundColor: '#edfdfb98',
+                }}
+              >
                 {contents.admin.map((c) => (
-                  <Col key={c.title} xs={4} className="p-3 border-end">
+                  <Col key={c.title} xs={4} className="p-3">
                     <PathCard
                       setting={{
                         ...c,
@@ -241,65 +258,84 @@ function Home() {
       ) : (
         <>
           <div className="d-flex" style={{ height: '65%' }}>
-            <Image
+            <p
+              style={{ fontSize: '36vh', textShadow: '#FC0 1px 0 10px' }}
+              className="text-light mt-auto mx-auto"
+            >
+              MARMOT
+            </p>
+            {/* <Image
               className="mt-auto mx-auto"
               src={logoFull}
               style={{ height: '25rem', width: 'auto' }}
-            />
+            /> */}
           </div>
           <div className="d-flex w-100 mb-auto" style={{ height: '35%' }}>
             <Form className="py-3 px-5 mx-auto d-flex flex-column">
-              {fields.map((field) => (
-                <Form.Group key={field.name} className="d-flex mb-2">
-                  {/* <Form.Label>{field.label}</Form.Label> */}
-                  {field.type === 'password' ? (
-                    <InputGroup
-                      id="defaultBorder"
-                      className="rounded input-group-transparent-addon w-100"
-                    >
-                      <Form.Control
-                        name={field.name}
-                        type={reveal ? 'text' : field.type}
-                        onChange={onDataChange}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' && !e.isComposing) handleLogin()
-                        }}
-                        placeholder={field.placeholder}
-                      />
-                      <InputGroup.Text>
-                        <FontAwesomeIcon
-                          className="fs-6"
-                          style={{
-                            right: '10',
-                            top: '50',
-                            bottom: '50',
-                            cursor: 'pointer',
-                          }}
-                          title={reveal ? '點擊以隱藏密碼' : '點擊以顯示密碼'}
-                          icon={reveal ? faEye : faEyeSlash}
-                          onClick={() => setReveal(!reveal)}
+              <Row>
+                <Col xs={8} className="m-auto">
+                  {fields.map((field) => (
+                    <Form.Group key={field.name} className="d-flex mb-2">
+                      {/* <Form.Label>{field.label}</Form.Label> */}
+                      {field.type === 'password' ? (
+                        <InputGroup
+                          id="defaultBorder"
+                          className="rounded input-group-transparent-addon w-100"
+                        >
+                          <Form.Control
+                            size="sm"
+                            name={field.name}
+                            type={reveal ? 'text' : field.type}
+                            onChange={onDataChange}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter' && !e.isComposing)
+                                handleLogin()
+                            }}
+                            placeholder={field.placeholder}
+                            style={{ opacity: '.65' }}
+                          />
+                          <InputGroup.Text>
+                            <FontAwesomeIcon
+                              className="fs-6"
+                              style={{
+                                right: '10',
+                                top: '50',
+                                bottom: '50',
+                                cursor: 'pointer',
+                              }}
+                              title={
+                                reveal ? '點擊以隱藏密碼' : '點擊以顯示密碼'
+                              }
+                              icon={reveal ? faEye : faEyeSlash}
+                              onClick={() => setReveal(!reveal)}
+                            />
+                          </InputGroup.Text>
+                        </InputGroup>
+                      ) : (
+                        <Form.Control
+                          size="sm"
+                          name={field.name}
+                          type={field.type}
+                          onChange={onDataChange}
+                          placeholder={field.placeholder}
+                          style={{ opacity: '.65' }}
                         />
-                      </InputGroup.Text>
-                    </InputGroup>
-                  ) : (
-                    <Form.Control
-                      name={field.name}
-                      type={field.type}
-                      onChange={onDataChange}
-                      placeholder={field.placeholder}
-                    />
-                  )}
-                </Form.Group>
-              ))}
-              <LoadingButton
-                className="mx-auto my-2"
-                variant="outline-dai"
-                onClick={handleLogin}
-                btnText="登入"
-              />
+                      )}
+                    </Form.Group>
+                  ))}
+                </Col>
+                <Col xs={4} className="m-auto">
+                  <LoadingButton
+                    className="mx-auto my-2"
+                    variant="outline-light"
+                    onClick={handleLogin}
+                    btnText="Login"
+                  />
+                </Col>
+              </Row>
               <div className="d-flex">
                 <span
-                  className="w-100 mx-auto small"
+                  className="w-100 mx-auto small text-light"
                   style={{
                     cursor: 'pointer',
                     textDecoration: 'underline',
@@ -307,7 +343,7 @@ function Home() {
                   onClick={() => navigate('/register')}
                   aria-hidden
                 >
-                  註冊
+                  register
                 </span>
               </div>
             </Form>
