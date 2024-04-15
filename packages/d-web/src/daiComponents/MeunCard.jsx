@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
-import { Card, Button } from 'react-bootstrap'
-import Avatar from './Avatar'
+// import { Link } from 'react-router-dom'
+import { Card } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { AuthContext } from '../components/ContextProvider'
 
 function MenuCard() {
@@ -9,29 +10,28 @@ function MenuCard() {
   return (
     <Card className="text-center h-100 p-0 border-0" style={{ width: '350px' }}>
       <Card.Body className="h-100 d-flex flex-column">
-        <div
-          className="py-3"
-          style={{
-            height: '150px',
-          }}
-        >
-          <Avatar />
+        <div className="d-flex pb-3">
+          <FontAwesomeIcon
+            className="m-auto text-dark"
+            style={{ height: '75px' }}
+            icon={faUserCircle}
+          />
         </div>
-        <Card.Title>{auth.name || 'VIP'}</Card.Title>
-        <Card.Title>{auth.email}</Card.Title>
+        <h5>{auth.name || 'VIP'}</h5>
       </Card.Body>
-      <Card.Footer className="d-flex justify-content-around">
+      <Card.Footer>{auth.email}</Card.Footer>
+      {/* <Card.Footer className="d-flex justify-content-around">
         <Link to="/info" className="align-item-start">
           <Button variant="outline-dai">修 改 密 碼</Button>
-        </Link>
-        {/* <Button
+        </Link> */}
+      {/* <Button
           variant="lucaLight"
           className="align-item-end"
           onClick={handleLogOut}
         >
           登 出
         </Button> */}
-      </Card.Footer>
+      {/* </Card.Footer> */}
     </Card>
   )
 }
