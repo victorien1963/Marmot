@@ -29,9 +29,9 @@ function AppWrapper({ children }) {
       <Row className="ps-4" style={{ minHeight: '8%', maxHeight: '8%' }}>
         <TopBar />
       </Row>
-      <Row className="flex-fill">
+      <Row className="flex-fill" style={{ height: '87vh' }}>
         {location.pathname !== '/' && (
-          <Col xs={1}>
+          <Col xs="2">
             <SideNavBar setting={{}} />
           </Col>
         )}
@@ -40,17 +40,19 @@ function AppWrapper({ children }) {
           className="d-flex flex-column px-0"
         >
           <Row
-            className="p-4 py-0 overflow-hidden position-relative"
+            className="p-3 py-0 overflow-hidden position-relative"
             style={{
               height: '100%',
             }}
           >
             {children}
           </Row>
-          {/* <div className="small fw-bold text-dai-light pt-2">
-            Copyright © 2023 TDRI. all rights reserved.
-          </div> */}
         </Col>
+      </Row>
+      <Row className="bg-black text-light" style={{ height: '5vh' }}>
+        <div className="small fw-bold py-2">
+          Copyright © 2024 Wavenet. all rights reserved.
+        </div>
       </Row>
       {/* <GPTHelper setting={{}} /> */}
     </div>

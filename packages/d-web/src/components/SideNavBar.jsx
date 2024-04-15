@@ -15,37 +15,37 @@ function SideNavBar() {
   const contents = {
     user: [
       {
-        title: '內容規劃',
+        title: 'Planning',
         subTitle: '前期計畫 + 製作',
         icon: faCircleRadiation,
         link: '/user/content',
       },
       {
-        title: '製作',
+        title: 'Production',
         subTitle: 'AI影片剪輯',
         icon: faCircleRadiation,
         link: '/user/making',
       },
       {
-        title: '數據分析',
+        title: 'Analytics',
         subTitle: '報表 + 成效報告',
         icon: faCircleRadiation,
         link: '/user/analyze',
       },
       {
-        title: '收費內容',
+        title: 'Premium content',
         subTitle: '頻道會員 + 課程',
         icon: faCircleRadiation,
         link: '/user/paycontent',
       },
       {
-        title: '產品',
+        title: 'Merchandise',
         subTitle: '電商整合',
         icon: faCircleRadiation,
         link: '/user/product',
       },
       {
-        title: '品牌合作',
+        title: 'Brand Opportunities',
         subTitle: '業配商案',
         icon: faCircleRadiation,
         link: '/user/brand',
@@ -53,26 +53,26 @@ function SideNavBar() {
     ],
     admin: [
       {
-        title: '行銷數據洞察',
+        title: 'CRM / Customer analysis',
         subTitle: 'ORCA',
         icon: faCircleRadiation,
         link: '/',
       },
       {
-        title: '行銷資源整合',
+        title: 'Ad placement',
         subTitle: 'LUCA + DCP Partner Sales',
         icon: faCircleRadiation,
         link: '/',
       },
       {
-        title: '廣告合作',
-        subTitle: '網紅商案媒合',
+        title: 'Influencer collaboration',
+        subTitle: 'Creator connect',
         icon: faCircleRadiation,
         link: '/admin/cooperate',
       },
       {
-        title: '產品',
-        subTitle: '電商整合',
+        title: 'Merchandise',
+        subTitle: 'E-commerce',
         icon: faCircleRadiation,
         link: '/admin/product',
       },
@@ -126,7 +126,7 @@ function SideNavBar() {
           }}
           size="sm"
         >
-          ● {title}
+          {title}
         </ListGroupItem>
       ))}
       {/* <hr className="hrClass-dashed my-3" /> */}
@@ -142,7 +142,7 @@ function SideNavBar() {
         variant="outline-dai"
         size="sm"
       >
-        登出
+        Logout
       </Button>
     </div>
   )

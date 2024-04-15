@@ -29,16 +29,14 @@ function TopBar() {
         </div>
       )}
       {location.pathname !== '/' && (
-        <div className="my-auto fw-bold text-start h-100">
+        <div className="my-auto fw-bold text-start h-100 px-0">
           {location.pathname.includes('admin') ? (
-            <div className="bg-light d-flex flex-column justify-content-center">
-              <h5>Advertisers</h5>
-              <h5>&ensp; Brands</h5>
+            <div className="d-flex h-100 ps-3 bg-black text-light d-flex flex-column justify-content-center">
+              <h5 className="my-auto">Advertisers Brands</h5>
             </div>
           ) : (
-            <div className="bg-light d-flex flex-column justify-content-center">
-              <h5>&ensp;Creators</h5>
-              <h5>Media Companies</h5>
+            <div className="d-flex h-100 ps-3 bg-black text-light d-flex flex-column justify-content-center">
+              <h5 className="my-auto">Creators Media Companies</h5>
             </div>
           )}
         </div>
