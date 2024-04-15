@@ -9,9 +9,8 @@ function Avatar() {
   return (
     <div className="w-100 h-100 d-flex">
       <FontAwesomeIcon
-        className="m-auto h1 text-light h-100 w-100"
+        className="m-auto text-light h-100 w-100"
         icon={faUserCircle}
-        title="頭 像"
       />
     </div>
   )

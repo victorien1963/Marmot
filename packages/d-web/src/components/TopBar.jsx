@@ -40,7 +40,7 @@ function TopBar() {
               <div
                 className="h-100 ms-auto"
                 style={{
-                  width: '5%',
+                  width: '3.5%',
                 }}
               >
                 <DropdownButton
@@ -48,10 +48,10 @@ function TopBar() {
                   drop="end"
                   className="h-100 w-100 text-light"
                   title={
-                    <div className="fw-bolder">
+                    <div className="fw-bolder text-light">
                       <div
                         style={{
-                          height: '35px',
+                          height: '30px',
                         }}
                       >
                         <Avatar />
@@ -66,7 +66,7 @@ function TopBar() {
               <div
                 className="h-100 ms-1 d-flex"
                 style={{
-                  width: '8%',
+                  width: '6%',
                 }}
               >
                 <Button
@@ -78,6 +78,7 @@ function TopBar() {
                     window.location.replace('/')
                   }}
                   className="my-auto"
+                  variant="outline-light"
                   size="sm"
                 >
                   Logout
@@ -90,7 +91,7 @@ function TopBar() {
               <div
                 className="h-100 ms-auto"
                 style={{
-                  width: '5%',
+                  width: '3.5%',
                 }}
               >
                 <DropdownButton
@@ -101,7 +102,7 @@ function TopBar() {
                     <div className="fw-bolder">
                       <div
                         style={{
-                          height: '35px',
+                          height: '30px',
                         }}
                       >
                         <Avatar />
@@ -116,7 +117,7 @@ function TopBar() {
               <div
                 className="h-100 ms-1 d-flex"
                 style={{
-                  width: '8%',
+                  width: '6%',
                 }}
               >
                 <Button
@@ -128,6 +129,7 @@ function TopBar() {
                     window.location.replace('/')
                   }}
                   className="my-auto"
+                  variant="outline-light"
                   size="sm"
                 >
                   Logout
