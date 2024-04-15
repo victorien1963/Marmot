@@ -21,7 +21,7 @@ function PathCard({ setting }) {
       className={`text-center h-100 p-0 border m-auto ${
         type === 'user' ? 'bg-user-marmot' : 'bg-admin-marmot'
       }`}
-      style={{ width: '350px', opacity: '.9' }}
+      style={{ width: '350px', opacity: '.75' }}
     >
       <Card.Body className="h-100 d-flex flex-column">
         <Row className="h-100">

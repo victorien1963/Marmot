@@ -23,7 +23,7 @@ import {
 import { AuthContext, ToastContext } from '../components/ContextProvider'
 import apiServices from '../services/apiServices'
 import { LoadingButton, PathCard } from '../components'
-import { logoWhite } from '../asset'
+import { logo_mar } from '../asset'
 // import { logoFull } from '../asset'
 // import bg_video from '../asset/images/AdobeStock_3989.mp4'
 
@@ -201,17 +201,18 @@ function Home() {
           </video> */}
           <Row className="h-50">
             <Col
-              className="bg-user-marmot d-flex flex-column justify-content-center"
+              className="bg-mar text-grey d-flex flex-column justify-content-center"
               xs={2}
-              style={{ opacity: '.9' }}
             >
               <h4>Creators</h4>
               <h4>Media Companies</h4>
             </Col>
             <Col xs={10}>
               <Row
-                className="h-100 py-3"
-                style={{ backgroundColor: '#cfe9ff98' }}
+                className="h-100 py-3 bg-mar"
+                style={{
+                  borderLeft: '1px solid #262d41',
+                }}
               >
                 {contents.user.map((c) => (
                   <Col key={c.title} xs={4} className="p-3">
@@ -228,18 +229,25 @@ function Home() {
           </Row>
           <Row className="h-50">
             <Col
-              className="bg-admin-marmot d-flex flex-column justify-content-center"
+              className="bg-mar text-grey d-flex flex-column justify-content-center"
               xs={2}
-              style={{ opacity: '.9' }}
+              style={{
+                borderTop: '1px solid #262d41',
+              }}
             >
               <h4>Advertisers</h4>
               <h4>Brands</h4>
             </Col>
-            <Col xs={10}>
+            <Col
+              xs={10}
+              style={{
+                borderTop: '1px solid #262d41',
+              }}
+            >
               <Row
-                className="h-100 py-3"
+                className="h-100 py-3 bg-mar"
                 style={{
-                  backgroundColor: '#edfdfb98',
+                  borderLeft: '1px solid #262d41',
                 }}
               >
                 {contents.admin.map((c) => (
@@ -254,13 +262,13 @@ function Home() {
                 ))}
               </Row>
             </Col>
-          </Row>{' '}
+          </Row>
         </>
       ) : (
         <>
           <div className="d-flex" style={{ height: '65%' }}>
             <p
-              style={{ fontSize: '36vh', textShadow: '#FC0 1px 0 10px' }}
+              style={{ fontSize: '36vh', textShadow: '#884ec5 5px 0 10px' }}
               className="text-light mt-auto mx-auto"
             >
               MARMOT
@@ -275,7 +283,7 @@ function Home() {
             <Form className="py-3 px-5 mx-auto d-flex flex-column">
               <Row>
                 <Col xs={2} className="d-flex">
-                  <Image src={logoWhite} height="35" className="m-auto" />
+                  <Image src={logo_mar} height="40" className="m-auto" />
                 </Col>
                 <Col xs={7} className="m-auto">
                   {fields.map((field) => (
@@ -331,7 +339,7 @@ function Home() {
                 <Col xs={3} className="m-auto">
                   <LoadingButton
                     className="mx-auto my-2"
-                    variant="outline-light"
+                    variant="mar"
                     onClick={handleLogin}
                     btnText="Login"
                   />

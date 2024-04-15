@@ -5,7 +5,7 @@ import { Row, Button, DropdownButton, Image } from 'react-bootstrap'
 import { AuthContext } from './ContextProvider'
 import Avatar from '../daiComponents/Avatar'
 import MenuCard from '../daiComponents/MeunCard'
-import { logoWhite } from '../asset'
+import { logo_mar } from '../asset'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import {
 //   faCirclePlus,
@@ -21,7 +21,8 @@ function TopBar() {
 
   return (
     <Row
-      className="bg-black w-100 h-100 d-flex flex-nowrap px-0"
+      className="bg-mar w-100 h-100 d-flex flex-nowrap px-0"
+      style={{ borderBottom: '1px solid #262d41' }}
       // ${
       //   location.pathname.includes('admin')
       //     ? 'bg-admin-marmot'
@@ -30,14 +31,14 @@ function TopBar() {
     >
       {location.pathname === '/' && (
         <div className="d-flex fw-bold text-start h-100">
-          <Image src={logoWhite} height="32" className="my-auto me-3" />
-          <h3 className="my-auto text-light">MARMOT</h3>
+          <Image src={logo_mar} height="32" className="my-auto me-3" />
+          <h3 className="my-auto text-mar-linear">MARMOT</h3>
         </div>
       )}
       {location.pathname !== '/' && (
         <div className="my-auto fw-bold text-start h-100 px-0">
           {location.pathname.includes('admin') ? (
-            <div className="d-flex h-100 ps-3 bg-black text-light d-flex justify-content-center">
+            <div className="d-flex h-100 ps-3 bg-mar text-mar-linear d-flex justify-content-center">
               <h5 className="my-auto">Advertisers Brands</h5>
               <div
                 className="h-100 ms-auto"
@@ -88,7 +89,7 @@ function TopBar() {
               </div>
             </div>
           ) : (
-            <div className="d-flex h-100 ps-3 pe-0 bg-black text-light d-flex justify-content-center">
+            <div className="d-flex h-100 ps-3 pe-0 bg-mar text-mar-linear d-flex justify-content-center">
               <h5 className="my-auto">Creators Media Companies</h5>
               <div
                 className="h-100 ms-auto"
@@ -131,7 +132,7 @@ function TopBar() {
                     window.location.replace('/')
                   }}
                   className="my-auto"
-                  variant="outline-light"
+                  variant="mar"
                   size="sm"
                 >
                   Logout

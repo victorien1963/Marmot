@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
-
 .App {
   text-align: center;
   font-family: "Raleway", sans-serif;
@@ -78,6 +77,17 @@
   border-radius: 50rem !important;
 }
 
+.text-mar-linear {
+  background-image: linear-gradient(360deg,
+  rgb(50 35 174),
+  rgb(126 74 195),
+  rgb(199 108 215),
+  rgb(199 108 215));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
 .text-grey {
   color: #979797;
 }
@@ -101,6 +111,22 @@
 .text-dai-dark {
   color: #06031b;
 }
+
+.btn-mar {
+  background-image: transparent !important;
+  color: #fff !important;
+  border: 1px solid #fff !important;
+}
+
+.btn-mar:hover, .btn-mar:active, .btn-mar:focus {
+    background-image: linear-gradient(360deg,
+    rgb(50 35 174),
+    rgb(50 35 174),
+    rgb(126 74 195),
+    rgb(199 108 215));
+    color: #fff !important;
+    border: 1px solid #fff !important;
+  }
 
 .btn-enter {
   background-color: #0a004e !important;
@@ -147,6 +173,10 @@
   border: none;
   height: 100%;
   padding: 0%;
+}
+
+.bg-mar {
+  background-color: #0f1729 !important;
 }
 
 .bg-dai {

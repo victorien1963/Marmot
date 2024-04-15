@@ -77,13 +77,15 @@ function SideNavBar() {
 
   return (
     <div
-      className={`w-100 h-100 d-flex flex-column py-3 ps-2 ${
-        location.pathname.includes('admin')
-          ? 'bg-admin-marmot'
-          : 'bg-user-marmot'
-      }`}
+      className="w-100 h-100 d-flex flex-column py-3 ps-2 bg-mar text-grey"
+      // ${
+      //   location.pathname.includes('admin')
+      //     ? 'bg-admin-marmot'
+      //     : 'bg-user-marmot'
+      // }`}
       style={{
         backgroundColor: '#eeeeee',
+        borderRight: '1px solid #262d41',
       }}
     >
       {(location.pathname.includes('admin')
