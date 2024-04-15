@@ -1,16 +1,12 @@
 /* eslint-disable prefer-destructuring */
-import React, { useContext } from 'react'
+import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Button, DropdownButton, ListGroupItem } from 'react-bootstrap'
+import { ListGroupItem } from 'react-bootstrap'
 import { faCircleRadiation } from '@fortawesome/free-solid-svg-icons'
-import { AuthContext } from './ContextProvider'
-import Avatar from '../daiComponents/Avatar'
-import MenuCard from '../daiComponents/MeunCard'
 
 function SideNavBar() {
   const location = useLocation()
   const navigate = useNavigate()
-  const { auth, setAuth } = useContext(AuthContext)
 
   const contents = {
     user: [
@@ -90,27 +86,6 @@ function SideNavBar() {
         backgroundColor: '#eeeeee',
       }}
     >
-      <div className="h-15 mb-4">
-        <DropdownButton
-          id="dropdown-button-drop-end"
-          drop="end"
-          className="h-100 w-100"
-          title={
-            <div className="text-dai fw-bolder pt-3">
-              <div
-                style={{
-                  height: '50px',
-                }}
-              >
-                <Avatar />
-              </div>
-              {auth.name}
-            </div>
-          }
-        >
-          <MenuCard />
-        </DropdownButton>
-      </div>
       {(location.pathname.includes('admin')
         ? contents.admin
         : contents.user
@@ -129,21 +104,6 @@ function SideNavBar() {
           {title}
         </ListGroupItem>
       ))}
-      {/* <hr className="hrClass-dashed my-3" /> */}
-      <Button
-        onClick={() => {
-          document.cookie = `token=; Domain=${window.location.hostname}; Path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`
-          setAuth({
-            authed: false,
-          })
-          window.location.replace('/')
-        }}
-        className="w-75 mx-auto mt-auto mb-2"
-        variant="outline-dai"
-        size="sm"
-      >
-        Logout
-      </Button>
     </div>
   )
 }
