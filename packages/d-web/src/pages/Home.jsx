@@ -6,7 +6,7 @@ import 'moment-timezone'
 import {
   Form,
   InputGroup,
-  // Image,
+  Image,
   Container,
   Row,
   Col,
@@ -23,6 +23,7 @@ import {
 import { AuthContext, ToastContext } from '../components/ContextProvider'
 import apiServices from '../services/apiServices'
 import { LoadingButton, PathCard } from '../components'
+import { logoWhite } from '../asset'
 // import { logoFull } from '../asset'
 // import bg_video from '../asset/images/AdobeStock_3989.mp4'
 
@@ -273,7 +274,10 @@ function Home() {
           <div className="d-flex w-100 mb-auto" style={{ height: '35%' }}>
             <Form className="py-3 px-5 mx-auto d-flex flex-column">
               <Row>
-                <Col xs={8} className="m-auto">
+                <Col xs={2} className="d-flex">
+                  <Image src={logoWhite} height="35" className="m-auto" />
+                </Col>
+                <Col xs={7} className="m-auto">
                   {fields.map((field) => (
                     <Form.Group key={field.name} className="d-flex mb-2">
                       {/* <Form.Label>{field.label}</Form.Label> */}
@@ -324,7 +328,7 @@ function Home() {
                     </Form.Group>
                   ))}
                 </Col>
-                <Col xs={4} className="m-auto">
+                <Col xs={3} className="m-auto">
                   <LoadingButton
                     className="mx-auto my-2"
                     variant="outline-light"

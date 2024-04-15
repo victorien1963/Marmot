@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
 // import PropTypes from 'prop-types'
 import { useLocation } from 'react-router-dom'
-import { Row, Button, DropdownButton } from 'react-bootstrap'
+import { Row, Button, DropdownButton, Image } from 'react-bootstrap'
 import { AuthContext } from './ContextProvider'
 import Avatar from '../daiComponents/Avatar'
 import MenuCard from '../daiComponents/MeunCard'
+import { logoWhite } from '../asset'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import {
 //   faCirclePlus,
@@ -29,6 +30,7 @@ function TopBar() {
     >
       {location.pathname === '/' && (
         <div className="d-flex fw-bold text-start h-100">
+          <Image src={logoWhite} height="32" className="my-auto me-3" />
           <h3 className="my-auto text-light">MARMOT</h3>
         </div>
       )}
