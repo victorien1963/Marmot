@@ -2,7 +2,12 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ListGroupItem } from 'react-bootstrap'
-import { faCircleRadiation } from '@fortawesome/free-solid-svg-icons'
+import {
+  faCircleRadiation,
+  faFileInvoice,
+  faSackDollar,
+  faUsers,
+} from '@fortawesome/free-solid-svg-icons'
 
 function SideNavBar() {
   const location = useLocation()
@@ -15,6 +20,29 @@ function SideNavBar() {
         subTitle: '前期計畫 + 製作',
         icon: faCircleRadiation,
         link: '/user/content',
+        sub: [
+          {
+            title: 'Project\nManagement',
+            subTitle: '',
+            icon: faUsers,
+            link: '/user/content/pm',
+            type: 'user',
+          },
+          {
+            title: 'Recommendation',
+            subTitle: '',
+            icon: faFileInvoice,
+            link: '/user/content/recommend',
+            type: 'user',
+          },
+          {
+            title: 'Trends',
+            subTitle: '',
+            icon: faSackDollar,
+            link: '/user/content/trends',
+            type: 'user',
+          },
+        ],
       },
       {
         title: 'Production',
@@ -91,20 +119,41 @@ function SideNavBar() {
       {(location.pathname.includes('admin')
         ? contents.admin
         : contents.user
-      ).map(({ title, link }) => (
-        <ListGroupItem
-          action
-          key={link}
-          active={location.pathname === link}
-          onClick={() => navigate(link)}
-          className="mx-auto my-2 text-start text-nowrap"
-          style={{
-            width: '88%',
-          }}
-          size="sm"
-        >
-          {title}
-        </ListGroupItem>
+      ).map(({ title, link, sub }) => (
+        <>
+          <ListGroupItem
+            action
+            disabled={location.pathname.includes(link)}
+            key={link}
+            active={location.pathname.includes(link)}
+            onClick={() => navigate(link)}
+            className="mx-auto my-2 text-start text-nowrap"
+            style={{
+              width: '88%',
+            }}
+            size="sm"
+          >
+            {title}
+          </ListGroupItem>
+          {location.pathname.includes(link) &&
+            sub &&
+            sub.map((s) => (
+              <ListGroupItem
+                action
+                disabled={location.pathname === s.link}
+                key={s.link}
+                active={location.pathname === s.link}
+                onClick={() => navigate(s.link)}
+                className="mx-auto my-2 text-start text-nowrap"
+                style={{
+                  width: '88%',
+                }}
+                size="sm"
+              >
+                － {s.title}
+              </ListGroupItem>
+            ))}
+        </>
       ))}
     </div>
   )

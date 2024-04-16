@@ -27,11 +27,16 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/register" element={<Register />} />
               <Route path="/user/content" element={<Content />} />
+              <Route path="/user/content/:path" element={<Content />} />
               <Route path="/user/making" element={<Making />} />
+              <Route path="/user/making/:path" element={<Making />} />
               <Route path="/user/analyze" element={<Analyze />} />
+              <Route path="/user/analyze/:path" element={<Analyze />} />
               <Route path="/user/paycontent" element={<PayContent />} />
+              <Route path="/user/paycontent/:path" element={<PayContent />} />
               <Route path="/user/product" element={<Product />} />
               <Route path="/user/brand" element={<Brand />} />
+              <Route path="/user/brand/:path" element={<Brand />} />
               <Route path="/admin/cooperate" element={<Cooperate />} />
               <Route path="/admin/product" element={<AdminProduct />} />
               <Route path="/*" element={<Home />} />
