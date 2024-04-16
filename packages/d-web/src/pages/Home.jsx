@@ -201,7 +201,7 @@ function Home() {
           </video> */}
           <Row className="h-50">
             <Col
-              className="bg-mar text-grey d-flex flex-column justify-content-center"
+              className="bg-mar text-grey d-flex flex-column justify-content-center pe-0"
               xs={2}
             >
               <h4>Creators</h4>
@@ -229,7 +229,7 @@ function Home() {
           </Row>
           <Row className="h-50">
             <Col
-              className="bg-mar text-grey d-flex flex-column justify-content-center"
+              className="bg-mar text-grey d-flex flex-column justify-content-center pe-0"
               xs={2}
               style={{
                 borderTop: '1px solid #262d41',
@@ -339,7 +339,7 @@ function Home() {
                 <Col xs={3} className="m-auto">
                   <LoadingButton
                     className="mx-auto my-2"
-                    variant="mar"
+                    variant="mar2"
                     onClick={handleLogin}
                     btnText="Login"
                   />
@@ -347,7 +347,7 @@ function Home() {
               </Row>
               <div className="d-flex">
                 <span
-                  className="w-100 mx-auto small text-light"
+                  className="w-100 mx-auto small text-grey"
                   style={{
                     cursor: 'pointer',
                     textDecoration: 'underline',

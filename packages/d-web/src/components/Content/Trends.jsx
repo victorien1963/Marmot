@@ -72,9 +72,9 @@ function Trends() {
     <div className="w-100 h-100 p-3">
       <Row className="h-100 w-100">
         <Col xs={6} className="h-50 p-3">
-          <Card className="h-100 w-100">
+          <Card className="h-100 w-100 border-card-2">
             <Card.Body className="d-flex flex-column">
-              <h6 className="text-start text-grey py-2">Top Trends</h6>
+              <h5 className="text-start text-grey py-2">Top Trends</h5>
               <div className="flex-fill" ref={ref}>
                 <CrossChart
                   setting={{
@@ -90,9 +90,9 @@ function Trends() {
           </Card>
         </Col>
         <Col xs={6} className="h-50 p-3">
-          <Card className="h-100 w-100">
+          <Card className="h-100 w-100 border-card-2">
             <Card.Body className="d-flex flex-column">
-              <h6 className="text-start text-grey py-2">Conversation</h6>
+              <h5 className="text-start text-grey py-2">Conversation</h5>
               <div className="flex-fill">
                 <LineChart
                   setting={{
@@ -107,9 +107,9 @@ function Trends() {
           </Card>
         </Col>
         <Col xs={6} className="h-50 p-3">
-          <Card className="h-100 w-100">
+          <Card className="h-100 w-100 border-card-2">
             <Card.Body className="d-flex flex-column">
-              <h6 className="text-start text-grey py-2">Share of Voice</h6>
+              <h5 className="text-start text-grey py-2">Share of Voice</h5>
               <div className="flex-fill">
                 <PieChart
                   setting={{
@@ -158,9 +158,9 @@ function Trends() {
           </Card>
         </Col>
         <Col xs={6} className="h-50 p-3">
-          <Card className="h-100 w-100">
+          <Card className="h-100 w-100 border-card-2">
             <Card.Body className="d-flex flex-column">
-              <h6 className="text-start text-grey py-2">Top Topics</h6>
+              <h5 className="text-start text-grey py-2">Top Topics</h5>
               <div className="flex-fill" ref={ref}>
                 <CrossChart
                   setting={{

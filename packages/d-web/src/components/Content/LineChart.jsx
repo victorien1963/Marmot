@@ -40,7 +40,7 @@ function LineChart(props) {
           y={0}
           width={width}
           height={height}
-          fill="rgb(255,255,255,0.3)"
+          fill="rgb(255,255,255,0)"
         />
         {/* <AnimatedAxis
           stroke="#317985"

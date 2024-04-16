@@ -20,7 +20,9 @@
     "@visx/grid": "^3.3.0",
     "@visx/group": "^3.3.0",
     "@visx/scale": "^3.3.0",
-    "concurrently": "^6.5.1"
+    "@visx/tooltip": "^3.3.0",
+    "concurrently": "^6.5.1",
+    "react-spring": "^9.7.3"
   },
   "devDependencies": {
     "eslint-config-airbnb": "^19.0.1",

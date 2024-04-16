@@ -18,19 +18,22 @@ function PathCard({ setting }) {
   if (!auth) console.log('impossible')
   return (
     <Card
-      className={`text-center h-100 p-0 border m-auto ${
-        type === 'user' ? 'bg-user-marmot' : 'bg-admin-marmot'
+      className={`text-center h-100 p-0 m-auto ${
+        type === 'user' ? 'btn-dark-blue' : 'btn-dark-green'
       }`}
       style={{ width: '350px', opacity: '.75' }}
     >
       <Card.Body className="h-100 d-flex flex-column">
         <Row className="h-100">
           <Col className="d-flex" xs={2}>
-            <FontAwesomeIcon className="fs-4 mx-auto mt-2" icon={icon} />
+            <FontAwesomeIcon
+              className="fs-4 mx-auto mt-2 text-light"
+              icon={icon}
+            />
           </Col>
           <Col xs={10} className="d-flex flex-column">
             <Row>
-              <h5 className="text-start">{title}</h5>
+              <h5 className="text-start text-light">{title}</h5>
             </Row>
             <Row>
               <h6 className="text-start">{subTitle}</h6>
@@ -44,7 +47,7 @@ function PathCard({ setting }) {
                     textDecoration: 'none',
                   }}
                 >
-                  <Button size="sm" variant="dark w-100 mx-auto">
+                  <Button size="sm" variant="purple w-100 mx-auto">
                     Quick View
                   </Button>
                 </Link>
@@ -57,7 +60,7 @@ function PathCard({ setting }) {
                     textDecoration: 'none',
                   }}
                 >
-                  <Button size="sm" variant="enter w-100 mx-auto">
+                  <Button size="sm" variant="pink w-100 mx-auto">
                     Enter
                   </Button>
                 </Link>

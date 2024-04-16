@@ -12,16 +12,17 @@ function PathSign({ setting }) {
     subTitle = '',
     icon = faCircleRadiation,
     link = '/',
-    type = 'user',
+    // type = 'user',
   } = setting
   const { auth } = useContext(AuthContext)
   const navigate = useNavigate()
   if (!auth) console.log('impossible')
   return (
     <Card
-      className={`text-center h-100 p-5 border m-auto ${
-        type === 'user' ? 'bg-user-marmot' : 'bg-admin-marmot'
-      }`}
+      className="text-center h-100 p-5 m-auto btn-dark-blue"
+      // ${
+      //   type === 'user' ? 'bg-user-marmot' : 'bg-admin-marmot'
+      // }`}
       onClick={() => navigate(link)}
       style={{ width: '350px', opacity: '.75', cursor: 'pointer' }}
     >

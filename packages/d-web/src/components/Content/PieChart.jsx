@@ -23,7 +23,7 @@ function PieChart(props) {
     selectedField,
     padding,
     donutThickness,
-    backgroundColor = 'rgb(255,255,255,0.3)',
+    backgroundColor = 'rgb(255,255,255,0)',
     colors = ['#B10905', '#F7CC72', '#44778D', '#59C3C3', '#e88631', '#B5AF8D'],
   } = setting
   // const height = setting.height - 5

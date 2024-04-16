@@ -1,3 +1,5 @@
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import {
   Row,
@@ -6,7 +8,12 @@ import {
   InputGroup,
   FormControl,
   Card,
+  Image,
 } from 'react-bootstrap'
+import video01 from '../../asset/images/video01.png'
+import video02 from '../../asset/images/video02.png'
+import video03 from '../../asset/images/video03.png'
+import bar_a1 from '../../asset/images/bar_a1.png'
 
 function Recommend() {
   const topics = [
@@ -19,23 +26,28 @@ function Recommend() {
 
   const [selected, setselected] = useState('')
   return selected ? (
-    <div className="w-100 h-100 p-3">
-      <Row>
-        <Col xs={5}>
-          <h5 className="text-start text-grey py-4">Recommentation</h5>
-          <Card>
-            <Card.Body className="d-flex flex-column">
+    <div
+      className="w-100 p-3"
+      style={{ height: '100%', overflowY: 'auto', overflowX: 'hidden' }}
+    >
+      <h4 className="text-start text-grey py-4">Recommentation</h4>
+      <Row style={{ height: '65%' }}>
+        <Col xs={3} className="px-3 h-100">
+          <Card className="h-100 w-100 border-card-1">
+            <Card.Body className="d-flex flex-column h-100">
               <h6 className="text-start text-grey py-2">Topic</h6>
               <Button
+                variant="dark-green"
                 size="sm"
                 className="rounded-pill me-auto"
                 // onClick={() => setselected(topic)}
               >
                 {selected}
               </Button>
-              <h6 className="text-start text-grey py-2">Sub topics</h6>
+              <h6 className="text-start text-grey pb-2 pt-4">Sub topics</h6>
               {topics.map((topic) => (
                 <Button
+                  variant="dark-green"
                   key={topic}
                   size="sm"
                   className="rounded-pill me-auto mb-2"
@@ -47,26 +59,58 @@ function Recommend() {
             </Card.Body>
           </Card>
         </Col>
-        <Col xs={7}>
-          <Card className="h-100">
-            <Card.Body>
+        <Col className="px-3 h-100">
+          <Card className="h-100 w-100 border-card-1">
+            <Card.Body className="h-100">
               <h6 className="text-start text-grey py-2">Topic</h6>
-              <h6 className="text-start text-grey py-2">
+              <Row className="d-flex w-100">
+                <Col>
+                  <Image src={video01} width="200" className="rounded" />
+                  <h6 className="text-light py-2">Animation</h6>
+                </Col>
+                <Col>
+                  <Image src={video02} width="200" className="rounded" />
+                  <h6 className="text-light py-2">Talking head</h6>
+                </Col>
+                <Col>
+                  <Image src={video03} width="200" className="rounded" />
+                  <h6 className="text-light py-2">Explainer</h6>
+                </Col>
+              </Row>
+              <h6 className="text-start text-grey pb-2 pt-5">
                 Optimal length and duration
               </h6>
+              <Row>
+                <Image src={bar_a1} />
+              </Row>
             </Card.Body>
           </Card>
         </Col>
+        <div style={{ width: '3.5%', height: '50%' }} />
+      </Row>
+      <Row
+        style={{ height: '65%', borderTop: '1px solid #262d41' }}
+        className="mt-4"
+      >
+        <Col className="px-3 h-100">
+          <div className="h-100 w-100">
+            <h4 className="text-start text-grey py-4 px-3">
+              Predictive performance
+            </h4>
+          </div>
+        </Col>
+        <div style={{ width: '3.5%', height: '50%' }} />
       </Row>
     </div>
   ) : (
     <div className="w-100 h-100">
-      <h5 className="text-start text-grey py-4">Recommentation</h5>
+      <h4 className="text-start text-grey py-4">Recommentation</h4>
       <h6 className="text-start text-grey py-2">Topics</h6>
-      <Row>
+      <Row className="pe-5">
         {topics.map((topic) => (
           <Col key={topic}>
             <Button
+              variant="dark-green"
               size="sm"
               className="rounded-pill"
               onClick={() => setselected(topic)}
@@ -77,9 +121,11 @@ function Recommend() {
         ))}
       </Row>
       <Row className="mt-4">
-        <Col>
-          <InputGroup className="px-0 py-1 searchBar">
+        <Col className="d-flex">
+          <InputGroup className="px-3 py-1 searchBar w-50">
             <FormControl
+              size="sm"
+              style={{ opacity: '.75' }}
               placeholder="Enter Topic"
               // value={search}
               // onChange={(event) => setSearch(event.target.value)}
@@ -96,17 +142,11 @@ function Recommend() {
               //   }
               // }}
             />
-            <Button
-              // title="搜 尋"
-              onClick={() => {}}
-            >
-              generate
-              {/* {action || <FontAwesomeIcon icon={faSearch} />} */}
+            <Button size="sm" onClick={() => {}} variant="outline-light">
+              <FontAwesomeIcon icon={faSearch} />
             </Button>
           </InputGroup>
-        </Col>
-        <Col className="d-flex">
-          <Button size="sm" className="rounded-pill btn-mar my-auto">
+          <Button size="sm" variant="dark-blue" className=" my-auto">
             compare
           </Button>
         </Col>

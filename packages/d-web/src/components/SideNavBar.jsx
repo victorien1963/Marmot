@@ -113,7 +113,7 @@ function SideNavBar() {
       // }`}
       style={{
         backgroundColor: '#eeeeee',
-        borderRight: '1px solid #262d41',
+        borderRight: '1px solid #262d41 !important',
       }}
     >
       {(location.pathname.includes('admin')
