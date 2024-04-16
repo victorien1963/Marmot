@@ -15,7 +15,7 @@ function PathCard({ setting }) {
     type = 'user',
   } = setting
   const { auth } = useContext(AuthContext)
-  console.log(auth)
+  if (!auth) console.log('impossible')
   return (
     <Card
       className={`text-center h-100 p-0 border m-auto ${
