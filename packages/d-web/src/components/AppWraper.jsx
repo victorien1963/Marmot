@@ -13,7 +13,7 @@ function AppWrapper({ children }) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!auth.authed) {
+    if (!auth.authed && location.pathname !== '/') {
       navigate('/')
     }
   }, [auth, location])
