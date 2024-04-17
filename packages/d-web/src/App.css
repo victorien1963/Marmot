@@ -605,6 +605,19 @@
   color: #fff !important;
 }
 
+.btn-sidebar.active {
+  background-color: #0f1e29 !important;
+  color: #fff !important;
+}
+
+.btn-sidebar {
+  border: 1px solid transparent !important;
+}
+
+.btn-sidebar:hover {
+  border: 1px solid rgb(35, 61, 99, 0.7) !important;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
