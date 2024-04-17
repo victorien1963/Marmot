@@ -31,13 +31,13 @@ function AppWrapper({ children }) {
       </Row>
       <Row className="flex-fill" style={{ height: '87vh' }}>
         {location.pathname !== '/' && (
-          <Col xs="2">
+          <Col className="h-100" xs="2">
             <SideNavBar setting={{}} />
           </Col>
         )}
         <Col
           xs={location.pathname !== '/' ? 10 : 12}
-          className="d-flex flex-column px-0 bg-mar"
+          className="d-flex flex-column px-0 bg-mar h-100"
         >
           <Row
             className="p-0 overflow-hidden position-relative bg-mar"

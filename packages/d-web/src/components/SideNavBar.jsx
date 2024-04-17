@@ -49,6 +49,29 @@ function SideNavBar() {
         subTitle: 'AI影片剪輯',
         icon: faCircleRadiation,
         link: '/user/making',
+        sub: [
+          {
+            title: '編輯軟體',
+            subTitle: '',
+            icon: faUsers,
+            link: '/user/making/edit',
+            type: 'user',
+          },
+          {
+            title: '影片資料',
+            subTitle: '',
+            icon: faFileInvoice,
+            link: '/user/making/data',
+            type: 'user',
+          },
+          {
+            title: '發佈平台',
+            subTitle: '',
+            icon: faSackDollar,
+            link: '/user/making/publish',
+            type: 'user',
+          },
+        ],
       },
       {
         title: 'Analytics',
@@ -127,7 +150,7 @@ function SideNavBar() {
             key={link}
             active={location.pathname.includes(link)}
             onClick={() => navigate(link)}
-            className="mx-auto my-2 text-start text-nowrap"
+            className="mx-auto my-2 text-start text-nowrap btn-sidebar"
             style={{
               width: '88%',
             }}
@@ -144,7 +167,7 @@ function SideNavBar() {
                 key={s.link}
                 active={location.pathname === s.link}
                 onClick={() => navigate(s.link)}
-                className="mx-auto my-2 text-start text-nowrap"
+                className="mx-auto my-2 text-start text-nowrap btn-sidebar"
                 style={{
                   width: '88%',
                 }}

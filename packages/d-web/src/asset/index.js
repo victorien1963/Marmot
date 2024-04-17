@@ -12,6 +12,14 @@ import video02 from './images/video02.png'
 import video03 from './images/video03.png'
 import bar_a1 from './images/bar_a1.png'
 
+import facebook from './images/facebook.png'
+import tictok from './images/tictok.png'
+import youtube from './images/youtube.png'
+import vimeo from './images/vimeo.png'
+import dailymotion from './images/dailymotion.png'
+import predictvideo from './images/predictvideo.png'
+import video_sm from './images/video_sm.png'
+
 export {
   logoFullWhite,
   logoFull,
@@ -26,4 +34,11 @@ export {
   video02,
   video03,
   bar_a1,
+  facebook,
+  tictok,
+  youtube,
+  vimeo,
+  dailymotion,
+  predictvideo,
+  video_sm,
 }

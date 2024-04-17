@@ -1,6 +1,6 @@
+import React, { useState } from 'react'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
 import {
   Row,
   Col,
@@ -14,6 +14,7 @@ import video01 from '../../asset/images/video01.png'
 import video02 from '../../asset/images/video02.png'
 import video03 from '../../asset/images/video03.png'
 import bar_a1 from '../../asset/images/bar_a1.png'
+import Predict from './Predict'
 
 function Recommend() {
   const topics = [
@@ -25,13 +26,11 @@ function Recommend() {
   ]
 
   const [selected, setselected] = useState('')
+
   return selected ? (
-    <div
-      className="w-100 p-3"
-      style={{ height: '100%', overflowY: 'auto', overflowX: 'hidden' }}
-    >
+    <div className="w-100 h-100 p-3" style={{ overflow: 'auto' }}>
       <h4 className="text-start text-grey py-4">Recommentation</h4>
-      <Row style={{ height: '65%' }}>
+      <Row style={{ height: '60%' }}>
         <Col xs={3} className="px-3 h-100">
           <Card className="h-100 w-100 border-card-1">
             <Card.Body className="d-flex flex-column h-100">
@@ -88,19 +87,7 @@ function Recommend() {
         </Col>
         <div style={{ width: '3.5%', height: '50%' }} />
       </Row>
-      <Row
-        style={{ height: '65%', borderTop: '1px solid #262d41' }}
-        className="mt-4"
-      >
-        <Col className="px-3 h-100">
-          <div className="h-100 w-100">
-            <h4 className="text-start text-grey py-4 px-3">
-              Predictive performance
-            </h4>
-          </div>
-        </Col>
-        <div style={{ width: '3.5%', height: '50%' }} />
-      </Row>
+      <Predict />
     </div>
   ) : (
     <div className="w-100 h-100">
