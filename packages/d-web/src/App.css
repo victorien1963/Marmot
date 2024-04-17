@@ -130,6 +130,12 @@
   border-radius: 5px;
 }
 
+.border-card-4 {
+  background-color: transparent !important;
+  border: 1px solid #cf4ab2 !important;
+  border-radius: 5px;
+}
+
 .btn-mar {
   background-image: transparent !important;
   color: #fff !important;

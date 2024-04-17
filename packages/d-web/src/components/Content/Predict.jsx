@@ -4,13 +4,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useRef, useState } from 'react'
-import { Row, Col, Tabs, Tab, Card } from 'react-bootstrap'
+import { Row, Col, Tabs, Tab, Card, Image } from 'react-bootstrap'
 import LineChart from './LineChart'
 import {
   dailymotion,
   facebook,
   predictvideo,
-  tictok,
+  tiktok,
   vimeo,
   youtube,
 } from '../../asset'
@@ -81,24 +81,24 @@ function Predict() {
 
   const icons = {
     Facebook: facebook,
-    TikTok: tictok,
+    TikTok: tiktok,
     YouTube: youtube,
     Vimeo: vimeo,
     Dailymotion: dailymotion,
   }
 
   return (
-    <Row
-      style={{ height: '80vh', borderTop: '1px solid #262d41' }}
-      className="mt-4 w-100 pe-3"
-    >
+    <Row style={{ height: '80vh' }} className="mt-4 w-100 pe-3">
+      <h4
+        className="text-start text-grey py-4 px-3 pt-5"
+        style={{ borderTop: '1px solid #262d41' }}
+      >
+        Predictive performance
+      </h4>
       <Col className="px-3 h-100">
-        <Card className="h-75 w-100">
+        <Card className="h-75 w-100 border-card-2">
           <Card.Body className="h-100 w-100">
             <Row className="h-50 w-100 d-flex flex-column">
-              <h4 className="text-start text-grey py-4 px-3">
-                Predictive performance
-              </h4>
               <Tabs className="w-100 d-flex" justify>
                 {[
                   {
@@ -169,7 +169,7 @@ function Predict() {
             </Row>
           </Card.Body>
         </Card>
-        <Card>
+        <Card className="border-card-3 mt-4">
           <Card.Body>
             <Row className="h-50 w-100 d-flex flex-column">
               <h4 className="text-start text-grey py-4 px-3">
@@ -180,15 +180,20 @@ function Predict() {
               {['Facebook', 'TikTok', 'YouTube', 'Vimeo', 'Dailymotion'].map(
                 (icon) => (
                   <Col key={icon}>
-                    <img src={icons[icon]} alt="" />
-                    <h5>{icon}</h5>
+                    <Image
+                      className="rounded"
+                      width="100"
+                      src={icons[icon]}
+                      alt=""
+                    />
+                    <h6 className="text-grey pt-2">{icon}</h6>
                   </Col>
                 )
               )}
             </Row>
           </Card.Body>
         </Card>
-        <Card>
+        <Card className="border-card-4 mt-4">
           <Card.Body>
             <Row className="h-50 w-100 d-flex flex-column">
               <h4 className="text-start text-grey py-4 px-3">
@@ -198,13 +203,30 @@ function Predict() {
             <Row>
               {['1', '2', '3', '4'].map((icon) => (
                 <Col key={icon} className="d-flex" xs={6}>
-                  <Row>
-                    <Col>
-                      <img src={predictvideo} alt="" />
+                  <Row
+                    style={{ cursor: 'pointer' }}
+                    title="https://www.youtube.com/watch?v=j5zR37pWau0&ab_channel=%E5%85%AC%E5%85%B1%E9%9B%BB%E8%A6%96-%E7%8D%A8%E7%AB%8B%E7%89%B9%E6%B4%BE%E5%93%A1PTSINNEWS"
+                  >
+                    <Col className="mb-3">
+                      <Image
+                        width="210"
+                        className="rounded"
+                        src={predictvideo}
+                        alt=""
+                      />
                     </Col>
-                    <Col>
-                      <h5>title {icon}</h5>
-                      <h5>content</h5>
+                    <Col className="text-light text-start">
+                      {/* <h5>title {icon}</h5> */}
+                      <h6 className="text-light">
+                        五分鐘看，漁電共生對養殖漁業的影響｜公視 #獨立特派員
+                        單元精華
+                      </h6>
+                      <h6 className="text-grey">
+                        公共電視-獨立特派員 PTS INNEWS
+                      </h6>
+                      <h6 className="text-secondary">
+                        22K views・11 months ago
+                      </h6>
                     </Col>
                   </Row>
                 </Col>

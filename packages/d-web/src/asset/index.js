@@ -13,7 +13,7 @@ import video03 from './images/video03.png'
 import bar_a1 from './images/bar_a1.png'
 
 import facebook from './images/facebook.png'
-import tictok from './images/tictok.png'
+import tiktok from './images/tiktok.png'
 import youtube from './images/youtube.png'
 import vimeo from './images/vimeo.png'
 import dailymotion from './images/dailymotion.png'
@@ -35,7 +35,7 @@ export {
   video03,
   bar_a1,
   facebook,
-  tictok,
+  tiktok,
   youtube,
   vimeo,
   dailymotion,
