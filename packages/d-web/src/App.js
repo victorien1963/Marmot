@@ -15,6 +15,8 @@ import {
   AdminProduct,
 } from './components'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'react-date-range/dist/styles.css'
+import 'react-date-range/dist/theme/default.css'
 import 'react-bootstrap-typeahead/css/Typeahead.css'
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
               <Route path="/user/content/:path" element={<Content />} />
               <Route path="/user/making" element={<Making />} />
               <Route path="/user/making/:path" element={<Making />} />
+              <Route path="/user/making/edit/:video_id" element={<Making />} />
               <Route path="/user/analyze" element={<Analyze />} />
               <Route path="/user/analyze/:path" element={<Analyze />} />
               <Route path="/user/paycontent" element={<PayContent />} />
