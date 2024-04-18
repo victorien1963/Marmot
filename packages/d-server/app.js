@@ -26,6 +26,7 @@ app.use(logger('dev'))
 app.use(express.json({ limit: '1000000kb' }))
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+app.use('/static', express.static(path.join(__dirname, '/', 'public')))
 app.use(express.static(path.join(__dirname, 'public')))
 
 async function getUser(req, res, next) {

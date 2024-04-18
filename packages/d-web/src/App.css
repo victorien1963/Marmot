@@ -624,6 +624,99 @@
   border: 1px solid rgb(35, 61, 99, 0.7) !important;
 }
 
+.tab-content {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.input-container {
+    margin: 0;
+    max-width: 100%;
+    flex: 1 0 auto;
+    outline: 0;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+    text-align: left;
+    line-height: 1.21428571em;
+    padding: .4em .5em;
+    background: #fff;
+    border: 1px solid rgba(34,36,38,.15);
+    color: rgba(0,0,0,.87);
+    border-radius: .28571429rem;
+    transition: box-shadow .1s ease,border-color .1s ease;
+    font-size: 13px;
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: flex-start;
+    overflow: scroll;
+}
+
+.input-container > input {
+  border: none;
+}
+
+.input-container > input:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.input-tag {
+    line-height: 1;
+    vertical-align: baseline;
+    margin: .14285714em;
+    background-color: #f3f3f3;
+    background-image: none;
+    padding: .3833em .833em;
+    color: rgba(0,0,0,.6);
+    text-transform: none;
+    font-weight: 600;
+    border: 0 solid transparent;
+    border-radius: .28571429rem;
+    transition: background .1s ease;
+    font-size: .8rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 100%;
+}
+
+.react_time_range__time_range_container {
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.react_time_range__time_range_container > div {
+  height: 100% !important;
+}
+
+.react_time_range__time_range_container > div > * {
+  transform: translate(0%, 0%) !important;
+  height: 100% !important;
+}
+
+.react_time_range__time_range_container > div > .react_time_range__handle_container{
+  transform: translate(-50%, 50%) !important;
+  height: 50% !important;
+  margin: 0 auto !important;
+}
+
+.react_time_range__time_range_container > div > .react_time_range__track {
+  background-color: #266faa !important;
+  border-color: #266faa !important;
+  opacity: 0.2 !important;
+}
+
+.react_time_range__time_range_container > div > .react_time_range__rail__inner {
+  background-color: #266faa !important;
+  opacity: 0.2 !important;
+}
+
+.tab-90 > .tab-content {
+  height: 90% !important;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
