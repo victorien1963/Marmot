@@ -49,7 +49,7 @@ function Edit() {
           {Object.keys(pages).map((key) => (
             <Nav.Link
               key={key}
-              className="text-light"
+              className="text-grey-hover"
               href=""
               onClick={() => setpage(key)}
             >

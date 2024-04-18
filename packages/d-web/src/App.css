@@ -89,7 +89,18 @@
 }
 
 .text-grey {
-  color: #b2b2b2;
+  color: #b2b2b2 !important;
+}
+
+.text-grey-hover {
+  color: #b2b2b2 !important;
+  border: 1px solid transparent !important;
+}
+
+.text-grey-hover:hover, .text-grey-hover:active {
+  color: #b2b2b2 !important;
+  border-radius: 5px;
+  border: 1px solid #b2b2b2 !important;
 }
 
 .text-dai-light {

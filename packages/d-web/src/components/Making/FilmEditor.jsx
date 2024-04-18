@@ -13,7 +13,7 @@ import {
   faCirclePlus,
   // faFilm,
   faGear,
-  faPenToSquare,
+  // faPenToSquare,
   faScissors,
   faSpinner,
   faTrashCan,
@@ -215,13 +215,15 @@ function SelectModal({ setting }) {
               <small className="w-15 my-auto text-start ps-2">
                 <span className="fw-regular text-chelonia">24 MB</span>
                 <br />
-                <span className="fw-regular text-chelonia">類型｜</span>
+                <span className="fw-regular text-chelonia">type｜</span>
                 {m.setting.type}
                 <br />
-                <span className="fw-regular text-chelonia">建立者｜</span>
+                <span className="fw-regular text-chelonia">｜</span>
                 {user_name}
                 <br />
-                <span className="fw-regular text-chelonia">建立時間｜</span>
+                <span className="fw-regular text-chelonia">
+                  uploaded date ｜
+                </span>
                 {moment(created_on).format('yyyy-MM-DD')}
               </small>
             </ListGroupItem>
@@ -540,7 +542,7 @@ function FilmEditor() {
                   <Tab
                     className="w-100 h-100"
                     eventKey="audio-visualize"
-                    title="音頻擷取"
+                    title="Clip"
                   >
                     <AudioVisualizer
                       setting={{
@@ -569,7 +571,7 @@ function FilmEditor() {
                   <Tab
                     className="w-100 h-100"
                     eventKey="ai_subtitle"
-                    title="自動字幕"
+                    title="AI subtitle"
                   >
                     <Row className="px-2 w-100">
                       {/* Search bar */}
@@ -600,7 +602,7 @@ function FilmEditor() {
                           size="sm"
                           variant="outline-dark"
                           id="button-addon2"
-                          title="搜 尋"
+                          title="Search"
                           onClick={() => setSearch(tempSearch)}
                         >
                           <FontAwesomeIcon icon={faSearch} />
@@ -638,7 +640,7 @@ function FilmEditor() {
                             size="sm"
                           >
                             <option value="" className="d-none">
-                              字體大小
+                              Font Size
                             </option>
                             {['1', '1.2x', '1.5x', '2x'].map((label, i) => (
                               <option key={i} value={label}>
@@ -671,7 +673,7 @@ function FilmEditor() {
                       <br />
                       <br />
                       <br />
-                      <h5 className="text-grey m-auto">目前尚無資料</h5>
+                      <h5 className="text-grey m-auto">no data</h5>
                     </>
                   </Tab>
 
@@ -698,7 +700,7 @@ function FilmEditor() {
                 xs={12}
                 className="fw-bold text-start text-chelonia-light my-auto pe-0"
               >
-                快速選項
+                Quick Options
               </Col>
             </Row>
             <hr className="mx-2 mt-2 mb-1" />
@@ -726,13 +728,10 @@ function FilmEditor() {
                   aria-label="Toolbar with button groups"
                   className="mx-auto"
                 >
-                  <ButtonGroup
-                    aria-label="Second group"
-                    variant="outline-chelonia"
-                  >
-                    <Button variant="outline-chelonia px-2">¼x</Button>
-                    <Button variant="outline-chelonia px-2">½x</Button>
-                    <Button variant="outline-chelonia px-2">1x</Button>
+                  <ButtonGroup aria-label="Second group" variant="outline-dark">
+                    <Button variant="outline-dark px-2">¼x</Button>
+                    <Button variant="outline-dark px-2">½x</Button>
+                    <Button variant="outline-dark px-2">1x</Button>
                   </ButtonGroup>
                 </ButtonToolbar>
               </Col>
@@ -760,7 +759,7 @@ function FilmEditor() {
           <Card
             className="w-100"
             style={{
-              height: '60%',
+              height: '55%',
             }}
           >
             <Row className="d-flex p-3 pt-2 pb-0">
@@ -768,7 +767,7 @@ function FilmEditor() {
                 xs={12}
                 className="fw-bold text-start text-chelonia-light my-auto pe-0"
               >
-                影片剪輯
+                Video Clip
               </Col>
             </Row>
             <hr className="mx-2 mt-2 mb-1" />
@@ -779,14 +778,15 @@ function FilmEditor() {
                 style={{ cursor: 'pointer' }}
                 onClick={handleVideoClear}
               >
-                清除
+                Clean
+                {/* <FontAwesomeIcon icon={faTrashCan} /> */}
               </Col>
               <Col
                 xs={2}
                 className="fw-bold text-start text-danger my-auto px-0"
                 style={{ cursor: 'pointer' }}
               >
-                排列
+                Sort
                 <FontAwesomeIcon icon={faCaretDown} />
               </Col>
               <Col
@@ -794,7 +794,7 @@ function FilmEditor() {
                 className="fw-bold text-start text-red my-auto px-0"
                 style={{ cursor: 'pointer' }}
               >
-                草稿
+                Script
                 <FontAwesomeIcon icon={faCaretDown} />
               </Col>
               <Col xs={6} className="d-flex ps-0">
@@ -806,7 +806,7 @@ function FilmEditor() {
                   value={selected.size}
                 >
                   <option value="" className="d-none">
-                    影片比例
+                    16:9
                   </option>
                   {['Horizontal (16:9)'].map((label, i) => (
                     <option key={i} value={label}>
@@ -817,7 +817,7 @@ function FilmEditor() {
               </Col>
             </Row>
             <hr className="mx-2 mt-2 mb-1" />
-            <Row className="d-flex px-4 py-1">
+            {/* <Row className="d-flex px-4 py-1">
               <Col xs={1} className="d-flex">
                 <FontAwesomeIcon className="my-auto" icon={faBars} />
               </Col>
@@ -852,7 +852,7 @@ function FilmEditor() {
                   </Button>
                 </div>
               </Col>
-            </Row>
+            </Row> */}
             <Row className="d-flex px-4 py-1">
               <Button
                 size="sm"
@@ -872,24 +872,24 @@ function FilmEditor() {
                   })
                 }
               >
-                加入轉場動畫&ensp;
+                add transition&ensp;
                 <FontAwesomeIcon icon={faCirclePlus} />
               </Button>
               <Button
                 size="sm"
-                className="mt-1 w-48 ms-2"
+                className="mt-1 w-48"
                 variant="outline-secondary"
                 style={{ right: '0%', top: '0%' }}
                 // onClick={() => setshow(true)}
               >
-                手動加入片段&ensp;
+                add fragment&ensp;
                 <FontAwesomeIcon icon={faCirclePlus} />
               </Button>
             </Row>
             <Row className="d-flex p-3 py-2">
               <Form.Group as={Row} className="mb-1" controlId="watermark">
                 <Form.Label column sm="4" className="py-1 px-0">
-                  浮水印
+                  Watermark
                 </Form.Label>
                 <Col sm="8" className="px-0">
                   <Form.Select
@@ -901,13 +901,15 @@ function FilmEditor() {
                     size="sm"
                   >
                     <option value="" className="d-none">
-                      選擇浮水印
+                      Choose the watermark...
                     </option>
-                    {['浮水印_01', '浮水印_02', '浮水印_03'].map((label, i) => (
-                      <option key={i} value={label}>
-                        {label}
-                      </option>
-                    ))}
+                    {['Watermark_01', 'Watermark_02', 'Watermark_03'].map(
+                      (label, i) => (
+                        <option key={i} value={label}>
+                          {label}
+                        </option>
+                      )
+                    )}
                   </Form.Select>
                 </Col>
               </Form.Group>
@@ -926,7 +928,7 @@ function FilmEditor() {
                     size="sm"
                   >
                     <option value="" className="d-none">
-                      選擇PSD Template
+                      Choose the PSD Template...
                     </option>
                     {[
                       'PSD Template_01',
@@ -948,7 +950,7 @@ function FilmEditor() {
                 controlId="transition_effect"
               >
                 <Form.Label column sm="4" className="py-1 px-0 fs-7">
-                  轉場效果
+                  Transition Effect
                 </Form.Label>
                 <Col sm="8" className="px-0">
                   <Form.Select
@@ -960,9 +962,9 @@ function FilmEditor() {
                     size="sm"
                   >
                     <option value="" className="d-none">
-                      選擇轉場效果
+                      Choose the transition effect...
                     </option>
-                    {['轉場效果_01', '轉場效果_02', '轉場效果_03'].map(
+                    {['transition_01', 'transition_02', 'transition_03'].map(
                       (label, i) => (
                         <option key={i} value={label}>
                           {label}
@@ -974,7 +976,7 @@ function FilmEditor() {
                 </Col>
               </Form.Group>
             </Row>
-            <Row className="d-flex px-3 py-2">
+            <Row className="d-flex px-3 py-2 pt-0">
               <Button
                 size="md"
                 className="mt-0 ms-auto w-100"
@@ -983,14 +985,14 @@ function FilmEditor() {
                 // onClick={handleBindClips}
               >
                 <FontAwesomeIcon icon={faScissors} />
-                &ensp; 影片快剪&ensp; (總長: 00:00:00)
+                &ensp; Clip&ensp; (00:00:00)
               </Button>
             </Row>
           </Card>
           <Card
             className="w-100 mt-3 ps-2"
             style={{
-              height: '23%',
+              height: '27.4%',
             }}
           >
             <Row className="d-flex w-100 px-1 py-2 pb-0">
@@ -998,7 +1000,7 @@ function FilmEditor() {
                 xs={12}
                 className="fw-bold text-start text-chelonia-light my-auto pe-0"
               >
-                影片管理
+                Fragments
               </Col>
               <hr className="mx-2 mt-2 mb-1" />
             </Row>

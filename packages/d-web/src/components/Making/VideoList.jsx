@@ -289,7 +289,7 @@ function VideoList() {
     <Container className="d-flex flex-column pt-3 h-100">
       <Row className="px-5">
         <Col xs={4} className="d-flex">
-          <h5 className="my-auto text-chelonia-light fw-bold">全部影片</h5>
+          <h4 className="my-auto text-grey">Video list</h4>
         </Col>
         <Col xs={3} className="d-flex justifu-content-end">
           <Form.Select
@@ -299,9 +299,9 @@ function VideoList() {
             value={selected}
           >
             <option value="" className="d-none">
-              選擇分類
+              category...
             </option>
-            {['影片分類一', '影片分類二', '影片分類三'].map((label, i) => (
+            {['category 1', 'category 2', 'category 3'].map((label, i) => (
               <option key={i} value={label}>
                 {label}
               </option>
@@ -311,7 +311,7 @@ function VideoList() {
         <Col xs={5} className="d-flex pe-0">
           <InputGroup>
             <Form.Control
-              placeholder="輸入關鍵字以搜尋影片..."
+              placeholder="keyword..."
               aria-label="Recipient's username"
               aria-describedby="basic-addon2"
               value={tempSearch}
@@ -328,9 +328,9 @@ function VideoList() {
               }}
             />
             <Button
-              variant="outline-dark"
+              variant="outline-light"
               id="button-addon2"
-              title="搜 尋"
+              title="Search"
               onClick={() => setSearch(tempSearch)}
             >
               <FontAwesomeIcon icon={faSearch} />
@@ -357,12 +357,12 @@ function VideoList() {
           />
           <FormLabel
             htmlFor="file"
-            className="d-flex h-100 w-50 ms-4 btn btn-outline-dark mb-0"
+            className="d-flex h-100 w-50 ms-4 btn btn-mar mb-0"
             style={{ cursor: 'pointer' }}
-            title="影 片 上 傳"
+            title="upload the video"
           >
             <span className="m-auto">
-              新增影片&ensp;
+              Upload&ensp;
               <FontAwesomeIcon icon={faCirclePlus} />
             </span>
           </FormLabel>
@@ -394,7 +394,7 @@ function VideoList() {
                   title={name}
                 >
                   <span className="fw-regular text-chelonia" />
-                  檔名｜
+                  File Name｜
                   {/* {setting.date} */}
                   {name}
                 </p>
@@ -413,7 +413,7 @@ function VideoList() {
                     // setselectedId(video_id)
                     // setshow(true)
                   }}
-                  title="重 新 命 名"
+                  title="rename"
                 >
                   <FontAwesomeIcon icon={faPenToSquare} />
                 </Button>
@@ -425,7 +425,7 @@ function VideoList() {
                     // setselectedId(video_id)
                     // setdeleteShow(true)
                   }}
-                  title="刪 除"
+                  title="delete"
                 >
                   <FontAwesomeIcon icon={faTrashCan} />
                 </Button>
@@ -444,7 +444,7 @@ function VideoList() {
                     // setselectedId(video_id)
                     // setdeleteShow(true)
                   }}
-                  title="直 播 轉 送"
+                  title="Export to youtube"
                 >
                   <FontAwesomeIcon icon={faYoutube} />
                 </Button>
@@ -462,7 +462,7 @@ function VideoList() {
                   variant="edit"
                   // onClick={() => setId(time_id || range_id || draft_id)}
                   onClick={() => navigate(`/user/making/edit/${video_id}`)}
-                  title="影 片 剪 輯"
+                  title="Clip"
                 >
                   <FontAwesomeIcon icon={faScissors} />
                 </Button>

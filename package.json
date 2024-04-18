@@ -22,6 +22,7 @@
     "@visx/scale": "^3.3.0",
     "@visx/tooltip": "^3.3.0",
     "concurrently": "^6.5.1",
+    "react-date-range": "^2.0.0-alpha.4",
     "react-responsive": "^10.0.0",
     "react-spring": "^9.7.3"
   },

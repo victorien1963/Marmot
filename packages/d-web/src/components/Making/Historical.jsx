@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { DateRange } from 'react-date-range'
@@ -272,8 +273,9 @@ function Historical() {
             role="tab"
             aria-controls="nav-home"
             aria-selected="true"
+            style={{ opacity: '.8' }}
           >
-            搜尋
+            Search
           </button>
           <button
             className="nav-link"
@@ -284,8 +286,9 @@ function Historical() {
             role="tab"
             aria-controls="nav-profile"
             aria-selected="false"
+            style={{ opacity: '.8' }}
           >
-            剪輯 (0)
+            Clip (0)
           </button>
         </div>
       </Nav>
@@ -296,8 +299,8 @@ function Historical() {
         style={{ height: '100%' }}
       >
         <div
-          className="tab-pane fade show active py-3"
-          // style={{ height: '80vh' }}
+          className="tab-pane fade show active py-3 bg-light rounded-bottom"
+          style={{ height: '78vh', opacity: '.8', borderTopRightRadius: '5px' }}
           id="nav-home"
           role="tabpanel"
           aria-labelledby="nav-home-tab"
@@ -306,8 +309,8 @@ function Historical() {
             <Col>
               <AutoComplete
                 setting={{
-                  text: '節目',
-                  placeholder: '節目多選輸入框(多選)...',
+                  text: 'Channel',
+                  placeholder: 'channel(s)...',
                   options: fakeOptions.channel,
                   handleSelect: (e) => handleSelect('channel', e),
                   show: focus.channel,
@@ -338,8 +341,8 @@ function Historical() {
               </InputGroup> */}
               <AutoComplete
                 setting={{
-                  text: '活動',
-                  placeholder: '活動輸入框(多選)...',
+                  text: 'Event',
+                  placeholder: 'event(s)...',
                   options: fakeOptions.activity,
                   handleSelect: (e) => handleSelect('activity', e),
                   show: focus.activity,
@@ -353,7 +356,7 @@ function Historical() {
             </Col>
             <Col>
               <InputGroup>
-                <Form.Label className="px-2 my-auto">日期</Form.Label>
+                <Form.Label className="px-2 my-auto">Date</Form.Label>
                 <Form.Control
                   // name={f.name}
                   value={data.date || ''}
@@ -417,8 +420,8 @@ function Historical() {
               </InputGroup> */}
               <AutoComplete
                 setting={{
-                  text: '事件',
-                  placeholder: '事件(多選)...',
+                  text: 'Event',
+                  placeholder: 'Event(s)...',
                   options: fakeOptions.event,
                   handleSelect: (e) => handleSelect('event', e),
                   show: focus.event,
@@ -437,8 +440,8 @@ function Historical() {
               </InputGroup> */}
               <AutoComplete
                 setting={{
-                  text: '人物',
-                  placeholder: '人物(多選)...',
+                  text: 'character',
+                  placeholder: 'character(s)...',
                   options: fakeOptions.people,
                   handleSelect: (e) => handleSelect('people', e),
                   show: focus.people,
@@ -473,11 +476,11 @@ function Historical() {
               />
             </Col>
           </Row>
-          <Row>
+          <Row className="pe-3">
             <Col>
               <InputGroup className="mb-2">
-                <Form.Label className="px-2 my-auto">片段</Form.Label>
-                <Form.Control type="text" placeholder="搜尋片段名稱" />
+                <Form.Label className="px-2 my-auto">Fragment</Form.Label>
+                <Form.Control type="text" placeholder="Keyword..." />
               </InputGroup>
               {/* <AutoComplete
                 setting={{
@@ -497,9 +500,9 @@ function Historical() {
           </Row>
           <Row>
             <Col xs={10} />
-            <Col xs={2} className="text-end pb-2">
+            <Col xs={2} className="text-end pb-2 pe-4">
               <Button size="sm" className="ms-auto" variant="warning">
-                <FontAwesomeIcon icon={faPlus} /> 全部加入
+                <FontAwesomeIcon icon={faPlus} /> Add all
               </Button>
             </Col>
           </Row>

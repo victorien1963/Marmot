@@ -299,7 +299,7 @@ function MaterialList() {
     <Container className="d-flex flex-column pt-3 h-100">
       <Row className="px-5">
         <Col xs={4} className="d-flex">
-          <h5 className="my-auto text-chelonia-light fw-bold">素材管理</h5>
+          <h4 className="my-auto text-grey">Material List</h4>
         </Col>
         <Col xs={3} className="d-flex justifu-content-end">
           <Form.Select
@@ -340,9 +340,9 @@ function MaterialList() {
               }}
             />
             <Button
-              variant="outline-dark"
+              variant="outline-light"
               id="button-addon2"
-              title="搜 尋"
+              title="Search"
               onClick={() => setSearch(tempSearch)}
             >
               <FontAwesomeIcon icon={faSearch} />
@@ -350,13 +350,13 @@ function MaterialList() {
           </InputGroup>
           <Button
             className="ms-4 w-50"
-            variant="outline-dark"
+            variant="mar"
             onClick={() => {
               // setselectedId('')
               // setshow(true)
             }}
           >
-            新增素材&ensp;
+            Upload&ensp;
             <FontAwesomeIcon icon={faCirclePlus} />
           </Button>
         </Col>
@@ -423,13 +423,13 @@ function MaterialList() {
                   <small className="w-15 my-auto text-start ps-2">
                     <span className="fw-regular text-chelonia">24 MB</span>
                     <br />
-                    <span className="fw-regular text-chelonia">類型｜</span>
+                    <span className="fw-regular text-chelonia">type｜</span>
                     {/* {setting.type} */}
                     <br />
-                    <span className="fw-regular text-chelonia">建立者｜</span>
+                    <span className="fw-regular text-chelonia">editor｜</span>
                     {user_name}
                     <br />
-                    <span className="fw-regular text-chelonia">建立時間｜</span>
+                    <span className="fw-regular text-chelonia">date｜</span>
                     {moment(created_on).format('yyyy-MM-DD')}
                   </small>
                   <Button
@@ -447,7 +447,7 @@ function MaterialList() {
                   </Button>
                   <Button
                     style={{ boxShadow: 'none' }}
-                    title="下 載"
+                    title="Dwonload"
                     variant="edit"
                   >
                     <FontAwesomeIcon icon={faDownload} />
