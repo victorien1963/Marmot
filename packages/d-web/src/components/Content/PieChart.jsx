@@ -62,7 +62,7 @@ function PieChart(props) {
 
   const getData = (data, breakdown, label) =>
     data.map((d, key) => ({
-      label: hasLabels ? d[label || breakdown] || '其他' : '',
+      label: hasLabels ? d[label || breakdown] || 'others' : '',
       key,
       // value: d[selectedField],
       value: parseInt(d[selectedField], 10),

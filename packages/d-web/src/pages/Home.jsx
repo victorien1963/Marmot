@@ -125,7 +125,7 @@ function Home() {
   const contents = {
     user: [
       {
-        title: 'Planning',
+        title: 'PLANNING',
         subTitle: 'Pre-production stage',
         icon: faCircleRadiation,
         link: '/user/content',

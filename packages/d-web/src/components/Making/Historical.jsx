@@ -273,7 +273,7 @@ function Historical() {
             role="tab"
             aria-controls="nav-home"
             aria-selected="true"
-            style={{ opacity: '.8' }}
+            style={{ opacity: '.9' }}
           >
             Search
           </button>
@@ -286,7 +286,7 @@ function Historical() {
             role="tab"
             aria-controls="nav-profile"
             aria-selected="false"
-            style={{ opacity: '.8' }}
+            style={{ opacity: '.9' }}
           >
             Clip (0)
           </button>
@@ -300,7 +300,7 @@ function Historical() {
       >
         <div
           className="tab-pane fade show active py-3 bg-light rounded-bottom"
-          style={{ height: '78vh', opacity: '.8', borderTopRightRadius: '5px' }}
+          style={{ height: '78vh', opacity: '.9', borderTopRightRadius: '5px' }}
           id="nav-home"
           role="tabpanel"
           aria-labelledby="nav-home-tab"
@@ -501,7 +501,7 @@ function Historical() {
           <Row>
             <Col xs={10} />
             <Col xs={2} className="text-end pb-2 pe-4">
-              <Button size="sm" className="ms-auto" variant="warning">
+              <Button className="ms-auto" variant="warning">
                 <FontAwesomeIcon icon={faPlus} /> Add all
               </Button>
             </Col>
@@ -510,18 +510,29 @@ function Historical() {
           <div>
             <Row>
               <Col xs={1} />
-              <Col xs={1}>Date</Col>
-              <Col xs={3}>活動</Col>
-              <Col xs={1}>人物</Col>
-              <Col xs={4}>片段名稱</Col>
-              <Col xs={2}>功能</Col>
+              <Col xs={2}>Date</Col>
+              <Col xs={2}>Name</Col>
+              <Col xs={1}>Source</Col>
+              <Col xs={4}>Subtitle</Col>
+              <Col xs={2}>Fuctions</Col>
             </Row>
             {[
               {
                 description: null,
                 duration: 0,
                 location: null,
-                name: '林來瘋再現_clip (1).mp4',
+                name: '潮網訪談_clip (1).mp4',
+                taken_at: null,
+                video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
+                view_url:
+                  'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
+                view_url_expiration_at: '2024-04-18T10:49:42.302893',
+              },
+              {
+                description: null,
+                duration: 0,
+                location: null,
+                name: 'project_9054216730.mp4',
                 taken_at: null,
                 video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
                 view_url:
@@ -537,26 +548,27 @@ function Historical() {
               >
                 <Col className="d-flex h-100" xs={1}>
                   <FontAwesomeIcon
-                    className="m-auto me-2 text-icon"
+                    className="m-auto me-2 ps-3 text-icon"
                     icon={faPlus}
                   />
                   <FontAwesomeIcon
                     className="m-auto text-icon2"
                     icon={faStar}
+                    style={{ cursor: 'pointer' }}
                   />
                 </Col>
-                <Col className="d-flex h-100" xs={1}>
+                <Col className="d-flex h-100" xs={2}>
                   <span className="m-auto">
                     {moment(h.created_on).format('yyyy-MM-DD')}
                   </span>
                 </Col>
-                <Col className="d-flex h-100" xs={3}>
+                <Col className="d-flex h-100" xs={2}>
                   <span className="my-auto text-start oneLineEllipsis px-0">
                     {h.name}
                   </span>
                 </Col>
                 <Col className="d-flex h-100" xs={1}>
-                  <span className="m-auto px-0">AI字幕</span>
+                  <span className="m-auto px-0">AI</span>
                 </Col>
                 <Col className="d-flex h-100 py-2" xs={4}>
                   <span
@@ -572,7 +584,7 @@ function Historical() {
                       : '(無字幕)'} */}
                   </span>
                 </Col>
-                <Col className="d-flex h-100" xs={2}>
+                <Col className="d-flex h-100 pe-3" xs={2}>
                   <Button
                     className="m-auto text-nowrap"
                     style={{ boxShadow: 'none' }}
@@ -592,7 +604,7 @@ function Historical() {
                   <Button
                     className="m-auto text-nowrap"
                     style={{ boxShadow: 'none' }}
-                    title="下 載"
+                    title="download"
                     variant="edit"
                   >
                     <FontAwesomeIcon icon={faDownload} />
@@ -600,7 +612,7 @@ function Historical() {
                   <Button
                     className="m-auto text-nowrap"
                     style={{ boxShadow: 'none' }}
-                    title="剪 輯"
+                    title="clip"
                     variant="edit"
                   >
                     <FontAwesomeIcon icon={faCropSimple} />
@@ -608,7 +620,7 @@ function Historical() {
                   <Button
                     className="m-auto text-nowrap"
                     style={{ boxShadow: 'none' }}
-                    title="加 入"
+                    title="add"
                     variant="edit"
                   >
                     <FontAwesomeIcon icon={faCirclePlus} />

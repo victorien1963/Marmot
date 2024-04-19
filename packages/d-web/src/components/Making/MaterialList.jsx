@@ -309,9 +309,9 @@ function MaterialList() {
             value={selected}
           >
             <option value="" className="d-none">
-              選擇素材類型
+              material type...
             </option>
-            {['浮水印', '轉場動畫', '直播廣告圖卡', 'PSD Template'].map(
+            {['Watermark', 'Transition', 'Ad', 'PSD Template'].map(
               (label, i) => (
                 <option key={i} value={label}>
                   {label}
@@ -323,7 +323,7 @@ function MaterialList() {
         <Col xs={5} className="d-flex pe-0">
           <InputGroup>
             <Form.Control
-              placeholder="輸入關鍵字以搜尋素材..."
+              placeholder="keywords..."
               aria-label="Recipient's username"
               aria-describedby="basic-addon2"
               value={tempSearch}
@@ -363,7 +363,7 @@ function MaterialList() {
       </Row>
       <Row
         className="flex-grow-1 pt-3 pb-5 px-5 h-100"
-        style={{ overflowY: 'auto', overflowX: 'hidden' }}
+        style={{ overflowY: 'auto', overflowX: 'hidden', opacity: '.9' }}
       >
         <ListGroup className="pe-0">
           {[
@@ -371,10 +371,51 @@ function MaterialList() {
               clip_id: '34737549-342d-4f08-a4d1-08412b9a6fd7',
               description: 'my first clip',
               end: 198,
-              name: 'first clip',
+              name: '潮網訪談_(01)',
+              source_video: 'bfd32c58-e1c4-46fa-b322-beb6f1fbd368',
+              start: 3,
+              type: 'Fragments',
+              size: '24 MB',
+            },
+            {
+              clip_id: '34737549-342d-4f08-a4d1-08412b9a6fd7',
+              description: 'my first clip',
+              end: 198,
+              name: 'trasiton_(06)',
+              source_video: 'bfd32c58-e1c4-46fa-b322-beb6f1fbd368',
+              start: 3,
+              type: 'Trasition',
+              size: '10 MB',
+            },
+            {
+              clip_id: '34737549-342d-4f08-a4d1-08412b9a6fd7',
+              description: 'my first clip',
+              end: 198,
+              name: 'project_9054216730',
+              source_video: 'bfd32c58-e1c4-46fa-b322-beb6f1fbd368',
+              start: 3,
+              type: 'Fragments',
+              size: '5 MB',
+            },
+            {
+              clip_id: '34737549-342d-4f08-a4d1-08412b9a6fd7',
+              description: 'my first clip',
+              end: 198,
+              name: 'video_clip_(02)',
               source_video: 'bfd32c58-e1c4-46fa-b322-beb6f1fbd368',
               start: 3,
               type: 'clip',
+              size: '0.3 MB',
+            },
+            {
+              clip_id: '34737549-342d-4f08-a4d1-08412b9a6fd7',
+              description: 'my first clip',
+              end: 198,
+              name: 'video_clip_(03)',
+              source_video: 'bfd32c58-e1c4-46fa-b322-beb6f1fbd368',
+              start: 3,
+              type: 'clip',
+              size: '7.9 MB',
             },
           ]
             .filter(({ name }) => !search || (name && name.includes(search)))
@@ -387,8 +428,9 @@ function MaterialList() {
                   // clip_id,
                   // view_url,
                   created_on,
-                  // type,
+                  type,
                   user_name,
+                  size,
                 },
                 i
               ) => (
@@ -421,9 +463,11 @@ function MaterialList() {
                     {name}
                   </p>
                   <small className="w-15 my-auto text-start ps-2">
-                    <span className="fw-regular text-chelonia">24 MB</span>
+                    <span className="fw-regular text-chelonia">{size}</span>
                     <br />
-                    <span className="fw-regular text-chelonia">type｜</span>
+                    <span className="fw-regular text-chelonia">
+                      type｜ {type}
+                    </span>
                     {/* {setting.type} */}
                     <br />
                     <span className="fw-regular text-chelonia">editor｜</span>
@@ -440,7 +484,7 @@ function MaterialList() {
                       // setselectedId(material_id)
                       // setshow(true)
                     }}
-                    title="編 輯 素 材 編 號 ＆ 名 稱"
+                    title="rename"
                     size
                   >
                     <FontAwesomeIcon icon={faPenToSquare} />
@@ -464,7 +508,7 @@ function MaterialList() {
                       // )
                       // setdeleteShow(true)
                     }}
-                    title="刪 除"
+                    title="delete"
                   >
                     <FontAwesomeIcon icon={faTrashCan} />
                   </Button>

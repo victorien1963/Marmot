@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Row, Col, Card } from 'react-bootstrap'
+import { Row, Col, Card, Image } from 'react-bootstrap'
 import LineChart from './LineChart'
 import CrossChart from './CrossChart'
 import PieChart from './PieChart'
+import { toptopics } from '../../asset'
 
 function Trends() {
   const data = [
@@ -71,7 +72,7 @@ function Trends() {
   return (
     <div className="w-100 h-100 p-3">
       <Row className="h-100 w-100">
-        <Col xs={6} className="h-50 p-3">
+        <Col xs={6} className="h-50 p-2">
           <Card className="h-100 w-100 border-card-2">
             <Card.Body className="d-flex flex-column">
               <h5 className="text-start text-grey py-2">Top Trends</h5>
@@ -89,7 +90,7 @@ function Trends() {
             </Card.Body>
           </Card>
         </Col>
-        <Col xs={6} className="h-50 p-3">
+        <Col xs={6} className="h-50 p-2">
           <Card className="h-100 w-100 border-card-2">
             <Card.Body className="d-flex flex-column">
               <h5 className="text-start text-grey py-2">Conversation</h5>
@@ -106,7 +107,7 @@ function Trends() {
             </Card.Body>
           </Card>
         </Col>
-        <Col xs={6} className="h-50 p-3">
+        <Col xs={6} className="h-50 p-2">
           <Card className="h-100 w-100 border-card-2">
             <Card.Body className="d-flex flex-column">
               <h5 className="text-start text-grey py-2">Share of Voice</h5>
@@ -157,20 +158,12 @@ function Trends() {
             </Card.Body>
           </Card>
         </Col>
-        <Col xs={6} className="h-50 p-3">
+        <Col xs={6} className="h-50 p-2">
           <Card className="h-100 w-100 border-card-2">
             <Card.Body className="d-flex flex-column">
               <h5 className="text-start text-grey py-2">Top Topics</h5>
               <div className="flex-fill" ref={ref}>
-                <CrossChart
-                  setting={{
-                    ...svgSize,
-                    showControl: false,
-                    data,
-                    selectedField: ['spend'],
-                    barFields: ['f1', 'f2', 'f3'],
-                  }}
-                />
+                <Image src={toptopics} width="540" />
               </div>
             </Card.Body>
           </Card>

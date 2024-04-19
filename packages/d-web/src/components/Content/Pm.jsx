@@ -18,6 +18,14 @@ import {
   ChannelBox,
   ChannelLogo,
 } from 'planby'
+import {
+  Col,
+  Row,
+  OverlayTrigger,
+  Popover,
+  Button,
+  Form,
+} from 'react-bootstrap'
 
 // Import theme
 // import { theme } from './helpers/theme'
@@ -1906,7 +1914,255 @@ function App() {
 
   return (
     <div className="p-0">
-      {/* <div style={{ margin: 10, display: 'flex' }}>
+      <h4 className="text-grey text-start py-3 ps-4 ms-2">
+        Production and publishing schedule
+      </h4>
+      <Row className="px-5">
+        <OverlayTrigger
+          trigger="click"
+          key="bottom"
+          placement="bottom"
+          overlay={
+            <Popover id="popover-positioned-bottom">
+              <Popover.Body>
+                <Row className="text-center fs-6 fw-bold">
+                  <Col />
+                  <Col>Script</Col>
+                  <Col>Filming</Col>
+                  <Col>Editing</Col>
+                </Row>
+                <hr />
+                <Row className="text-center fs-6">
+                  <Col>Video 1</Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" isValid checked />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" isValid checked />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" isValid checked />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                </Row>
+                <Row className="text-center pt-3 fs-6">
+                  <Col>Video 2</Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" isValid checked />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" isValid checked />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                </Row>
+                <Row className="text-center pt-3 fs-6">
+                  <Col>Video 3</Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" isValid checked />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                </Row>
+                <Row className="text-center pt-3 fs-6">
+                  <Col>Video 4</Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" isValid checked />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                </Row>
+              </Popover.Body>
+            </Popover>
+          }
+        >
+          <Button
+            variant="secondary"
+            className="p-0"
+            style={{ width: '49.85%', borderRadius: '0' }}
+          >
+            <div className="bg-secondary text-light h4 py-0">Q1</div>
+          </Button>
+        </OverlayTrigger>
+        <OverlayTrigger
+          trigger="click"
+          key="bottom"
+          placement="bottom"
+          overlay={
+            <Popover id="popover-positioned-bottom">
+              <Popover.Body>
+                <Row className="text-center fs-6 fw-bold">
+                  <Col />
+                  <Col>Script</Col>
+                  <Col>Filming</Col>
+                  <Col>Editing</Col>
+                </Row>
+                <hr />
+                <Row className="text-center fs-6">
+                  <Col>Video 1</Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" isValid checked />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" isValid checked />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" isValid checked />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                </Row>
+                <Row className="text-center pt-3 fs-6">
+                  <Col>Video 2</Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" isValid checked />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" isValid checked />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                </Row>
+                <Row className="text-center pt-3 fs-6">
+                  <Col>Video 3</Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" isValid checked />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                </Row>
+                <Row className="text-center pt-3 fs-6">
+                  <Col>Video 4</Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" isValid checked />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                  <Col>
+                    <Form.Check type="checkbox" id="check-api-checkbox">
+                      <Form.Check.Input type="checkbox" />
+                      <Form.Control.Feedback type="valid" />
+                    </Form.Check>
+                  </Col>
+                </Row>
+              </Popover.Body>
+            </Popover>
+          }
+        >
+          <Button
+            variant="secondary ms-auto"
+            className="p-0"
+            style={{ width: '49.85%', borderRadius: '0' }}
+          >
+            <div className="bg-secondary text-light h4 py-0">Q2</div>
+          </Button>
+        </OverlayTrigger>
+      </Row>
+      <Row className="px-5">
+        <Col className="bg-light text-dark h6 py-0 fw-bold">January</Col>
+        <Col className="bg-light text-dark h6 py-0 ms-1 fw-bold">February</Col>
+        <Col className="bg-light text-dark h6 py-0 ms-1 fw-bold">March</Col>
+        <Col className="bg-light text-dark h6 py-0 ms-1 fw-bold">April</Col>
+        <Col className="bg-light text-dark h6 py-0 ms-1 fw-bold">May</Col>
+        <Col className="bg-light text-dark h6 py-0 ms-1 fw-bold">June</Col>
+      </Row>
+      <Row>
+        <div style={{ width: '3.5%' }}>
+          <div
+            className="bg-mar2 text-grey h5 upright"
+            style={{ height: '36%' }}
+          >
+            Topic 1
+          </div>
+          <div
+            className="bg-mar3 text-grey h5 upright"
+            style={{ height: '36%' }}
+          >
+            Topic 2
+          </div>
+        </div>
+        {/* <div style={{ margin: 10, display: 'flex' }}>
         <a id="downloadAnchor" style={{ display: 'none' }} />
 
         <button
@@ -1932,33 +2188,36 @@ function App() {
           </label>
         </div>
       </div> */}
-      <div style={{ height: '770px', width: '99%' }}>
-        <Epg isLoading={isLoading} {...getEpgProps()}>
-          <Layout
-            {...getLayoutProps()}
-            // ----- Please uncomment the following lines to see the custom components -----
-            // renderLine={(props) => <Line {...props} />}
-            // renderCurrentTime={(props) => <LiveTime {...props} />}
-            // renderTimeline={(props) => <CustomTimeline {...props} />}
-            // renderProgram={({ program, ...rest }) => (
-            //   <Program
-            //     key={`${program.data.channelUuid}-${program.data.id}`}
-            //     program={program}
-            //     {...rest}
-            //   />
-            // )}
-            renderChannel={({ channel, ...rest }) => (
-              <ChannelItem
-                setting={{
-                  key: channel.uuid,
-                  channel,
-                  ...rest,
-                }}
+        <div style={{ width: '96.5%' }}>
+          <div style={{ height: '600px', width: '100%' }}>
+            <Epg isLoading={isLoading} {...getEpgProps()}>
+              <Layout
+                {...getLayoutProps()}
+                // ----- Please uncomment the following lines to see the custom components -----
+                // renderLine={(props) => <Line {...props} />}
+                // renderCurrentTime={(props) => <LiveTime {...props} />}
+                // renderTimeline={(props) => <CustomTimeline {...props} />}
+                // renderProgram={({ program, ...rest }) => (
+                //   <Program
+                //     key={`${program.data.channelUuid}-${program.data.id}`}
+                //     program={program}
+                //     {...rest}
+                //   />
+                // )}
+                renderChannel={({ channel, ...rest }) => (
+                  <ChannelItem
+                    setting={{
+                      key: channel.uuid,
+                      channel,
+                      ...rest,
+                    }}
+                  />
+                )}
               />
-            )}
-          />
-        </Epg>
-      </div>
+            </Epg>
+          </div>
+        </div>
+      </Row>
     </div>
   )
 }

@@ -14,6 +14,12 @@
   object-fit: cover;
 }
 
+.upright{
+  writing-mode: vertical-rl;
+  text-orientation: sideways-right;
+  transform: rotate(-180deg);
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -29,7 +35,7 @@
 }
 
 /* Scrollbar class */
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   height: 0rem !important;
   width: 0rem !important;
 }
@@ -54,7 +60,7 @@
   -webkit-box-shadow: inset 0 transparent;
   border-radius: 0;
   background: transparent;
-} */
+}
 
 .scrollbarShow::-webkit-scrollbar {
   width: .6em !important;
@@ -288,8 +294,24 @@
   background-color: #0f1729 !important;
 }
 
-.bg-mar-2 {
-  background-color: #0f1e29 !important;
+.bg-mar2 {
+  background-color: #1c374a !important;
+}
+
+.bg-mar3 {
+  background-color: rgb(15, 41, 40) !important;
+}
+
+.bg-dark-green{
+  background-color: #122b38 !important;
+  color: #17968b !important;
+  border: 1px solid #17968b !important;
+}
+
+.bg-dark-blue{
+  background-color: #2a3269 !important;
+  color: #679dd1 !important;
+  border: 1px solid #679dd1 !important;
 }
 
 .bg-dai {
@@ -623,8 +645,8 @@
 }
 
 .btn-sidebar.active {
-  background-color: #0f1e29 !important;
-  color: #fff !important;
+  color: #b262d1 !important;
+  font-weight: bold !important;
 }
 
 .btn-sidebar {
@@ -632,7 +654,8 @@
 }
 
 .btn-sidebar:hover {
-  border: 1px solid rgb(35, 61, 99, 0.7) !important;
+  border: 1px solid #5c4bd0 !important;
+  border-radius: 5px;
 }
 
 .tab-content {
@@ -726,6 +749,14 @@
 
 .tab-90 > .tab-content {
   height: 90% !important;
+}
+
+.bs-popover-bottom {
+  min-width: 500px !important;
+}
+
+.borderRight{ 
+  border-right: 1px solid #262d41 !important;
 }
 
 @keyframes App-logo-spin {

@@ -12,6 +12,7 @@ import {
   faTrashCan,
   faSearch,
   faScissors,
+  faVideo,
 } from '@fortawesome/free-solid-svg-icons'
 import { faYoutube } from '@fortawesome/free-brands-svg-icons'
 import { DateRange } from 'react-date-range'
@@ -370,7 +371,7 @@ function VideoList() {
       </Row>
       <Row
         className="flex-grow-1 pt-3 pb-5 px-5 h-100"
-        style={{ overflowY: 'auto', overflowX: 'hidden' }}
+        style={{ overflowY: 'auto', overflowX: 'hidden', opacity: '.9' }}
       >
         <ListGroup className="pe-0">
           {[
@@ -378,7 +379,106 @@ function VideoList() {
               description: null,
               duration: 0,
               location: null,
-              name: '林來瘋再現_clip (1).mp4',
+              name: '潮網訪談_clip (1).mp4',
+              taken_at: null,
+              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
+              view_url:
+                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
+              view_url_expiration_at: '2024-04-18T10:49:42.302893',
+            },
+            {
+              description: null,
+              duration: 0,
+              location: null,
+              name: '林來瘋再現(1).mp4',
+              taken_at: null,
+              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
+              view_url:
+                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
+              view_url_expiration_at: '2024-04-18T10:49:42.302893',
+            },
+            {
+              description: null,
+              duration: 0,
+              location: null,
+              name: '量子力學破解相對論了？超越時空的量子糾纏，為何連愛因斯坦也不懂？ ft.樂咖｜量子熊 ✕ 泛科學 EP8.mp4',
+              taken_at: null,
+              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
+              view_url:
+                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
+              view_url_expiration_at: '2024-04-18T10:49:42.302893',
+            },
+            {
+              description: null,
+              duration: 0,
+              location: null,
+              name: '當年火遍全網的童年遊戲！十年前我們在玩哪些遊戲？.mp4',
+              taken_at: null,
+              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
+              view_url:
+                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
+              view_url_expiration_at: '2024-04-18T10:49:42.302893',
+            },
+            {
+              description: null,
+              duration: 0,
+              location: null,
+              name: '閃電俠超光速真的就能回到過去？我們如何感受「時間」？為何我們看不到時間旅人？科幻迷必看！.mp4',
+              taken_at: null,
+              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
+              view_url:
+                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
+              view_url_expiration_at: '2024-04-18T10:49:42.302893',
+            },
+            {
+              description: null,
+              duration: 0,
+              location: null,
+              name: '看不到的暗能量，決定我們的未來命運？摸不到的東西，如何證明它存在？.mp4',
+              taken_at: null,
+              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
+              view_url:
+                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
+              view_url_expiration_at: '2024-04-18T10:49:42.302893',
+            },
+            {
+              description: null,
+              duration: 0,
+              location: null,
+              name: 'Video_clip_(2).mp4',
+              taken_at: null,
+              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
+              view_url:
+                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
+              view_url_expiration_at: '2024-04-18T10:49:42.302893',
+            },
+            {
+              description: null,
+              duration: 0,
+              location: null,
+              name: 'Video_clip_(3).mp4',
+              taken_at: null,
+              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
+              view_url:
+                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
+              view_url_expiration_at: '2024-04-18T10:49:42.302893',
+            },
+            {
+              description: null,
+              duration: 0,
+              location: null,
+              name: 'Video_clip_(4).mp4',
+              taken_at: null,
+              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
+              view_url:
+                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
+              view_url_expiration_at: '2024-04-18T10:49:42.302893',
+            },
+            {
+              description: null,
+              duration: 0,
+              location: null,
+              name: 'Video_clip_(5)_9324324142test.mp4',
               taken_at: null,
               video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
               view_url:
@@ -393,8 +493,9 @@ function VideoList() {
                   className="w-40 my-auto text-start oneLineEllipsis"
                   title={name}
                 >
+                  <FontAwesomeIcon icon={faVideo} className="text-dark" />
+                  ｜
                   <span className="fw-regular text-chelonia" />
-                  File Name｜
                   {/* {setting.date} */}
                   {name}
                 </p>

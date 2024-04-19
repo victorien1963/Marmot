@@ -169,71 +169,67 @@ function Predict() {
             </Row>
           </Card.Body>
         </Card>
-        <Card className="border-card-3 mt-4">
-          <Card.Body>
-            <Row className="h-50 w-100 d-flex flex-column">
-              <h4 className="text-start text-grey py-4 px-3">
-                Recommended Distribution platform
-              </h4>
-            </Row>
-            <Row>
-              {['Facebook', 'TikTok', 'YouTube', 'Vimeo', 'Dailymotion'].map(
-                (icon) => (
-                  <Col key={icon}>
+        <div className="mt-4 py-3" style={{ borderTop: '1px solid #262d41' }}>
+          <Row className="h-50 w-100 d-flex flex-column">
+            <h4 className="text-start text-grey py-4 px-3">
+              Recommended Distribution platform
+            </h4>
+          </Row>
+          <Row>
+            {['Facebook', 'TikTok', 'YouTube', 'Vimeo', 'Dailymotion'].map(
+              (icon) => (
+                <Col key={icon}>
+                  <Image
+                    className="rounded"
+                    width="60"
+                    src={icons[icon]}
+                    alt=""
+                    style={{ cursor: 'pointer' }}
+                    title={icon}
+                  />
+                  <h6 className="text-grey pt-2">{icon}</h6>
+                </Col>
+              )
+            )}
+          </Row>
+        </div>
+        <div className="my-4 pb-4" style={{ borderTop: '1px solid #262d41' }}>
+          <Row className="h-50 w-100 d-flex flex-column">
+            <h4 className="text-start text-grey py-4 px-3">
+              Socil Listening tools + Google/Youtube trend + CMS intenal data
+            </h4>
+          </Row>
+          <Row>
+            {['1', '2', '3', '4'].map((icon) => (
+              <Col key={icon} className="d-flex" xs={6}>
+                <Row
+                  style={{ cursor: 'pointer' }}
+                  title="https://www.youtube.com/watch?v=j5zR37pWau0&ab_channel=%E5%85%AC%E5%85%B1%E9%9B%BB%E8%A6%96-%E7%8D%A8%E7%AB%8B%E7%89%B9%E6%B4%BE%E5%93%A1PTSINNEWS"
+                >
+                  <Col className="mb-3">
                     <Image
+                      width="210"
                       className="rounded"
-                      width="100"
-                      src={icons[icon]}
+                      src={predictvideo}
                       alt=""
                     />
-                    <h6 className="text-grey pt-2">{icon}</h6>
                   </Col>
-                )
-              )}
-            </Row>
-          </Card.Body>
-        </Card>
-        <Card className="border-card-4 mt-4">
-          <Card.Body>
-            <Row className="h-50 w-100 d-flex flex-column">
-              <h4 className="text-start text-grey py-4 px-3">
-                Socil Listening tools + Google/Youtube trend + CMS intenal data
-              </h4>
-            </Row>
-            <Row>
-              {['1', '2', '3', '4'].map((icon) => (
-                <Col key={icon} className="d-flex" xs={6}>
-                  <Row
-                    style={{ cursor: 'pointer' }}
-                    title="https://www.youtube.com/watch?v=j5zR37pWau0&ab_channel=%E5%85%AC%E5%85%B1%E9%9B%BB%E8%A6%96-%E7%8D%A8%E7%AB%8B%E7%89%B9%E6%B4%BE%E5%93%A1PTSINNEWS"
-                  >
-                    <Col className="mb-3">
-                      <Image
-                        width="210"
-                        className="rounded"
-                        src={predictvideo}
-                        alt=""
-                      />
-                    </Col>
-                    <Col className="text-light text-start">
-                      {/* <h5>title {icon}</h5> */}
-                      <h6 className="text-light">
-                        五分鐘看，漁電共生對養殖漁業的影響｜公視 #獨立特派員
-                        單元精華
-                      </h6>
-                      <h6 className="text-grey">
-                        公共電視-獨立特派員 PTS INNEWS
-                      </h6>
-                      <h6 className="text-secondary">
-                        22K views・11 months ago
-                      </h6>
-                    </Col>
-                  </Row>
-                </Col>
-              ))}
-            </Row>
-          </Card.Body>
-        </Card>
+                  <Col className="text-light text-start">
+                    {/* <h5>title {icon}</h5> */}
+                    <h6 className="text-light">
+                      五分鐘看，漁電共生對養殖漁業的影響｜公視 #獨立特派員
+                      單元精華
+                    </h6>
+                    <h6 className="text-grey">
+                      公共電視-獨立特派員 PTS INNEWS
+                    </h6>
+                    <h6 className="text-secondary">22K views・11 months ago</h6>
+                  </Col>
+                </Row>
+              </Col>
+            ))}
+          </Row>
+        </div>
       </Col>
     </Row>
   )

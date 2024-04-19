@@ -7,14 +7,14 @@ import React, { useState } from 'react'
 import { Nav, Row } from 'react-bootstrap'
 
 function Data() {
-  const [page, setpage] = useState('標題/說明')
+  const [page, setpage] = useState('Title')
   const pages = {
-    '標題/說明': <div />,
-    影片縮圖: <div />,
+    Title: <div />,
+    thumbnail: <div />,
   }
   const icons = {
-    '標題/說明': faAudioDescription,
-    影片縮圖: faVideoCamera,
+    Title: faAudioDescription,
+    thumbnail: faVideoCamera,
   }
   return (
     <div className="w-100 h-100 overflow-scroll">
@@ -31,7 +31,7 @@ function Data() {
           {Object.keys(pages).map((key) => (
             <Nav.Link
               key={key}
-              className="text-light"
+              className="text-grey fs-5"
               href=""
               onClick={() => setpage(key)}
             >

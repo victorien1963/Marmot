@@ -19,6 +19,8 @@ import vimeo from './images/vimeo.png'
 import dailymotion from './images/dailymotion.png'
 import predictvideo from './images/predictvideo.png'
 import video_sm from './images/video_sm.png'
+import toptopics from './images/keywords.png'
+import platforms from './images/platforms.png'
 
 export {
   logoFullWhite,
@@ -41,4 +43,6 @@ export {
   dailymotion,
   predictvideo,
   video_sm,
+  toptopics,
+  platforms,
 }

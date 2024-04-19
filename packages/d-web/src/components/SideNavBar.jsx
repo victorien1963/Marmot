@@ -4,7 +4,10 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { ListGroupItem } from 'react-bootstrap'
 import {
   faCircleRadiation,
+  faClapperboard,
+  faCloudArrowUp,
   faFileInvoice,
+  faPhotoFilm,
   faSackDollar,
   faUsers,
 } from '@fortawesome/free-solid-svg-icons'
@@ -16,7 +19,7 @@ function SideNavBar() {
   const contents = {
     user: [
       {
-        title: 'Planning',
+        title: 'PLANNING',
         subTitle: '前期計畫 + 製作',
         icon: faCircleRadiation,
         link: '/user/content',
@@ -45,7 +48,7 @@ function SideNavBar() {
         ],
       },
       {
-        title: 'Production',
+        title: 'PRODUCTION',
         subTitle: 'AI影片剪輯',
         icon: faCircleRadiation,
         link: '/user/making',
@@ -53,46 +56,46 @@ function SideNavBar() {
           {
             title: '編輯軟體',
             subTitle: '',
-            icon: faUsers,
+            icon: faClapperboard,
             link: '/user/making/edit',
             type: 'user',
           },
           {
             title: '影片資料',
             subTitle: '',
-            icon: faFileInvoice,
+            icon: faPhotoFilm,
             link: '/user/making/data',
             type: 'user',
           },
           {
             title: '發佈平台',
             subTitle: '',
-            icon: faSackDollar,
+            icon: faCloudArrowUp,
             link: '/user/making/publish',
             type: 'user',
           },
         ],
       },
       {
-        title: 'Analytics',
+        title: 'ANALYTICS',
         subTitle: '報表 + 成效報告',
         icon: faCircleRadiation,
         link: '/user/analyze',
       },
       {
-        title: 'Premium content',
+        title: 'PREMIUM CONTENT',
         subTitle: '頻道會員 + 課程',
         icon: faCircleRadiation,
         link: '/user/paycontent',
       },
       {
-        title: 'Merchandise',
+        title: 'MERCHANDISE',
         subTitle: '電商整合',
         icon: faCircleRadiation,
         link: '/user/product',
       },
       {
-        title: 'Brand Opportunities',
+        title: 'BRAND OPPORTUNITIES',
         subTitle: '業配商案',
         icon: faCircleRadiation,
         link: '/user/brand',
@@ -100,7 +103,7 @@ function SideNavBar() {
     ],
     admin: [
       {
-        title: 'CRM / Customer analysis',
+        title: 'CRM/Customer analysis',
         subTitle: 'ORCA',
         icon: faCircleRadiation,
         link: '/',
@@ -128,16 +131,12 @@ function SideNavBar() {
 
   return (
     <div
-      className="w-100 h-100 d-flex flex-column py-3 ps-2 bg-mar text-grey"
+      className="w-100 h-100 d-flex flex-column py-3 bg-mar text-grey borderRight"
       // ${
       //   location.pathname.includes('admin')
       //     ? 'bg-admin-marmot'
       //     : 'bg-user-marmot'
       // }`}
-      style={{
-        backgroundColor: '#eeeeee',
-        borderRight: '1px solid #262d41 !important',
-      }}
     >
       {(location.pathname.includes('admin')
         ? contents.admin
@@ -150,7 +149,7 @@ function SideNavBar() {
             key={link}
             active={location.pathname.includes(link)}
             onClick={() => navigate(link)}
-            className="mx-auto my-2 text-start text-nowrap btn-sidebar"
+            className="mx-auto my-2 text-start text-nowrap btn-sidebar py-2 px-1"
             style={{
               width: '88%',
             }}
@@ -167,13 +166,13 @@ function SideNavBar() {
                 key={s.link}
                 active={location.pathname === s.link}
                 onClick={() => navigate(s.link)}
-                className="mx-auto my-2 text-start text-nowrap btn-sidebar"
+                className="mx-auto my-2 text-start text-nowrap btn-sidebar py-2 px-1"
                 style={{
                   width: '88%',
                 }}
                 size="sm"
               >
-                － {s.title}
+                ▻ {s.title}
               </ListGroupItem>
             ))}
         </>

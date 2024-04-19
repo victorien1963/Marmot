@@ -1,9 +1,12 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import {
-  faFileInvoice,
-  faSackDollar,
-  faUsers,
+  faClapperboard,
+  faCloudArrowUp,
+  faPhotoFilm,
+  // faFileInvoice,
+  // faSackDollar,
+  // faUsers,
 } from '@fortawesome/free-solid-svg-icons'
 import PathSelector from '../PathSelector'
 import Edit from './Edit'
@@ -28,21 +31,21 @@ function Making() {
           {
             title: '編輯軟體',
             subTitle: '',
-            icon: faUsers,
+            icon: faClapperboard,
             link: '/user/making/edit',
             type: 'user',
           },
           {
             title: '影片資料',
             subTitle: '',
-            icon: faFileInvoice,
+            icon: faPhotoFilm,
             link: '/user/making/data',
             type: 'user',
           },
           {
             title: '發佈平台',
             subTitle: '',
-            icon: faSackDollar,
+            icon: faCloudArrowUp,
             link: '/user/making/publish',
             type: 'user',
           },

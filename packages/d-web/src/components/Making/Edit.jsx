@@ -15,22 +15,22 @@ import Historical from './Historical'
 
 function Edit() {
   const { video_id } = useParams()
-  const [page, setpage] = useState('全部影片')
+  const [page, setpage] = useState('Video List')
   const pages = {
-    全部影片: <VideoList />,
-    素材管理: <MaterialList />,
-    影片製作: <FilmEditor />,
-    片段搜尋: <Historical />,
+    'Video List': <VideoList />,
+    'Material List': <MaterialList />,
+    'Film Editor': <FilmEditor />,
+    'Historical Search': <Historical />,
   }
   const icons = {
-    全部影片: faFolder,
-    素材管理: faCloudArrowUp,
-    影片製作: faFilm,
-    片段搜尋: faMagnifyingGlass,
+    'Video List': faFolder,
+    'Material List': faCloudArrowUp,
+    'Film Editor': faFilm,
+    'Historical Search': faMagnifyingGlass,
   }
 
-  console.log(video_id)
-  console.log(page)
+  // console.log(video_id)
+  // console.log(page)
   useEffect(() => {
     if (video_id) setpage('影片製作')
   }, [video_id])
