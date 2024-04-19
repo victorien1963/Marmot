@@ -21,6 +21,10 @@ import predictvideo from './images/predictvideo.png'
 import video_sm from './images/video_sm.png'
 import toptopics from './images/keywords.png'
 import platforms from './images/platforms.png'
+import suzuri from './images/suzuri.png'
+import teespring from './images/teespring.png'
+import shopline from './images/shopline.png'
+import shopify from './images/shopify.png'
 
 export {
   logoFullWhite,
@@ -45,4 +49,8 @@ export {
   video_sm,
   toptopics,
   platforms,
+  suzuri,
+  teespring,
+  shopline,
+  shopify,
 }

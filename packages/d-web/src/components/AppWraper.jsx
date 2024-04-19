@@ -40,7 +40,7 @@ function AppWrapper({ children }) {
           className="d-flex flex-column px-0 bg-mar h-100"
         >
           <Row
-            className="p-0 overflow-hidden position-relative bg-mar"
+            className="p-0 overflow-hidden position-relative bg-mar w-100"
             style={{
               height: '100%',
             }}

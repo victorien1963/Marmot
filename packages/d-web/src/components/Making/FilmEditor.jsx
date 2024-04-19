@@ -464,7 +464,7 @@ function FilmEditor() {
   // }
 
   return (
-    <Container className="d-flex p-3 h-100 w-100">
+    <Container className="d-flex h-100 w-100 pe-0">
       <Row className="pb-2 h-100" style={{ width: '100vw' }}>
         <Col xs={7} className="h-100">
           <Card className="d-flex w-100 bg-black" style={{ height: '64.75%' }}>

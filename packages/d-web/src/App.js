@@ -42,6 +42,7 @@ function App() {
               <Route path="/user/brand/:path" element={<Brand />} />
               <Route path="/admin/cooperate" element={<Cooperate />} />
               <Route path="/admin/product" element={<AdminProduct />} />
+              <Route path="/admin/product/:path" element={<AdminProduct />} />
               <Route path="/*" element={<Home />} />
             </Routes>
           </AppWrapper>

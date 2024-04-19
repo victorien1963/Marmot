@@ -43,7 +43,7 @@ function Edit() {
         }}
       >
         <Nav
-          className="ms-auto pe-5 w-100 d-flex"
+          className="ms-auto w-100 d-flex"
           // style={{ borderRight: '1px solid #fff' }}
         >
           {Object.keys(pages).map((key) => (
