@@ -125,6 +125,20 @@ function SideNavBar() {
         subTitle: 'E-commerce',
         icon: faCircleRadiation,
         link: '/admin/product',
+        sub: [
+          {
+            title: '電商銷售概覽',
+            subTitle: '',
+            link: '/admin/product/insight',
+            type: 'admin',
+          },
+          {
+            title: '訂單查詢',
+            subTitle: '',
+            link: '/admin/product/ec',
+            type: 'admin',
+          },
+        ],
       },
     ],
   }

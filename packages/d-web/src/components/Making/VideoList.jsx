@@ -287,7 +287,7 @@ function VideoList() {
   const [selected, setselected] = useState('')
 
   return (
-    <Container className="d-flex flex-column pt-3 h-100">
+    <Container className="d-flex flex-column pt-3 pe-0 h-100">
       <Row className="px-5">
         <Col xs={4} className="d-flex">
           <h4 className="my-auto text-grey">Video list</h4>
