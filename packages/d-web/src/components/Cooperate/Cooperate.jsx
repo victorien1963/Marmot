@@ -1,12 +1,12 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBars,
-  faHeart,
   faInfoCircle,
   faMagnifyingGlass,
   faPen,
   faSliders,
 } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import React from 'react'
 import { Card, Col, Form, Row } from 'react-bootstrap'
 
@@ -39,7 +39,7 @@ function Cooperate() {
   ]
 
   const datas = Array.from({ length: 10 }).map((a, index) => ({
-    頻道名稱: `頻道${index}`,
+    頻道名稱: `Channel ${index}`,
     訂閱數: parseInt(Math.random() * 1000000, 10),
     觀看次數: parseInt(Math.random() * 1000000, 10),
     月平均觀看數: parseInt(Math.random() * 100, 10),
@@ -57,11 +57,13 @@ function Cooperate() {
           height: '13%',
         }}
       >
-        <h4 className="text-start text-grey pt-3">合作申請</h4>
-        <h6 className="text-start text-grey">請提交案件包以申請廣告合作。</h6>
+        <h4 className="text-start text-secondary pt-3">合作申請</h4>
+        <h6 className="text-start text-secondary">
+          請提交案件包以申請廣告合作。
+        </h6>
       </Row>
       <Row
-        className="w-100 text-grey"
+        className="w-100 text-secondary"
         style={{
           height: '5%',
         }}
@@ -125,15 +127,23 @@ function Cooperate() {
               </Col>
               <Col xs={1} className="ms-auto d-flex">
                 <FontAwesomeIcon
-                  className="fs-4 m-auto"
+                  className="fs-5 m-auto"
                   icon={faMagnifyingGlass}
+                  style={{ cursor: 'pointer' }}
+                  title="Search"
                 />
-              </Col>
-              <Col xs={1} className="d-flex">
-                <FontAwesomeIcon className="fs-4 m-auto" icon={faBars} />
-              </Col>
-              <Col xs={1} className="d-flex">
-                <FontAwesomeIcon className="fs-4 m-auto" icon={faSliders} />
+                <FontAwesomeIcon
+                  className="fs-5 m-auto ms-3"
+                  icon={faBars}
+                  style={{ cursor: 'pointer' }}
+                  title="Sort"
+                />
+                <FontAwesomeIcon
+                  className="fs-5 m-auto ms-3"
+                  icon={faSliders}
+                  style={{ cursor: 'pointer' }}
+                  title="Adjust"
+                />
               </Col>
             </Row>
           </Card.Header>
@@ -156,10 +166,20 @@ function Cooperate() {
                   <Form.Check />
                 </Col>
                 <Col className="d-flex border-top" xs={1}>
-                  <FontAwesomeIcon className="fs-5 m-auto" icon={faHeart} />
+                  <FontAwesomeIcon
+                    className="fs-5 m-auto text-secondary"
+                    icon={faHeart}
+                    style={{ cursor: 'pointer' }}
+                    title="Like"
+                  />
                 </Col>
                 <Col className="d-flex border-top" xs={1}>
-                  <FontAwesomeIcon className="fs-5 m-auto" icon={faPen} />
+                  <FontAwesomeIcon
+                    className="fs-5 m-auto text-secondary"
+                    icon={faPen}
+                    style={{ cursor: 'pointer' }}
+                    title="Edit"
+                  />
                 </Col>
                 {fields.map(({ label }) => (
                   <Col className="d-flex border-top" key={label} xs={3}>

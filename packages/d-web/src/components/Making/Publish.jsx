@@ -11,7 +11,9 @@ function Publish() {
           height: '10%',
         }}
       >
-        <h4 className="text-start text-grey py-4 ps-4">Publishing Platform</h4>
+        <h4 className="text-start text-secondary py-4 ps-4">
+          Publishing Platform
+        </h4>
       </Row>
       <Row
         className="w-100"
@@ -20,7 +22,7 @@ function Publish() {
         }}
       >
         <Card
-          className="bg-dark-green m-auto"
+          className="bg-light m-auto"
           style={{ width: '95%', height: '95%' }}
         >
           <h5 className="mx-auto py-3">Select a Connection</h5>

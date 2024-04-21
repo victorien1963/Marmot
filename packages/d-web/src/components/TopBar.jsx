@@ -21,7 +21,7 @@ function TopBar() {
 
   return (
     <Row
-      className="bg-mar w-100 h-100 d-flex flex-nowrap px-0"
+      className="bg-light w-100 h-100 d-flex flex-nowrap px-0"
       style={{ borderBottom: '1px solid #262d41' }}
       // ${
       //   location.pathname.includes('admin')
@@ -38,7 +38,7 @@ function TopBar() {
       {location.pathname !== '/' && (
         <div className="my-auto fw-bold text-start h-100 px-0">
           {location.pathname.includes('admin') ? (
-            <div className="d-flex h-100 ps-3 bg-mar text-mar-linear d-flex justify-content-center">
+            <div className="d-flex h-100 ps-3 bg-light text-mar-linear d-flex justify-content-center">
               <h5 className="my-auto">Advertisers Brands</h5>
               <div
                 className="h-100 ms-auto"
@@ -49,9 +49,9 @@ function TopBar() {
                 <DropdownButton
                   id="dropdown-button-drop-end"
                   drop="end"
-                  className="h-100 w-100 text-light"
+                  className="h-100 w-100 text-dark"
                   title={
-                    <div className="fw-bolder text-light">
+                    <div className="fw-bolder text-dark">
                       <div
                         style={{
                           height: '30px',
@@ -81,7 +81,7 @@ function TopBar() {
                     window.location.replace('/')
                   }}
                   className="my-auto"
-                  variant="outline-light"
+                  variant="mar2"
                   size="sm"
                 >
                   Logout
@@ -89,7 +89,7 @@ function TopBar() {
               </div>
             </div>
           ) : (
-            <div className="d-flex h-100 ps-3 pe-0 bg-mar text-mar-linear d-flex justify-content-center">
+            <div className="d-flex h-100 ps-3 pe-0 bg-light text-mar-linear d-flex justify-content-center">
               <h5 className="my-auto">Creators Media Companies</h5>
               <div
                 className="h-100 ms-auto"
@@ -100,7 +100,7 @@ function TopBar() {
                 <DropdownButton
                   id="dropdown-button-drop-end"
                   drop="end"
-                  className="h-100 w-100 text-light"
+                  className="h-100 w-100 text-dark"
                   title={
                     <div className="fw-bolder">
                       <div
@@ -132,7 +132,7 @@ function TopBar() {
                     window.location.replace('/')
                   }}
                   className="my-auto"
-                  variant="mar"
+                  variant="mar2"
                   size="sm"
                 >
                   Logout

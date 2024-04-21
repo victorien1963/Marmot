@@ -299,7 +299,7 @@ function MaterialList() {
     <Container className="d-flex flex-column pt-3 pe-0 h-100">
       <Row className="px-5">
         <Col xs={4} className="d-flex">
-          <h4 className="my-auto text-grey">Material List</h4>
+          <h4 className="my-auto text-secondary">Material List</h4>
         </Col>
         <Col xs={3} className="d-flex justifu-content-end">
           <Form.Select
@@ -340,7 +340,7 @@ function MaterialList() {
               }}
             />
             <Button
-              variant="outline-light"
+              variant="outline-dark"
               id="button-addon2"
               title="Search"
               onClick={() => setSearch(tempSearch)}
@@ -350,7 +350,7 @@ function MaterialList() {
           </InputGroup>
           <Button
             className="ms-4 w-50"
-            variant="mar"
+            variant="mar2"
             onClick={() => {
               // setselectedId('')
               // setshow(true)
@@ -514,7 +514,7 @@ function MaterialList() {
                   </Button>
 
                   {/* <h2
-                    className="my-auto text-grey"
+                    className="my-auto text-secondary"
                     style={{ userSelect: 'none' }}
                   >
                     ｜

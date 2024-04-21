@@ -37,10 +37,10 @@ function AppWrapper({ children }) {
         )}
         <Col
           xs={location.pathname !== '/' ? 10 : 12}
-          className="d-flex flex-column px-0 bg-mar h-100"
+          className="d-flex flex-column px-0 bg-light h-100"
         >
           <Row
-            className="p-0 overflow-hidden position-relative bg-mar w-100"
+            className="p-0 overflow-hidden position-relative bg-white w-100"
             style={{
               height: '100%',
             }}
@@ -49,7 +49,7 @@ function AppWrapper({ children }) {
           </Row>
         </Col>
       </Row>
-      {/* <Row className="bg-mar text-grey" style={{ height: '5vh' }}>
+      {/* <Row className="bg-light text-secondary" style={{ height: '5vh' }}>
         <div className="small fw-bold py-2">
           Copyright © 2024 Wavenet. all rights reserved.
         </div>

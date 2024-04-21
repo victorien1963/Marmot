@@ -37,9 +37,9 @@ function Edit() {
   return (
     <div className="w-100 h-100 overflow-scroll">
       <Row
-        className="w-100"
         style={{
           height: '6%',
+          backgroundColor: '#eee',
         }}
       >
         <Nav
@@ -49,7 +49,7 @@ function Edit() {
           {Object.keys(pages).map((key) => (
             <Nav.Link
               key={key}
-              className="text-grey-hover"
+              className="text-secondary fw-bold"
               href=""
               onClick={() => setpage(key)}
             >

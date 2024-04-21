@@ -125,7 +125,7 @@ function Home() {
   const contents = {
     user: [
       {
-        title: 'PLANNING',
+        title: 'Planning',
         subTitle: 'Pre-production stage',
         icon: faCircleRadiation,
         link: '/user/content',
@@ -192,7 +192,7 @@ function Home() {
   return (
     <Container
       id="home_bg"
-      className="bg-black bg-marmot h-100 w-100 d-flex flex-column position-relative"
+      className="h-100 w-100 d-flex flex-column position-relative"
     >
       {auth.authed ? (
         <>
@@ -201,7 +201,7 @@ function Home() {
           </video> */}
           <Row className="h-50">
             <Col
-              className="bg-mar text-grey d-flex flex-column justify-content-center pe-0"
+              className="bg-light text-secondary d-flex flex-column justify-content-center pe-0"
               xs={2}
             >
               <h4>Creators</h4>
@@ -209,7 +209,7 @@ function Home() {
             </Col>
             <Col xs={10}>
               <Row
-                className="h-100 py-3 bg-mar"
+                className="h-100 py-3 bg-light"
                 style={{
                   borderLeft: '1px solid #262d41',
                 }}
@@ -229,7 +229,7 @@ function Home() {
           </Row>
           <Row className="h-50">
             <Col
-              className="bg-mar text-grey d-flex flex-column justify-content-center pe-0"
+              className="bg-light text-secondary d-flex flex-column justify-content-center pe-0"
               xs={2}
               style={{
                 borderTop: '1px solid #262d41',
@@ -245,7 +245,7 @@ function Home() {
               }}
             >
               <Row
-                className="h-100 py-3 bg-mar"
+                className="h-100 py-3 bg-light"
                 style={{
                   borderLeft: '1px solid #262d41',
                 }}
@@ -268,8 +268,9 @@ function Home() {
         <>
           <div className="d-flex" style={{ height: '65%' }}>
             <p
-              style={{ fontSize: '36vh', textShadow: '#884ec5 5px 0 10px' }}
-              className="text-light mt-auto mx-auto"
+              // style={{ fontSize: '36vh', textShadow: '#884ec5 5px 0 10px' }}
+              style={{ fontSize: '36vh' }}
+              className="text-mar-linear mt-auto mx-auto"
             >
               MARMOT
             </p>
@@ -347,7 +348,7 @@ function Home() {
               </Row>
               <div className="d-flex">
                 <span
-                  className="w-100 mx-auto small text-grey"
+                  className="w-100 mx-auto small text-secondary"
                   style={{
                     cursor: 'pointer',
                     textDecoration: 'underline',

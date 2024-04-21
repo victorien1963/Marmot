@@ -29,21 +29,21 @@ function Making() {
       setting={{
         paths: [
           {
-            title: '編輯軟體',
+            title: 'Editing',
             subTitle: '',
             icon: faClapperboard,
             link: '/user/making/edit',
             type: 'user',
           },
           {
-            title: '影片資料',
+            title: 'Metadata',
             subTitle: '',
             icon: faPhotoFilm,
             link: '/user/making/data',
             type: 'user',
           },
           {
-            title: '發佈平台',
+            title: 'Distribution',
             subTitle: '',
             icon: faCloudArrowUp,
             link: '/user/making/publish',

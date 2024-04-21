@@ -19,9 +19,9 @@ function Data() {
   return (
     <div className="w-100 h-100 overflow-scroll">
       <Row
-        className="w-100"
         style={{
           height: '6%',
+          backgroundColor: '#eee',
         }}
       >
         <Nav
@@ -31,7 +31,7 @@ function Data() {
           {Object.keys(pages).map((key) => (
             <Nav.Link
               key={key}
-              className="text-grey fs-5"
+              className="text-secondary fs-5"
               href=""
               onClick={() => setpage(key)}
             >

@@ -1831,8 +1831,11 @@ export function ChannelItem({ setting }) {
       isVerticalMode={isVerticalMode}
       style={{
         border: '1px solid transparent',
-        borderBottomColor: '#7180961a',
-        borderRightColor: '#7180961a',
+        // borderBottomColor: '#7180961a',
+        // borderRightColor: '#7180961a',
+        borderBottomColor: '#ddd',
+        borderRightColor: '#ddd',
+        backgroundColor: '#fff',
       }}
       {...position}
     >
@@ -1914,7 +1917,7 @@ function App() {
 
   return (
     <div className="p-0">
-      <h4 className="text-grey text-start py-3 ps-4 ms-2">
+      <h4 className="text-secondary text-start py-3 ps-4 ms-2">
         Production and publishing schedule
       </h4>
       <Row className="px-5">
@@ -2140,23 +2143,31 @@ function App() {
         </OverlayTrigger>
       </Row>
       <Row className="px-5">
-        <Col className="bg-light text-dark h6 py-0 fw-bold">January</Col>
-        <Col className="bg-light text-dark h6 py-0 ms-1 fw-bold">February</Col>
-        <Col className="bg-light text-dark h6 py-0 ms-1 fw-bold">March</Col>
-        <Col className="bg-light text-dark h6 py-0 ms-1 fw-bold">April</Col>
-        <Col className="bg-light text-dark h6 py-0 ms-1 fw-bold">May</Col>
-        <Col className="bg-light text-dark h6 py-0 ms-1 fw-bold">June</Col>
+        <Col className="bg-user-marmot text-dark h6 py-0 fw-bold">January</Col>
+        <Col className="bg-user-marmot text-dark h6 py-0 ms-1 fw-bold">
+          February
+        </Col>
+        <Col className="bg-user-marmot text-dark h6 py-0 ms-1 fw-bold">
+          March
+        </Col>
+        <Col className="bg-user-marmot text-dark h6 py-0 ms-1 fw-bold">
+          April
+        </Col>
+        <Col className="bg-user-marmot text-dark h6 py-0 ms-1 fw-bold">May</Col>
+        <Col className="bg-user-marmot text-dark h6 py-0 ms-1 fw-bold">
+          June
+        </Col>
       </Row>
       <Row>
         <div style={{ width: '3.5%' }}>
           <div
-            className="bg-mar2 text-grey h5 upright"
+            className="bg-light2 text-light h5 upright"
             style={{ height: '36%' }}
           >
             Topic 1
           </div>
           <div
-            className="bg-mar3 text-grey h5 upright"
+            className="bg-light3 text-light h5 upright"
             style={{ height: '36%' }}
           >
             Topic 2
@@ -2189,7 +2200,12 @@ function App() {
         </div>
       </div> */}
         <div style={{ width: '96.5%' }}>
-          <div style={{ height: '600px', width: '100%' }}>
+          <div
+            style={{
+              height: '600px',
+              width: '100%',
+            }}
+          >
             <Epg isLoading={isLoading} {...getEpgProps()}>
               <Layout
                 {...getLayoutProps()}
@@ -2206,6 +2222,7 @@ function App() {
                 // )}
                 renderChannel={({ channel, ...rest }) => (
                   <ChannelItem
+                    style={{ backgroundColor: '#fff' }}
                     setting={{
                       key: channel.uuid,
                       channel,

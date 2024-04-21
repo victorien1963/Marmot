@@ -1,5 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
+.css-k40jkk-ScrollBox, .css-1olpj1k-Box, .css-1rjlst3-TimelineWrapper, .css-1cwydte-Content {
+  background: #fff !important;
+}
+
+.css-4jp2nc-ProgramContent {
+  background: #a2c9e6 !important;
+  /* border-right: 1px solid #fff !important; */
+}
+
+.css-4jp2nc-ProgramContent:hover {
+  background: linear-gradient(to right, #89adc9, #a8eef3) !important;
+}
+
+.css-105khot-ProgramTitle {
+  color: #0d334f !important;
+}
+
+.css-yu4rga-ProgramText {
+  color: #1a4768 !important;
+}
+
 .App {
   text-align: center;
   font-family: "Raleway", sans-serif;
@@ -94,16 +115,16 @@
   color: transparent;
 }
 
-.text-grey {
+.text-secondary {
   color: #b2b2b2 !important;
 }
 
-.text-grey-hover {
+.text-secondary-hover {
   color: #b2b2b2 !important;
   border: 1px solid transparent !important;
 }
 
-.text-grey-hover:hover, .text-grey-hover:active {
+.text-secondary-hover:hover, .text-secondary-hover:active {
   color: #b2b2b2 !important;
   border-radius: 5px;
   border: 1px solid #b2b2b2 !important;
@@ -212,7 +233,7 @@
 }
 
 .btn-purple {
-  background-color: #170b61 !important;
+  background-color: #281c7a !important;
   color: #f4f2ff !important;
 }
 
@@ -222,7 +243,7 @@
 }
 
 .btn-pink {
-  background-color: #58076a !important;
+  background-color: #752388 !important;
   color: #f9defe !important;
 }
 
@@ -290,15 +311,15 @@
   padding: 0%;
 }
 
-.bg-mar {
+.bg-light {
   background-color: #0f1729 !important;
 }
 
-.bg-mar2 {
+.bg-light2 {
   background-color: #1c374a !important;
 }
 
-.bg-mar3 {
+.bg-light3 {
   background-color: rgb(15, 41, 40) !important;
 }
 
@@ -340,7 +361,7 @@
   background-size: 181%;
 }
 
-.bg-marmot {
+.bg-lightmot {
   background-image: url('./asset/images/LSsT.gif');
   background-repeat: no-repeat;
   background-position: 150%;
@@ -627,11 +648,11 @@
 }
 
 .bg-user-marmot {
-  background-color: #cfe9ff !important;
+  background-color: #bed8ec !important;
 }
 
 .bg-admin-marmot {
-  background-color: #edf7fd !important;
+  background-color: #c8f1e4 !important;
 }
 
 .btn-marmot1 {

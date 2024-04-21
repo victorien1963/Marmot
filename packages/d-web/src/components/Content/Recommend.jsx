@@ -29,24 +29,26 @@ function Recommend() {
 
   return selected ? (
     <div className="w-100 h-100 p-3" style={{ overflow: 'auto' }}>
-      <h4 className="text-start text-grey py-4">Recommentation</h4>
+      <h4 className="text-start text-secondary py-4">Recommentation</h4>
       <Row style={{ height: '60%' }}>
         <Col xs={3} className="px-3 h-100">
           <Card className="h-100 w-100 border-card-1">
             <Card.Body className="d-flex flex-column h-100">
-              <h6 className="text-start text-grey py-2">Topic</h6>
+              <h6 className="text-start text-secondary py-2">Topic</h6>
               <Button
-                variant="dark-green"
+                variant="secondary"
                 size="sm"
                 className="rounded-pill me-auto"
                 // onClick={() => setselected(topic)}
               >
                 {selected}
               </Button>
-              <h6 className="text-start text-grey pb-2 pt-4">Sub topics</h6>
+              <h6 className="text-start text-secondary pb-2 pt-4">
+                Sub topics
+              </h6>
               {topics.map((topic) => (
                 <Button
-                  variant="dark-green"
+                  variant="secondary"
                   key={topic}
                   size="sm"
                   className="rounded-pill me-auto mb-2"
@@ -61,22 +63,22 @@ function Recommend() {
         <Col className="px-3 h-100">
           <Card className="h-100 w-100 border-card-1">
             <Card.Body className="h-100">
-              <h6 className="text-start text-grey py-2">Topic</h6>
+              <h6 className="text-start text-secondary py-2">Topic</h6>
               <Row className="d-flex w-100">
                 <Col>
                   <Image src={video01} width="200" className="rounded" />
-                  <h6 className="text-light py-2">Animation</h6>
+                  <h6 className="text-dark py-2">Animation</h6>
                 </Col>
                 <Col>
                   <Image src={video02} width="200" className="rounded" />
-                  <h6 className="text-light py-2">Talking head</h6>
+                  <h6 className="text-dark py-2">Talking head</h6>
                 </Col>
                 <Col>
                   <Image src={video03} width="200" className="rounded" />
-                  <h6 className="text-light py-2">Explainer</h6>
+                  <h6 className="text-dark py-2">Explainer</h6>
                 </Col>
               </Row>
-              <h6 className="text-start text-grey pb-2 pt-5">
+              <h6 className="text-start text-secondary pb-2 pt-5">
                 Optimal length and duration
               </h6>
               <Row>
@@ -91,13 +93,13 @@ function Recommend() {
     </div>
   ) : (
     <div className="w-100 h-100">
-      <h4 className="text-start text-grey py-4">Recommentation</h4>
-      <h6 className="text-start text-grey py-2">Topics</h6>
+      <h4 className="text-start text-secondary py-4">Recommentation</h4>
+      <h6 className="text-start text-secondary py-2">Topics</h6>
       <Row className="pe-5">
         {topics.map((topic) => (
           <Col key={topic}>
             <Button
-              variant="dark-green"
+              variant="secondary"
               size="sm"
               className="rounded-pill"
               onClick={() => setselected(topic)}
@@ -112,7 +114,7 @@ function Recommend() {
           <InputGroup className="px-3 py-1 searchBar w-50">
             <FormControl
               size="sm"
-              style={{ opacity: '.75' }}
+              // style={{ opacity: '.75' }}
               placeholder="Enter Topic"
               // value={search}
               // onChange={(event) => setSearch(event.target.value)}
@@ -129,11 +131,11 @@ function Recommend() {
               //   }
               // }}
             />
-            <Button size="sm" onClick={() => {}} variant="outline-light">
+            <Button size="sm" onClick={() => {}} variant="outline-dark">
               <FontAwesomeIcon icon={faSearch} />
             </Button>
           </InputGroup>
-          <Button size="sm" variant="dark-blue" className=" my-auto">
+          <Button size="sm" variant="dark" className=" my-auto">
             compare
           </Button>
         </Col>

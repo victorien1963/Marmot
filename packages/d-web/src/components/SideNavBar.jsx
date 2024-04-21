@@ -54,21 +54,21 @@ function SideNavBar() {
         link: '/user/making',
         sub: [
           {
-            title: '編輯軟體',
+            title: 'EDITING',
             subTitle: '',
             icon: faClapperboard,
             link: '/user/making/edit',
             type: 'user',
           },
           {
-            title: '影片資料',
+            title: 'METADATA',
             subTitle: '',
             icon: faPhotoFilm,
             link: '/user/making/data',
             type: 'user',
           },
           {
-            title: '發佈平台',
+            title: 'DISTRIBUTION',
             subTitle: '',
             icon: faCloudArrowUp,
             link: '/user/making/publish',
@@ -127,13 +127,13 @@ function SideNavBar() {
         link: '/admin/product',
         sub: [
           {
-            title: '電商銷售概覽',
+            title: 'Sales overview',
             subTitle: '',
             link: '/admin/product/insight',
             type: 'admin',
           },
           {
-            title: '訂單查詢',
+            title: 'Order inquiry',
             subTitle: '',
             link: '/admin/product/ec',
             type: 'admin',
@@ -145,7 +145,7 @@ function SideNavBar() {
 
   return (
     <div
-      className="w-100 h-100 d-flex flex-column py-3 bg-mar text-grey borderRight"
+      className="w-100 h-100 d-flex flex-column py-3 bg-light text-secondary borderRight"
       // ${
       //   location.pathname.includes('admin')
       //     ? 'bg-admin-marmot'

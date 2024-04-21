@@ -19,7 +19,7 @@ function PathSign({ setting }) {
   if (!auth) console.log('impossible')
   return (
     <Card
-      className="text-center h-100 p-5 m-auto btn-dark-blue"
+      className="text-center h-100 p-5 m-auto bg-user-marmot"
       // ${
       //   type === 'user' ? 'bg-user-marmot' : 'bg-admin-marmot'
       // }`}

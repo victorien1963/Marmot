@@ -37,7 +37,7 @@ function EC() {
   ]
 
   const datas = Array.from({ length: 10 }).map((a, index) => ({
-    訂單: `訂單${index}`,
+    訂單: `#taster1687${index}`,
     日期: '2024-12-31 00:00:00',
     顧客: `顧客${index}`,
     總計: `$${parseInt(Math.random() * 10000, 10)}`,
@@ -57,32 +57,32 @@ function EC() {
           height: '18%',
         }}
       >
-        <h4 className="text-grey w-25 my-auto">電商訂單</h4>
+        <h4 className="text-secondary w-25 my-auto">E-commerce Orders</h4>
         <Image
           className="my-auto"
           src={shopify}
           style={{
             width: '15%',
-            height: '50%',
+            height: '80%',
           }}
         />
         <Button
           style={{
             width: '15%',
           }}
-          variant="mar"
+          variant="outline-dark"
           className="ms-auto my-auto"
         >
-          成效報告
+          Campaign report
         </Button>
         <Button
           style={{
             width: '15%',
           }}
-          variant="mar"
+          variant="outline-dark"
           className="ms-2 my-auto"
         >
-          同步訂單
+          Synchronize orders
         </Button>
       </Row>
       <Row

@@ -163,7 +163,7 @@ function SelectModal({ setting }) {
               <Button
                 variant="outline-dark"
                 id="button-addon2"
-                title="搜 尋"
+                title="Search"
                 size="sm"
                 // onClick={() => setSearch(tempSearch)}
               >
@@ -467,7 +467,7 @@ function FilmEditor() {
     <Container className="d-flex h-100 w-100 pe-0">
       <Row className="pb-2 h-100" style={{ width: '100vw' }}>
         <Col xs={7} className="h-100">
-          <Card className="d-flex w-100 bg-black" style={{ height: '64.75%' }}>
+          <Card className="d-flex w-100" style={{ height: '64.75%' }}>
             <Form.Control
               className="p-0 m-0 border-0"
               id="file"
@@ -558,14 +558,14 @@ function FilmEditor() {
                       <br />
                       <br />
                       <br />
-                      <h5 className="text-grey m-auto">目前尚無資料</h5>
+                      <h5 className="text-secondary m-auto">目前尚無資料</h5>
                     </> */}
                   </Tab>
                   {/* <Tab eventKey="pin" title="手動標籤">
                     <br />
                     <br />
                     <br />
-                    <h5 className="text-grey m-auto">目前尚無資料</h5>
+                    <h5 className="text-secondary m-auto">目前尚無資料</h5>
                   </Tab> */}
 
                   <Tab
@@ -673,7 +673,7 @@ function FilmEditor() {
                       <br />
                       <br />
                       <br />
-                      <h5 className="text-grey m-auto">no data</h5>
+                      <h5 className="text-secondary m-auto">no data</h5>
                     </>
                   </Tab>
 
@@ -830,7 +830,7 @@ function FilmEditor() {
               </Col>
               <Col xs={5} className="px-2 ps-3 my-auto">
                 <h6 className="text-secondary fw-bold">手動片段</h6>
-                <h6 className="text-grey fw-bold mb-0">04分06秒</h6>
+                <h6 className="text-secondary fw-bold mb-0">04分06秒</h6>
               </Col>
               <Col xs={4} className="px-2 my-auto">
                 <div>

@@ -19,7 +19,7 @@ function PathCard({ setting }) {
   return (
     <Card
       className={`text-center h-100 p-0 m-auto ${
-        type === 'user' ? 'btn-dark-blue' : 'btn-dark-green'
+        type === 'user' ? 'bg-user-marmot' : 'bg-admin-marmot'
       }`}
       style={{ width: '350px', opacity: '.75' }}
     >
@@ -27,13 +27,13 @@ function PathCard({ setting }) {
         <Row className="h-100">
           <Col className="d-flex" xs={2}>
             <FontAwesomeIcon
-              className="fs-4 mx-auto mt-2 text-light"
+              className="fs-4 mx-auto mt-2 text-dark"
               icon={icon}
             />
           </Col>
           <Col xs={10} className="d-flex flex-column">
             <Row>
-              <h5 className="text-start text-light">{title}</h5>
+              <h5 className="text-start text-dark">{title}</h5>
             </Row>
             <Row>
               <h6 className="text-start">{subTitle}</h6>

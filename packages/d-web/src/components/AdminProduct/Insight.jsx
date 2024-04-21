@@ -5,46 +5,62 @@ import { suzuri, teespring, shopline, shopify } from '../../asset'
 function Insight() {
   return (
     <div className="w-100 h-100 overflow-scroll p-3">
-      <h4 className="text-grey text-start">產品銷售概覽</h4>
-      <Card>
-        <Card.Body>
-          <Row>
-            <Col>
-              <h3>$ 100K</h3>
-              <h4>總數</h4>
+      <h4 className="text-secondary text-start pt-3">Sales Overview</h4>
+      <Card style={{ height: '150px' }}>
+        <Card.Body className="d-flex">
+          <Row className="d-flex w-100">
+            <Col className="m-auto">
+              <h2 className="fw-bolder text-dai-light">$ 263K</h2>
+              <h4>Total</h4>
             </Col>
-            <Col>
-              <h3>$ 100K</h3>
+            <Col className="m-auto">
+              <h2 className="fw-bolder text-dai-light">$ 100K</h2>
               <h4>shopify</h4>
             </Col>
-            <Col>
-              <h3>$ 100K</h3>
+            <Col className="m-auto">
+              <h2 className="fw-bolder text-dai-light">$ 80K</h2>
               <h4>shopline</h4>
             </Col>
-            <Col>
-              <h3>$ 100K</h3>
+            <Col className="m-auto">
+              <h2 className="fw-bolder text-dai-light">$ 21K</h2>
               <h4>teespring</h4>
             </Col>
-            <Col>
-              <h3>$ 100K</h3>
+            <Col className="m-auto">
+              <h2 className="fw-bolder text-dai-light">$ 62K</h2>
               <h4>suzuri</h4>
             </Col>
           </Row>
         </Card.Body>
       </Card>
-      <h4 className="text-grey text-start">整合電商</h4>
+      <h4 className="text-secondary text-start pt-5">E-commerce platforms</h4>
       <Row>
-        <Col>
-          <Image src={shopify} />
+        <Col className="px-3">
+          <Image
+            className="card"
+            style={{ height: '150px', width: '230px' }}
+            src={shopify}
+          />
         </Col>
-        <Col>
-          <Image src={shopline} />
+        <Col className="px-3">
+          <Image
+            className="card"
+            style={{ height: '150px', width: '230px' }}
+            src={shopline}
+          />
         </Col>
-        <Col>
-          <Image src={teespring} />
+        <Col className="px-3">
+          <Image
+            className="card"
+            style={{ height: '150px', width: '230px' }}
+            src={teespring}
+          />
         </Col>
-        <Col>
-          <Image src={suzuri} />
+        <Col className="px-3">
+          <Image
+            className="card"
+            style={{ height: '150px', width: '230px' }}
+            src={suzuri}
+          />
         </Col>
       </Row>
     </div>

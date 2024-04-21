@@ -329,7 +329,7 @@ function VideoList() {
               }}
             />
             <Button
-              variant="outline-light"
+              variant="outline-dark"
               id="button-addon2"
               title="Search"
               onClick={() => setSearch(tempSearch)}
@@ -358,14 +358,14 @@ function VideoList() {
           />
           <FormLabel
             htmlFor="file"
-            className="d-flex h-100 w-50 ms-4 btn btn-mar mb-0"
+            className="d-flex h-100 w-50 ms-4 btn btn-mar2 mb-0"
             style={{ cursor: 'pointer' }}
             title="upload the video"
           >
-            <span className="m-auto">
+            <div className="m-auto">
               Upload&ensp;
               <FontAwesomeIcon icon={faCirclePlus} />
-            </span>
+            </div>
           </FormLabel>
         </Col>
       </Row>

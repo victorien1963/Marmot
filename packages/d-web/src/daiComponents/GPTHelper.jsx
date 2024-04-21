@@ -115,7 +115,7 @@ function GPTHelper() {
                   >
                     {chat}
                   </div>
-                  <div className="fs-8 fw-bold text-end text-grey">
+                  <div className="fs-8 fw-bold text-end text-secondary">
                     {moment(created_on).format('MM/HH hh:mm a')}
                   </div>
                 </Col>

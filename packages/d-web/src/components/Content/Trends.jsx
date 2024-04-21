@@ -75,7 +75,7 @@ function Trends() {
         <Col xs={6} className="h-50 p-2">
           <Card className="h-100 w-100 border-card-2">
             <Card.Body className="d-flex flex-column">
-              <h5 className="text-start text-grey py-2">Top Trends</h5>
+              <h5 className="text-start text-secondary py-2">Top Trends</h5>
               <div className="flex-fill" ref={ref}>
                 <CrossChart
                   setting={{
@@ -93,7 +93,7 @@ function Trends() {
         <Col xs={6} className="h-50 p-2">
           <Card className="h-100 w-100 border-card-2">
             <Card.Body className="d-flex flex-column">
-              <h5 className="text-start text-grey py-2">Conversation</h5>
+              <h5 className="text-start text-secondary py-2">Conversation</h5>
               <div className="flex-fill">
                 <LineChart
                   setting={{
@@ -110,7 +110,7 @@ function Trends() {
         <Col xs={6} className="h-50 p-2">
           <Card className="h-100 w-100 border-card-2">
             <Card.Body className="d-flex flex-column">
-              <h5 className="text-start text-grey py-2">Share of Voice</h5>
+              <h5 className="text-start text-secondary py-2">Share of Voice</h5>
               <div className="flex-fill">
                 <PieChart
                   setting={{
@@ -161,7 +161,7 @@ function Trends() {
         <Col xs={6} className="h-50 p-2">
           <Card className="h-100 w-100 border-card-2">
             <Card.Body className="d-flex flex-column">
-              <h5 className="text-start text-grey py-2">Top Topics</h5>
+              <h5 className="text-start text-secondary py-2">Top Topics</h5>
               <div className="flex-fill" ref={ref}>
                 <Image src={toptopics} width="540" />
               </div>

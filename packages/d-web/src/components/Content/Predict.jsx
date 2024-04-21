@@ -90,7 +90,7 @@ function Predict() {
   return (
     <Row style={{ height: '80vh' }} className="mt-4 w-100 pe-3">
       <h4
-        className="text-start text-grey py-4 px-3 pt-5"
+        className="text-start text-secondary py-4 px-3 pt-5"
         style={{ borderTop: '1px solid #262d41' }}
       >
         Predictive performance
@@ -171,7 +171,7 @@ function Predict() {
         </Card>
         <div className="mt-4 py-3" style={{ borderTop: '1px solid #262d41' }}>
           <Row className="h-50 w-100 d-flex flex-column">
-            <h4 className="text-start text-grey py-4 px-3">
+            <h4 className="text-start text-secondary py-4 px-3">
               Recommended Distribution platform
             </h4>
           </Row>
@@ -187,7 +187,7 @@ function Predict() {
                     style={{ cursor: 'pointer' }}
                     title={icon}
                   />
-                  <h6 className="text-grey pt-2">{icon}</h6>
+                  <h6 className="text-secondary pt-2">{icon}</h6>
                 </Col>
               )
             )}
@@ -195,7 +195,7 @@ function Predict() {
         </div>
         <div className="my-4 pb-4" style={{ borderTop: '1px solid #262d41' }}>
           <Row className="h-50 w-100 d-flex flex-column">
-            <h4 className="text-start text-grey py-4 px-3">
+            <h4 className="text-start text-secondary py-4 px-3">
               Socil Listening tools + Google/Youtube trend + CMS intenal data
             </h4>
           </Row>
@@ -214,13 +214,13 @@ function Predict() {
                       alt=""
                     />
                   </Col>
-                  <Col className="text-light text-start">
+                  <Col className="text-dark text-start">
                     {/* <h5>title {icon}</h5> */}
-                    <h6 className="text-light">
+                    <h6 className="text-dark">
                       五分鐘看，漁電共生對養殖漁業的影響｜公視 #獨立特派員
                       單元精華
                     </h6>
-                    <h6 className="text-grey">
+                    <h6 className="text-secondary">
                       公共電視-獨立特派員 PTS INNEWS
                     </h6>
                     <h6 className="text-secondary">22K views・11 months ago</h6>

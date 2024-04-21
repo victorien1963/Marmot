@@ -703,7 +703,7 @@ function Historical() {
                 >
                   <FontAwesomeIcon
                     icon={faFilm}
-                    className="text-grey h-25 m-auto"
+                    className="text-secondary h-25 m-auto"
                   />
                 </FormLabel>
               </div>
