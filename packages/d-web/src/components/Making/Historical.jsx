@@ -321,24 +321,8 @@ function Historical() {
                     }),
                 }}
               />
-              {/* <InputGroup className="mb-2">
-                <Form.Label className="px-2 my-auto">節目</Form.Label>
-                <Form.Control
-                  readOnly
-                  type="text"
-                  placeholder="節目多選輸入框(多選)..."
-                />
-              </InputGroup> */}
             </Col>
             <Col>
-              {/* <InputGroup className="mb-2">
-                <Form.Label className="px-2 my-auto">活動</Form.Label>
-                <Form.Control
-                  readOnly
-                  type="text"
-                  placeholder="活動輸入框(多選)..."
-                />
-              </InputGroup> */}
               <AutoComplete
                 setting={{
                   text: 'Event',
@@ -414,10 +398,6 @@ function Historical() {
           <hr className="mt-1 mb-2" />
           <Row>
             <Col>
-              {/* <InputGroup className="mb-2">
-                <Form.Label className="px-2 my-auto">事件</Form.Label>
-                <Form.Control readOnly type="text" placeholder="" />
-              </InputGroup> */}
               <AutoComplete
                 setting={{
                   text: 'Event',
@@ -434,10 +414,6 @@ function Historical() {
               />
             </Col>
             <Col>
-              {/* <InputGroup className="mb-2">
-                <Form.Label className="px-2 my-auto">人物</Form.Label>
-                <Form.Control readOnly type="text" placeholder="" />
-              </InputGroup> */}
               <AutoComplete
                 setting={{
                   text: 'character',
@@ -456,10 +432,6 @@ function Historical() {
           </Row>
           <Row>
             <Col>
-              {/* <InputGroup className="mb-2">
-                <Form.Label className="px-2 my-auto">Tags</Form.Label>
-                <Form.Control readOnly type="text" placeholder="" />
-              </InputGroup> */}
               <AutoComplete
                 setting={{
                   text: 'Tags',
@@ -482,20 +454,6 @@ function Historical() {
                 <Form.Label className="px-2 my-auto">Fragment</Form.Label>
                 <Form.Control type="text" placeholder="Keyword..." />
               </InputGroup>
-              {/* <AutoComplete
-                setting={{
-                  text: '片段',
-                  placeholder: '片段...',
-                  options: fakeOptions.clip,
-                  handleSelect: (e) => handleSelect('clip', e),
-                  show: focus.clip,
-                  onFocus: () =>
-                    setfocus({
-                      ...focus,
-                      clip: true,
-                    }),
-                }}
-              /> */}
             </Col>
           </Row>
           <Row>

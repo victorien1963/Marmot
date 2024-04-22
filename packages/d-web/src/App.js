@@ -38,6 +38,7 @@ function App() {
               <Route path="/user/paycontent" element={<PayContent />} />
               <Route path="/user/paycontent/:path" element={<PayContent />} />
               <Route path="/user/product" element={<Product />} />
+              <Route path="/user/product/:path" element={<Product />} />
               <Route path="/user/brand" element={<Brand />} />
               <Route path="/user/brand/:path" element={<Brand />} />
               <Route path="/admin/cooperate" element={<Cooperate />} />
