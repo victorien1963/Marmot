@@ -81,24 +81,93 @@ function SideNavBar() {
         subTitle: '報表 + 成效報告',
         icon: faCircleRadiation,
         link: '/user/analyze',
+        sub: [
+          {
+            title: 'Analytics',
+            subTitle: '',
+            icon: faUsers,
+            link: '/user/analyze/analytics',
+            type: 'user',
+          },
+          {
+            title: 'Benchmaking',
+            subTitle: '',
+            icon: faFileInvoice,
+            link: '/user/analyze/benchmaking',
+            type: 'user',
+          },
+          {
+            title: 'Alternative Monetization',
+            subTitle: '',
+            icon: faSackDollar,
+            link: '/user/analyze/am',
+            type: 'user',
+          },
+        ],
       },
       {
         title: 'PREMIUM CONTENT',
         subTitle: '頻道會員 + 課程',
         icon: faCircleRadiation,
         link: '/user/paycontent',
+        sub: [
+          {
+            title: 'Memberships',
+            subTitle: '',
+            icon: faUsers,
+            link: '/user/paycontent/memberships',
+            type: 'user',
+          },
+          {
+            title: 'Courses',
+            subTitle: '',
+            icon: faFileInvoice,
+            link: '/user/paycontent/courses',
+            type: 'user',
+          },
+        ],
       },
       {
         title: 'MERCHANDISE',
         subTitle: '電商整合',
         icon: faCircleRadiation,
         link: '/user/product',
+        sub: [
+          {
+            title: 'Sales overview',
+            subTitle: '',
+            link: '/user/product/insight',
+            type: 'admin',
+          },
+          {
+            title: 'Order inquiry',
+            subTitle: '',
+            link: '/user/product/ec',
+            type: 'admin',
+          },
+        ],
       },
       {
         title: 'BRAND OPPORTUNITIES',
         subTitle: '業配商案',
         icon: faCircleRadiation,
         link: '/user/brand',
+        sub: [
+          {
+            title: 'Campaigns',
+            subTitle: '',
+            icon: faUsers,
+            link: '/user/brand/campaigns',
+            type: 'user',
+          },
+          {
+            title: 'Opportunities',
+            subTitle: '',
+            icon: faFileInvoice,
+            link: '/user/brand/opportunities',
+            type: 'user',
+          },
+        ],
       },
     ],
     admin: [

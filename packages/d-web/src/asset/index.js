@@ -26,6 +26,13 @@ import teespring from './images/teespring.png'
 import shopline from './images/shopline.png'
 import shopify from './images/shopify.png'
 
+import gender from './images/gender.png'
+import time from './images/time.png'
+import age from './images/age.png'
+import member1 from './images/member1.png'
+import member2 from './images/member2.png'
+import member3 from './images/member3.png'
+
 export {
   logoFullWhite,
   logoFull,
@@ -53,4 +60,10 @@ export {
   teespring,
   shopline,
   shopify,
+  gender,
+  time,
+  age,
+  member1,
+  member2,
+  member3,
 }

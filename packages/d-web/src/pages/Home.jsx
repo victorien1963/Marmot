@@ -152,7 +152,7 @@ function Home() {
         title: 'Merchandise',
         subTitle: 'E-commerce',
         icon: faCircleRadiation,
-        link: '/user/product',
+        link: '/user/product/insight',
       },
       {
         title: 'Brand opportunities',
@@ -184,7 +184,7 @@ function Home() {
         title: 'Merchandise',
         subTitle: 'E-commerce',
         icon: faCircleRadiation,
-        link: '/admin/product',
+        link: '/admin/product/insight',
       },
     ],
   }
