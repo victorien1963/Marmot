@@ -33,6 +33,20 @@ import member1 from './images/member1.png'
 import member2 from './images/member2.png'
 import member3 from './images/member3.png'
 
+import thumbnail01 from './images/thumbnail01.png'
+import type01 from './images/type01.png'
+import type02 from './images/type02.png'
+import type03 from './images/type03.png'
+import type04 from './images/type04.png'
+import func01 from './images/func01.png'
+import func02 from './images/func02.png'
+import func03 from './images/func03.png'
+import func04 from './images/func04.png'
+import colour_bar from './images/colour_bar.png'
+import preview01 from './images/preview01.png'
+import preview02 from './images/preview02.png'
+import preview03 from './images/preview03.png'
+
 export {
   logoFullWhite,
   logoFull,
@@ -66,4 +80,17 @@ export {
   member1,
   member2,
   member3,
+  thumbnail01,
+  type01,
+  type02,
+  type03,
+  type04,
+  func01,
+  func02,
+  func03,
+  func04,
+  colour_bar,
+  preview01,
+  preview02,
+  preview03,
 }
