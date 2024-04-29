@@ -1,5 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Button, Card, Col, Image, Row, Tab, Tabs } from 'react-bootstrap'
+import PropTypes from 'prop-types'
+import {
+  Button,
+  Card,
+  Col,
+  Image,
+  Modal,
+  Row,
+  Tab,
+  Tabs,
+} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCircleArrowDown,
@@ -8,7 +18,25 @@ import {
 import { member1, member2, member3 } from '../../asset'
 import LineChart from '../Content/LineChart'
 
+function PerkModal({ setting }) {
+  const { show, handleClose } = setting
+  return (
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closebutton>Basic Tier</Modal.Header>
+      <Modal.Body>
+        <Row>
+          <Button size="sm" className="w-25 rounded-pill">
+            BASIC $1.99
+          </Button>
+        </Row>
+      </Modal.Body>
+    </Modal>
+  )
+}
+
 function Memberships() {
+  const [show, setshow] = useState(false)
+  const handleClose = () => setshow(false)
   const data = [
     {
       spend: 100,
@@ -82,19 +110,25 @@ function Memberships() {
             <Button size="sm" className="w-25 rounded-pill">
               BASIC $1.99
             </Button>
-            <span className="w-50">View / Add Perks</span>
+            <span className="w-50" onClick={() => setshow(true)} aria-hidden>
+              View / Add Perks
+            </span>
           </Row>
           <Row className="py-2">
             <Button size="sm" className="w-25 rounded-pill">
               PREMIUM $5.99
             </Button>
-            <span className="w-50">View / Change Perks</span>
+            <span className="w-50" onClick={() => setshow(true)} aria-hidden>
+              View / Change Perks
+            </span>
           </Row>
           <Row className="py-2">
             <Button size="sm" className="w-25 rounded-pill">
               VIP $14.99
             </Button>
-            <span className="w-50">View / Change Perks</span>
+            <span className="w-50" onClick={() => setshow(true)} aria-hidden>
+              View / Change Perks
+            </span>
           </Row>
           <Row className="pt-5 h-50">
             <Card className="w-100 h-100">
@@ -191,8 +225,13 @@ function Memberships() {
           </Card>
         </Col>
       </Row>
+      <PerkModal setting={{ show, handleClose }} />
     </div>
   )
+}
+
+PerkModal.propTypes = {
+  setting: PropTypes.shape().isRequired,
 }
 
 export default Memberships

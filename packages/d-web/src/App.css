@@ -780,6 +780,32 @@
   border-right: 1px solid #262d41 !important;
 }
 
+.planby > div > * {
+  background-color: #fff !important;
+}
+
+.planby > div > div > * {
+  background-color: #fff !important;
+}
+
+.planby > div > div > div > div > .e1f8qikj5 {
+  background: #a2c9e6 !important;
+}
+
+.planby > div > div > div > div > .e1f8qikj5:hover {
+  background: linear-gradient(to right, #89adc9, #a8eef3) !important;
+}
+
+.hoverCard {
+  border: 1px solid transparent !important;
+  border-radius: 5px;
+}
+
+.hoverCard:hover {
+  border: 1px solid #5c4bd0 !important;
+  border-radius: 5px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

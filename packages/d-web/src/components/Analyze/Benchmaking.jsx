@@ -1,3 +1,6 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-promise-executor-return */
+/* eslint-disable prettier/prettier */
 import { faCheckCircle, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useMemo, useState } from 'react'
@@ -9,8 +12,9 @@ import {
   InputGroup,
   ListGroupItem,
   Row,
+  Spinner,
 } from 'react-bootstrap'
-// import Comparison from './Comparison'
+import Comparison from './Comparison'
 
 function AutoComplete({ setting }) {
   const { text, options, placeholder, show, onFocus, handleSelect } = setting
@@ -170,131 +174,152 @@ function Benchmaking() {
     clip: false,
   }
   const [focus, setfocus] = useState(initFocus)
-  return (
-    <div
-      className="w-100 h-100 p-3"
-      onClick={() => setfocus(initFocus)}
-      aria-hidden
-    >
-      <Row>
-        <h4 className="text-start">Select Type of channel to benchmark</h4>
-      </Row>
-      <Row className="h-75 ps-3">
-        <Col className="h-75 d-flex flex-column justify-content-center">
-          <Row className="py-2">
-            <Button
-              size="sm"
-              variant="secondary"
-              className="w-75 mx-auto rounded-pill"
-            >
-              ALL
-            </Button>
-          </Row>
-          <Row className="py-2">
-            <Button
-              size="sm"
-              variant="secondary"
-              className="w-75 mx-auto rounded-pill"
-            >
-              Knowledge
-            </Button>
-          </Row>
-          <Row className="py-2">
-            <Button
-              size="sm"
-              variant="secondary"
-              className="w-75 mx-auto rounded-pill"
-            >
-              Mardarin
-            </Button>
-          </Row>
-        </Col>
-        <Col className="h-75 d-flex flex-column justify-content-center" xs={8}>
-          <Row>
-            <Col>
-              <AutoComplete
-                setting={{
-                  text: 'Filter by location',
-                  placeholder: 'location(s)...',
-                  options: fakeOptions.channel,
-                  handleSelect: (e) => handleSelect('channel', e),
-                  show: focus.channel,
-                  onFocus: () =>
-                    setfocus({
-                      ...focus,
-                      channel: true,
-                    }),
-                }}
-              />
-            </Col>
-            <Col>
-              <AutoComplete
-                setting={{
-                  text: 'Filter by subscribers',
-                  placeholder: 'subscriber(s)...',
-                  options: fakeOptions.activity,
-                  handleSelect: (e) => handleSelect('activity', e),
-                  show: focus.activity,
-                  onFocus: () =>
-                    setfocus({
-                      ...focus,
-                      activity: true,
-                    }),
-                }}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <AutoComplete
-                setting={{
-                  text: 'Filter by audience',
-                  placeholder: 'audience...',
-                  options: fakeOptions.event,
-                  handleSelect: (e) => handleSelect('event', e),
-                  show: focus.event,
-                  onFocus: () =>
-                    setfocus({
-                      ...focus,
-                      event: true,
-                    }),
-                }}
-              />
-            </Col>
-            <Col>
-              <AutoComplete
-                setting={{
-                  text: 'Filter by views',
-                  placeholder: 'view...',
-                  options: fakeOptions.people,
-                  handleSelect: (e) => handleSelect('people', e),
-                  show: focus.people,
-                  onFocus: () =>
-                    setfocus({
-                      ...focus,
-                      people: true,
-                    }),
-                }}
-              />
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={10} />
-        <Col xs={2} className="ms-auto">
-          <Button
-            variant="outline-dark"
-            size="sm"
-            className="ms-auto me-2"
-            // onClick={() => setselected()}
-          >
-            Generate
-          </Button>
-        </Col>
-      </Row>
+
+  const [loading, setloading] = useState(false)
+  const [comparison, setcomparison] = useState(false)
+  const handleGenerate = async () => {
+    setloading(true)
+    const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+    await delay(3000)
+    setcomparison(true)
+    setloading(false)
+  }
+  return loading ? <div className="w-100 h-100 d-flex mt-auto justify-content-center">
+      <h5 className='my-auto me-2'>Generating...</h5>
+      <Spinner
+        className="my-auto"
+        animation="border"
+        size='sm'
+        style={{
+          animation: 'spinner-border 1.5s linear infinite',
+        }}
+      />
     </div>
-  )
+    : comparison
+      ? <Comparison />
+      : <div
+        className="w-100 h-100 p-3"
+        onClick={() => setfocus(initFocus)}
+        aria-hidden
+      >
+        <Row>
+          <h4 className="text-start">Select Type of channel to benchmark</h4>
+        </Row>
+        <Row className="h-75 ps-3">
+          <Col className="h-75 d-flex flex-column justify-content-center">
+            <Row className="py-2">
+              <Button
+                size="sm"
+                variant="secondary"
+                className="w-75 mx-auto rounded-pill"
+              >
+                ALL
+              </Button>
+            </Row>
+            <Row className="py-2">
+              <Button
+                size="sm"
+                variant="secondary"
+                className="w-75 mx-auto rounded-pill"
+              >
+                Knowledge
+              </Button>
+            </Row>
+            <Row className="py-2">
+              <Button
+                size="sm"
+                variant="secondary"
+                className="w-75 mx-auto rounded-pill"
+              >
+                Mardarin
+              </Button>
+            </Row>
+          </Col>
+          <Col className="h-75 d-flex flex-column justify-content-center" xs={8}>
+            <Row>
+              <Col>
+                <AutoComplete
+                  setting={{
+                    text: 'Filter by location',
+                    placeholder: 'location(s)...',
+                    options: fakeOptions.channel,
+                    handleSelect: (e) => handleSelect('channel', e),
+                    show: focus.channel,
+                    onFocus: () =>
+                      setfocus({
+                        ...focus,
+                        channel: true,
+                      }),
+                  }}
+                />
+              </Col>
+              <Col>
+                <AutoComplete
+                  setting={{
+                    text: 'Filter by subscribers',
+                    placeholder: 'subscriber(s)...',
+                    options: fakeOptions.activity,
+                    handleSelect: (e) => handleSelect('activity', e),
+                    show: focus.activity,
+                    onFocus: () =>
+                      setfocus({
+                        ...focus,
+                        activity: true,
+                      }),
+                  }}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <AutoComplete
+                  setting={{
+                    text: 'Filter by audience',
+                    placeholder: 'audience...',
+                    options: fakeOptions.event,
+                    handleSelect: (e) => handleSelect('event', e),
+                    show: focus.event,
+                    onFocus: () =>
+                      setfocus({
+                        ...focus,
+                        event: true,
+                      }),
+                  }}
+                />
+              </Col>
+              <Col>
+                <AutoComplete
+                  setting={{
+                    text: 'Filter by views',
+                    placeholder: 'view...',
+                    options: fakeOptions.people,
+                    handleSelect: (e) => handleSelect('people', e),
+                    show: focus.people,
+                    onFocus: () =>
+                      setfocus({
+                        ...focus,
+                        people: true,
+                      }),
+                  }}
+                />
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={10} />
+          <Col xs={2} className="ms-auto">
+            <Button
+              variant="outline-dark"
+              size="sm"
+              className="ms-auto me-2"
+              onClick={handleGenerate}
+            >
+              Generate
+            </Button>
+          </Col>
+        </Row>
+      </div>
 }
 
 AutoComplete.propTypes = {
