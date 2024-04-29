@@ -10,6 +10,7 @@ import {
   ListGroupItem,
   Row,
 } from 'react-bootstrap'
+// import Comparison from './Comparison'
 
 function AutoComplete({ setting }) {
   const { text, options, placeholder, show, onFocus, handleSelect } = setting
@@ -181,17 +182,29 @@ function Benchmaking() {
       <Row className="h-75 ps-3">
         <Col className="h-75 d-flex flex-column justify-content-center">
           <Row className="py-2">
-            <Button size="sm" className="w-75 mx-auto rounded-pill">
+            <Button
+              size="sm"
+              variant="secondary"
+              className="w-75 mx-auto rounded-pill"
+            >
               ALL
             </Button>
           </Row>
           <Row className="py-2">
-            <Button size="sm" className="w-75 mx-auto rounded-pill">
+            <Button
+              size="sm"
+              variant="secondary"
+              className="w-75 mx-auto rounded-pill"
+            >
               Knowledge
             </Button>
           </Row>
           <Row className="py-2">
-            <Button size="sm" className="w-75 mx-auto rounded-pill">
+            <Button
+              size="sm"
+              variant="secondary"
+              className="w-75 mx-auto rounded-pill"
+            >
               Mardarin
             </Button>
           </Row>
@@ -231,7 +244,6 @@ function Benchmaking() {
               />
             </Col>
           </Row>
-          <hr className="mt-1 mb-2" />
           <Row>
             <Col>
               <AutoComplete
@@ -269,9 +281,17 @@ function Benchmaking() {
         </Col>
       </Row>
       <Row>
-        <Button variant="mar-outlined" size="sm" className="w-25 ms-auto me-2">
-          Generate
-        </Button>
+        <Col xs={10} />
+        <Col xs={2} className="ms-auto">
+          <Button
+            variant="outline-dark"
+            size="sm"
+            className="ms-auto me-2"
+            // onClick={() => setselected()}
+          >
+            Generate
+          </Button>
+        </Col>
       </Row>
     </div>
   )

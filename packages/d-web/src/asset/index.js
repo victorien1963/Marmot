@@ -46,6 +46,13 @@ import colour_bar from './images/colour_bar.png'
 import preview01 from './images/preview01.png'
 import preview02 from './images/preview02.png'
 import preview03 from './images/preview03.png'
+import Topvideos01 from './images/Topvideos01.png'
+import Topvideos02 from './images/Topvideos02.png'
+import Topvideos03 from './images/Topvideos03.png'
+import Topvideos04 from './images/Topvideos04.png'
+import Topsuperthanks from './images/Topsuperthanks.png'
+import Comparison from './images/Comparison.png'
+import map01 from './images/map01.png'
 
 export {
   logoFullWhite,
@@ -93,4 +100,11 @@ export {
   preview01,
   preview02,
   preview03,
+  Topvideos01,
+  Topvideos02,
+  Topvideos03,
+  Topvideos04,
+  Topsuperthanks,
+  Comparison,
+  map01,
 }

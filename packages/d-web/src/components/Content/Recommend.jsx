@@ -135,7 +135,7 @@ function Recommend() {
               <FontAwesomeIcon icon={faSearch} />
             </Button>
           </InputGroup>
-          <Button size="sm" variant="dark" className=" my-auto">
+          <Button size="sm" variant="dark" className="my-auto">
             compare
           </Button>
         </Col>
