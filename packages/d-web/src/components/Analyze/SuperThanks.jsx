@@ -32,11 +32,11 @@ function SuperThanks() {
                   </h5>
                   <div className="text-center">
                     <h4>30</h4>
-                    <h5>Watch Hours</h5>
+                    <h6>Watch Hours</h6>
                     <h4 className="pt-2">30,000</h4>
-                    <h5>Total views</h5>
+                    <h6>Total views</h6>
                     <h4 className="pt-2">$200.00</h4>
-                    <h5>Super Thanks</h5>
+                    <h6>Super Thanks</h6>
                   </div>
                 </Col>
               </Row>
@@ -54,11 +54,11 @@ function SuperThanks() {
                   </h5>
                   <div className="text-center">
                     <h4>30</h4>
-                    <h5>Watch Hours</h5>
+                    <h6>Watch Hours</h6>
                     <h4 className="pt-2">30,000</h4>
-                    <h5>Total views</h5>
+                    <h6>Total views</h6>
                     <h4 className="pt-2">$200.00</h4>
-                    <h5>Super Thanks</h5>
+                    <h6>Super Thanks</h6>
                   </div>
                 </Col>
               </Row>
@@ -76,11 +76,11 @@ function SuperThanks() {
                   </h5>
                   <div className="text-center">
                     <h4>30</h4>
-                    <h5>Watch Hours</h5>
+                    <h6>Watch Hours</h6>
                     <h4 className="pt-2">30,000</h4>
-                    <h5>Total views</h5>
+                    <h6>Total views</h6>
                     <h4 className="pt-2">$200.00</h4>
-                    <h5>Super Thanks</h5>
+                    <h6>Super Thanks</h6>
                   </div>
                 </Col>
               </Row>
@@ -98,11 +98,11 @@ function SuperThanks() {
                   </h5>
                   <div className="text-center">
                     <h4>30</h4>
-                    <h5>Watch Hours</h5>
+                    <h6>Watch Hours</h6>
                     <h4 className="pt-2">30,000</h4>
-                    <h5>Total views</h5>
+                    <h6>Total views</h6>
                     <h4 className="pt-2">$200.00</h4>
-                    <h5>Super Thanks</h5>
+                    <h6>Super Thanks</h6>
                   </div>
                 </Col>
               </Row>

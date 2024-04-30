@@ -53,6 +53,7 @@ import Topvideos04 from './images/Topvideos04.png'
 import Topsuperthanks from './images/Topsuperthanks.png'
 import Comparison from './images/Comparison.png'
 import map01 from './images/map01.png'
+import q01 from './images/q01.png'
 
 export {
   logoFullWhite,
@@ -107,4 +108,5 @@ export {
   Topsuperthanks,
   Comparison,
   map01,
+  q01,
 }

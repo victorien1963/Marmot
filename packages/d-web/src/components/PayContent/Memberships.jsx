@@ -25,7 +25,7 @@ function PerkModal({ setting }) {
       <Modal.Header closebutton>Basic Tier</Modal.Header>
       <Modal.Body>
         <Row>
-          <Button size="sm" className="w-25 rounded-pill">
+          <Button size="sm" variant="secondary" className="w-25 rounded-pill">
             BASIC $1.99
           </Button>
         </Row>
@@ -104,10 +104,10 @@ function Memberships() {
     <div className="w-100 h-100 p-3">
       <Row className="p-3 pb-5 h-100">
         <h4 className="text-start">Memberships Overview</h4>
-        <Col className="h-100" xs={5}>
+        <Col className="h-100 p-4" xs={6}>
           <Row>Current Tiers</Row>
           <Row className="py-2">
-            <Button size="sm" className="w-25 rounded-pill">
+            <Button size="sm" variant="secondary" className="w-25 rounded-pill">
               BASIC $1.99
             </Button>
             <span className="w-50" onClick={() => setshow(true)} aria-hidden>
@@ -115,7 +115,7 @@ function Memberships() {
             </span>
           </Row>
           <Row className="py-2">
-            <Button size="sm" className="w-25 rounded-pill">
+            <Button size="sm" variant="secondary" className="w-25 rounded-pill">
               PREMIUM $5.99
             </Button>
             <span className="w-50" onClick={() => setshow(true)} aria-hidden>
@@ -123,18 +123,18 @@ function Memberships() {
             </span>
           </Row>
           <Row className="py-2">
-            <Button size="sm" className="w-25 rounded-pill">
+            <Button size="sm" variant="secondary" className="w-25 rounded-pill">
               VIP $14.99
             </Button>
             <span className="w-50" onClick={() => setshow(true)} aria-hidden>
               View / Change Perks
             </span>
           </Row>
-          <Row className="pt-5 h-50">
+          <Row className="pt-5" style={{ height: '75%' }}>
             <Card className="w-100 h-100">
               <Card.Body className="w-100 h-100">
                 <h4 className="text-start">Top members</h4>
-                <Row>
+                <Row className="pt-4">
                   <Col xs={4}>
                     <Image className="w-100" src={member1} />
                   </Col>
@@ -149,7 +149,7 @@ function Memberships() {
             </Card>
           </Row>
         </Col>
-        <Col className="h-100" xs={7}>
+        <Col className="h-100" xs={6}>
           <Card className="h-100 w-100 border-card-2">
             <Card.Body className="h-100 w-100">
               <Row className="h-50 w-100 d-flex flex-column">

@@ -1,24 +1,107 @@
-import React from 'react'
-import { Card, Col, Image, Row } from 'react-bootstrap'
+/* eslint-disable import/no-extraneous-dependencies */
+import React, { useState } from 'react'
+import moment from 'moment'
+import { DateRange } from 'react-date-range'
+import {
+  Card,
+  Col,
+  Image,
+  Row,
+  Form,
+  InputGroup,
+  Button,
+} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import { age, gender, map01, preview02, preview03, time } from '../../asset'
+import { faInfoCircle, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import {
+  age,
+  gender,
+  map01,
+  preview02,
+  preview03,
+  q01,
+  time,
+} from '../../asset'
 
 function Analytics() {
+  const [showDate, setshowDate] = useState(false)
+  const [date, setdate] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: 'selection',
+  })
+  const [data, setdata] = useState({
+    originName: '',
+    date: '',
+    type: '',
+  })
+
+  const onDataChange = (e) =>
+    setdata({ ...data, [e.target.name]: e.target.value })
+
   return (
     <div
       className="w-100 h-100 p-3"
       style={{ overflowY: 'auto', overflowX: 'hidden' }}
     >
       <Row>
-        <h4 className="text-start">觀眾概覽</h4>
+        <Col xs={8}>
+          <h4 className="text-start">觀眾概覽</h4>
+        </Col>
+        <Col xs={4} className="d-flex px-4">
+          <InputGroup>
+            <Form.Label className="px-2 my-auto">Date</Form.Label>
+            <Form.Control
+              // name={f.name}
+              value={data.date || ''}
+              // placeholder={f.placeholder}
+              type="text"
+              onFocus={() => setshowDate(!showDate)}
+              readOnly
+            />
+            <div
+              style={{
+                height: showDate ? '100%' : '0%',
+                transition: 'height .3s ease-in',
+                position: 'absolute',
+                zIndex: '999',
+                top: '100%',
+              }}
+            >
+              {showDate && (
+                <DateRange
+                  ranges={[date]}
+                  editableDateInputs
+                  onChange={({ selection }) => {
+                    setdate(selection)
+                    onDataChange({
+                      target: {
+                        name: 'date',
+                        value: `${moment(selection.startDate).format(
+                          'yyyy-MM-DD'
+                        )}-${moment(selection.endDate).format('yyyy-MM-DD')}`,
+                      },
+                    })
+                  }}
+                  moveRangeOnFirstSelection={false}
+                />
+              )}
+            </div>
+            <Button
+              variant="outline-dark"
+              onClick={() => setshowDate(!showDate)}
+            >
+              <FontAwesomeIcon icon={faCalendarAlt} />
+            </Button>
+          </InputGroup>
+        </Col>
       </Row>
       <Row>
         <h6 className="text-start ps-4">觀眾客層</h6>
       </Row>
       <Row className="px-4 pb-4">
         <Col>
-          <Card>
+          <Card className="h-100">
             <Card.Body className="d-flex">
               <Row className="d-flex w-100">
                 <Col className="m-auto">
@@ -28,13 +111,14 @@ function Analytics() {
                   </p>
                   <h3 className="fw-bold">86.2%</h3>
                   <p>佔據關鍵人數的比例</p>
+                  <p>(2023-12-01 ~ 2024-01-01)</p>
                 </Col>
               </Row>
             </Card.Body>
           </Card>
         </Col>
         <Col>
-          <Card>
+          <Card className="h-100 pt-5">
             <Card.Body className="d-flex">
               <Row className="d-flex w-100">
                 <Col className="m-auto">
@@ -42,15 +126,18 @@ function Analytics() {
                   <p>
                     台灣觀看時間 <FontAwesomeIcon icon={faInfoCircle} />
                   </p>
-                  <h3 className="fw-bold">86.2%</h3>
-                  <p>佔據關鍵人數的比例</p>
+                  <h3 className="fw-bold" style={{ color: '#d846ef' }}>
+                    86.2%
+                  </h3>
+                  <Image src={q01} width="300px" />
+                  <p>(2023-12-01 ~ 2024-01-01)</p>
                 </Col>
               </Row>
             </Card.Body>
           </Card>
         </Col>
         <Col>
-          <Card>
+          <Card className="h-100">
             <Card.Body className="d-flex">
               <Row className="d-flex w-100">
                 <Col className="m-auto">
@@ -58,8 +145,11 @@ function Analytics() {
                   <p>
                     觀眾年齡分佈 <FontAwesomeIcon icon={faInfoCircle} />
                   </p>
-                  <h3 className="fw-bold">25 - 34 歲</h3>
-                  <p>佔所有年齡層的26.5%</p>
+                  <h3 className="fw-bold" style={{ color: '#12b9a6' }}>
+                    25 - 34 歲
+                  </h3>
+                  <p>佔所有年齡層的 26.5%</p>
+                  <p>(2023-12-01 ~ 2024-01-01)</p>
                 </Col>
               </Row>
             </Card.Body>
@@ -81,7 +171,7 @@ function Analytics() {
                   <h6 className="fw-bold">觀看次數：1.9M</h6>
                   <h6 className="fw-bold">觀看時數：133.1K</h6>
                   <p>總計：46.67%</p>
-                  <Image src={preview02} width="350px" />
+                  <Image src={preview02} width="320px" />
                 </Col>
               </Row>
             </Card.Body>
@@ -98,7 +188,7 @@ function Analytics() {
                   <h6 className="fw-bold">觀看次數：414.3K</h6>
                   <h6 className="fw-bold">觀看時數：84.7K</h6>
                   <p>總計：10.26%</p>
-                  <Image src={preview03} width="350px" />
+                  <Image src={preview03} width="320px" />
                 </Col>
               </Row>
             </Card.Body>

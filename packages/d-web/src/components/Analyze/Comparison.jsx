@@ -8,8 +8,8 @@ function Comparison() {
       <Row>
         <h4 className="text-start">Comparison</h4>
       </Row>
-      <Card className="border">
-        <Image src={image} width="1000px" />
+      <Card className="borde mt-4">
+        <Image src={image} width="1200px" />
       </Card>
     </div>
   )

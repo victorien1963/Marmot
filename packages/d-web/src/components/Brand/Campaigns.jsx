@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react'
 import { DateRange } from 'react-date-range'
 import { Button, Card, Col, Form, InputGroup, Row } from 'react-bootstrap'
