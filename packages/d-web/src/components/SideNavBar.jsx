@@ -1,7 +1,7 @@
 /* eslint-disable prefer-destructuring */
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { ListGroupItem } from 'react-bootstrap'
+import { Button, ListGroupItem } from 'react-bootstrap'
 import {
   faCircleRadiation,
   faClapperboard,
@@ -260,6 +260,14 @@ function SideNavBar() {
             ))}
         </>
       ))}
+      <Button
+        onClick={() => navigate('/')}
+        className="w-75 mx-auto mt-auto mb-2"
+        variant="outline-marmot"
+        size="sm"
+      >
+        Back
+      </Button>
     </div>
   )
 }

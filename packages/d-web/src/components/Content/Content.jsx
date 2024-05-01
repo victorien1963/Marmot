@@ -9,6 +9,7 @@ import PathSelector from '../PathSelector'
 import Pm from './Pm'
 import Recommend from './Recommend'
 import Trends from './Trends'
+import { plaky, monday, assemble, celtx, arcstudio, bonito } from '../../asset'
 
 const pages = {
   pm: <Pm />,
@@ -31,6 +32,20 @@ function Content() {
             icon: faUsers,
             link: '/user/content/pm',
             type: 'user',
+            externals: [
+              {
+                image: plaky,
+                link: 'https://plaky.com/pricing',
+              },
+              {
+                image: monday,
+                link: 'https://plaky.com/pricing',
+              },
+              {
+                image: assemble,
+                link: 'https://plaky.com/pricing',
+              },
+            ],
           },
           {
             title: 'Recommendation',
@@ -38,6 +53,16 @@ function Content() {
             icon: faFileInvoice,
             link: '/user/content/recommend',
             type: 'user',
+            externals: [
+              {
+                image: celtx,
+                link: 'https://plaky.com/pricing',
+              },
+              {
+                image: arcstudio,
+                link: 'https://plaky.com/pricing',
+              },
+            ],
           },
           {
             title: 'Trends',
@@ -45,6 +70,12 @@ function Content() {
             icon: faSackDollar,
             link: '/user/content/trends',
             type: 'user',
+            externals: [
+              {
+                image: bonito,
+                link: 'https://plaky.com/pricing',
+              },
+            ],
           },
         ],
       }}

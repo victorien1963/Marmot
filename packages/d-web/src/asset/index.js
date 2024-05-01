@@ -55,6 +55,15 @@ import Comparison from './images/Comparison.png'
 import map01 from './images/map01.png'
 import q01 from './images/q01.png'
 
+import plaky from './images/plaky.png'
+import monday from './images/monday.png'
+import assemble from './images/assemble.png'
+import celtx from './images/celtx.png'
+import arcstudio from './images/arcstudio.png'
+import bonito from './images/bonito.png'
+
+import mappopup from './images/map-popup.png'
+
 export {
   logoFullWhite,
   logoFull,
@@ -109,4 +118,11 @@ export {
   Comparison,
   map01,
   q01,
+  plaky,
+  monday,
+  assemble,
+  celtx,
+  arcstudio,
+  bonito,
+  mappopup,
 }
