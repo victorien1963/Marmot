@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "whisper-api-server"
+version = "0.1.0"
+description = ""
+authors = ["hallblazzar <hallblazzar@gmail.com>"]
+readme = "README.md"
+packages = [{include = "whisper_api_server"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^5.0.1"
+djangorestframework = "^3.14.0"
+psycopg2-binary = "^2.9.9"
+gunicorn = "^21.2.0"
+django-filter = "^23.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

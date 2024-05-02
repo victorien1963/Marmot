@@ -92,3 +92,117 @@ services:
       - MINIO_ROOT_PASSWORD=${AWS_SECRET_ACCESS_KEY}
     command: server --console-address ":9001" /data
     container_name: "minio"
+
+  common-worker:
+    image: common-worker
+    build:
+      context: packages/common-worker
+      dockerfile: "deployment/dockerfile/dev_packed/Dockerfile"
+    environment:
+      # API server config
+      - API_SERVER_URL=${API_SERVER_URL}
+      # Object store config
+      - CUSTOM_OBJECT_STORE_TYPE=${CUSTOM_OBJECT_STORE_TYPE}
+      - CUSTOM_OBJECT_STORE_ENDPOINT=${CUSTOM_OBJECT_STORE_ENDPOINT}
+      - OBJECT_STORE_BUCKET=${OBJECT_STORE_BUCKET}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+
+  video-worker:
+    image: video-worker
+    build:
+      context: packages/video-worker
+      dockerfile: "deployment/dockerfile/dev_packed/Dockerfile"
+    environment:
+      # API server config
+      - API_SERVER_URL=${API_SERVER_URL}
+      # Object store config
+      - CUSTOM_OBJECT_STORE_TYPE=${CUSTOM_OBJECT_STORE_TYPE}
+      - CUSTOM_OBJECT_STORE_ENDPOINT=${MOUNT_OBJECT_STORE_ENDPOINT}
+      - OBJECT_STORE_BUCKET=${OBJECT_STORE_BUCKET}
+      - OBJECT_STORE_BUCKET_MOUNT_ROOT=${OBJECT_STORE_BUCKET_MOUNT_ROOT}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - OPENAI_KEY=${OPENAI_API_KEY}
+      - MAX_WORKERS=10
+    devices:
+      - "/dev/fuse"
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - apparmor:unconfined
+
+  chelonia-server-v2-gunicorn:
+    image: chelonia-server-v2-gunicorn
+    build:
+      context: packages/chelonia-server-v2
+      dockerfile: "deployment/dockerfile/dev_packed/chelonia_server_v2_gunicorn/Dockerfile"
+    ports:
+      - 8000:8000
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_HOST: ${PG_HOST}
+      DB_PORT: 5432
+      DEBUG: ${DEBUG}
+
+      OBJECT_STORE_BUCKET: ${OBJECT_STORE_BUCKET}
+      UPLOAD_EXPIRE: ${UPLOAD_EXPIRE}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+
+      # set if using object store other than s3
+      CUSTOM_OBJECT_STORE_TYPE: ${CUSTOM_OBJECT_STORE_TYPE}
+      CUSTOM_OBJECT_STORE_ENDPOINT: ${CUSTOM_OBJECT_STORE_ENDPOINT}
+
+      # super user account
+      SUPER_USER: $SUPER_USER
+      SUPER_USER_PASSWD: $SUPER_USER_PASSWD
+
+  whisper-api-server-gunicorn:
+    image: whisper-api-server-gunicorn
+    build:
+      context: ./packages/whisper-api-server
+      dockerfile: "deployment/dockerfile/dev_packed/whisper_api_server_gunicorn/Dockerfile"
+    restart: always
+    environment:
+      - DB_NAME=${WHISPER_DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_HOST=${PG_HOST}
+      - DB_PORT=${PG_PORT}
+      - DEBUG=${DEBUG}
+
+  whisper-api-worker:
+    image: whisper-api-worker
+    build:
+      context: ./packages/whisper-api-worker
+      dockerfile: "deployment/dockerfile/dev_model_preload_packed/whisper_api_worker/Dockerfile"
+    environment:
+      WHISPER_MODEL_PATH: /model
+      WHISPER_API_SERVER_URL: http://whisper-api-server-gunicorn:8000
+      BUCKET_NAME: ${BUCKET_NAME}
+      BUCKET_MOUNT_ROOT: ${BUCKET_MOUNT_ROOT}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      # Not required if bucket is on S3
+      CUSTOM_BUCKET_ENDPOINT: ${MOUNT_OBJECT_STORE_ENDPOINT}
+      DEVICE_TYPE: ${DEVICE_TYPE}
+      # BOOT connection test
+      # Total retry times. Default: 60
+      # BOOT_RETRY_TIMES: 60
+      # Time to wait between each connection retry. Default: 1, Unit: second
+      # BOOT_RETRY_WAIT: 1
+    volumes:
+      - ./model:/model
+    devices:
+      - "/dev/fuse"
+    cap_add:
+      - SYS_ADMIN
+    depends_on:
+      - whisper-api-server-gunicorn
+      - chelonia-postgres
+      - minio
+    security_opt:
+      - apparmor:unconfined

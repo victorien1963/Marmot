@@ -1,0 +1,52 @@
+version: '3.8'
+services:
+  postgres:
+    image: "postgres:15.3"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+      PGDATA: /var/lib/postgresql/data/pgdat
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+  chelonia-server-v2-gunicorn:
+    image: chelonia-server-v2-gunicorn
+    build:
+      context: ../../..
+      dockerfile: "deployment/dockerfile/dev_packed/chelonia_server_v2_gunicorn/Dockerfile"
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DEBUG: ${DEBUG}
+
+      OBJECT_STORE_BUCKET: ${OBJECT_STORE_BUCKET}
+      UPLOAD_EXPIRE: ${UPLOAD_EXPIRE}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+
+      # set if using object store other than s3
+      CUSTOM_OBJECT_STORE_TYPE: ${CUSTOM_OBJECT_STORE_TYPE}
+      CUSTOM_OBJECT_STORE_ENDPOINT: ${CUSTOM_OBJECT_STORE_ENDPOINT}
+
+      # super user account
+      SUPER_USER: $SUPER_USER
+      SUPER_USER_PASSWD: $SUPER_USER_PASSWD
+
+  chelonia-server-v2-nginx:
+    image: chelonia-server-v2-nginx
+    build:
+      context: ../../..
+      dockerfile: "deployment/dockerfile/dev_packed/chelonia_server_v2_nginx/Dockerfile"
+    environment:
+      CHELONIA_SERVER_V2_GUNICORN_HOST: chelonia-server-v2-gunicorn
+      CHELONIA_SERVER_V2_GUNICORN_PORT: 8000
+
+      NGINX_PORT: ${NGINX_PORT}
+    ports:
+      - "${NGINX_EXTERNAL_PORT}:${NGINX_PORT}"
+    depends_on:
+      - chelonia-server-v2-gunicorn

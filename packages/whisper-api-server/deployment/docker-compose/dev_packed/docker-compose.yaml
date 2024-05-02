@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  postgres:
+    image: "postgres:15.3"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+      PGDATA: /var/lib/postgresql/data/pgdat
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+  whisper-api-server-gunicorn:
+    image: whisper-api-server-gunicorn
+    build:
+      context: ../../..
+      dockerfile: "deployment/dockerfile/dev_packed/whisper_api_server_gunicorn/Dockerfile"
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DEBUG: ${DEBUG}
+
+  whisper-api-server-nginx:
+    image: whisper-api-server-nginx
+    build:
+      context: ../../..
+      dockerfile: "deployment/dockerfile/dev_packed/whisper_api_server_nginx/Dockerfile"
+    environment:
+      WHISPER_API_SERVER_GUNICORN_HOST: whisper-api-server-gunicorn
+      WHISPER_API_SERVER_GUNICORN_PORT: 8000
+
+      NGINX_PORT: ${NGINX_PORT}
+    ports:
+      - "8000:${NGINX_PORT}"
+    depends_on:
+      - whisper-api-server-gunicorn

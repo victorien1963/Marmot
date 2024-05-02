@@ -1,0 +1,101 @@
+version: '3.8'
+services:
+  postgres:
+    image: "postgres:15.3"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+      PGDATA: /var/lib/postgresql/data/pgdat
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+  whisper-api-server-gunicorn:
+    image: whisper-api-server-gunicorn
+    build:
+      context: ../../../../whisper-api-server/
+      dockerfile: "deployment/dockerfile/dev_packed/whisper_api_server_gunicorn/Dockerfile"
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DEBUG: ${DEBUG}
+
+  whisper-api-server-nginx:
+    image: whisper-api-server-nginx
+    build:
+      context: ../../../../whisper-api-server/
+      dockerfile: "deployment/dockerfile/dev_packed/whisper_api_server_nginx/Dockerfile"
+    environment:
+      WHISPER_API_SERVER_GUNICORN_HOST: whisper-api-server-gunicorn
+      WHISPER_API_SERVER_GUNICORN_PORT: 8000
+
+      NGINX_PORT: ${NGINX_PORT}
+    ports:
+      - "8000:${NGINX_PORT}"
+    depends_on:
+      - whisper-api-server-gunicorn
+
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - ./minio_storage:/data
+    environment:
+      - MINIO_ROOT_USER=${AWS_ACCESS_KEY_ID}
+      - MINIO_ROOT_PASSWORD=${AWS_SECRET_ACCESS_KEY}
+    command: server --console-address ":9001" /data
+
+  create-buckets:
+    image: minio/mc
+    depends_on:
+      - minio
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - BUCKET_NAME=${BUCKET_NAME}
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc config host add myminio http://minio:9000 ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY};
+      /usr/bin/mc rm -r --force myminio/${BUCKET_NAME};
+      /usr/bin/mc mb myminio/${BUCKET_NAME};
+      /usr/bin/mc policy download myminio/${BUCKET_NAME};
+      exit 0;
+      "
+
+  whisper-api-worker:
+    image: whisper-api-worker
+    build:
+      context: ../../..
+      dockerfile: "deployment/dockerfile/dev_model_preload_packed/whisper_api_worker/Dockerfile"
+    environment:
+      WHISPER_MODEL_PATH: /model
+      WHISPER_API_SERVER_URL: http://whisper-api-server-nginx:8080
+      BUCKET_NAME: ${BUCKET_NAME}
+      BUCKET_MOUNT_ROOT: ${BUCKET_MOUNT_ROOT}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      # Not required if bucket is on S3
+      CUSTOM_BUCKET_ENDPOINT: http://minio:9000
+      DEVICE_TYPE: ${DEVICE_TYPE}
+      # BOOT connection test
+      # Total retry times. Default: 60
+      # BOOT_RETRY_TIMES: 60
+      # Time to wait between each connection retry. Default: 1, Unit: second
+      # BOOT_RETRY_WAIT: 1
+    volumes:
+      - ./model:/model
+    devices:
+      - "/dev/fuse"
+    cap_add:
+      - SYS_ADMIN
+    depends_on:
+      - whisper-api-server-gunicorn
+      - whisper-api-server-nginx
+      - postgres
+      - minio
+      - create-buckets

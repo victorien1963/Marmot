@@ -2,3 +2,6 @@ yarn-error.log
 /node_modules
 .env
 /packages/d-web/server/node_modules
+venv
+__pycache__
+chelonia
