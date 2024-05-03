@@ -17,6 +17,10 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use(socketProxy)
 app.use('/api', proxy(process.env.REACT_SERVER_URL, { limit: '120mb' }))
+app.use(
+  '/chelonia',
+  proxy(process.env.REACT_CHELONIA_SERVER_URL, { limit: '120mb' })
+)
 app.use('/static', express.static(path.join(__dirname, '..', 'public')))
 app.use(express.static(path.join(__dirname, '..', 'build')))
 app.use((req, res) => {
