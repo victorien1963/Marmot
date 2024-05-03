@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Nav, Row } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -12,8 +12,12 @@ import FilmEditor from './FilmEditor'
 import VideoList from './VideoList'
 import MaterialList from './MaterialList'
 import Historical from './Historical'
+import ContextProvider from './CheloniaContextProvider'
+import { AuthContext } from '../ContextProvider'
 
 function Edit() {
+  const { auth } = useContext(AuthContext)
+
   const { video_id } = useParams()
   const [page, setpage] = useState('Video List')
   const pages = {
@@ -28,11 +32,12 @@ function Edit() {
     'Film Editor': faFilm,
     'Historical Search': faMagnifyingGlass,
   }
+  console.log(video_id)
 
   // console.log(video_id)
   // console.log(page)
   useEffect(() => {
-    if (video_id) setpage('影片製作')
+    if (video_id) setpage('Film Editor')
   }, [video_id])
   return (
     <div className="w-100 h-100 overflow-scroll">
@@ -65,7 +70,7 @@ function Edit() {
           height: '94%',
         }}
       >
-        {pages[page]}
+        <ContextProvider userAuth={auth}>{pages[page]}</ContextProvider>
       </Row>
       {/* <iframe
         title="chelonia"

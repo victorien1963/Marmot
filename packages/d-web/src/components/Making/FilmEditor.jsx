@@ -2,18 +2,18 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-promise-executor-return */
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useMemo, useContext, useRef } from 'react'
 import PropTypes from 'prop-types'
-// import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBars,
   faCaretDown,
   faCirclePlus,
-  // faFilm,
+  faFilm,
   faGear,
-  // faPenToSquare,
+  faPenToSquare,
   faScissors,
   faSpinner,
   faTrashCan,
@@ -27,7 +27,7 @@ import {
   Container,
   Col,
   Form,
-  // FormLabel,
+  FormLabel,
   Tab,
   Tabs,
   Button,
@@ -38,20 +38,19 @@ import {
   InputGroup,
   ListGroup,
   ListGroupItem,
-  // Spinner,
+  Spinner,
 } from 'react-bootstrap'
 import moment from 'moment'
 import { set } from 'date-fns'
 // import TimeRange from 'react-video-timelines-slider'
 // import { format } from 'date-fns'
 import Warn from './Warn'
-// import { video_sm } from '../assets'
-import apiServices from '../../services/apiServices'
-// import { UploaderContext } from './ContextProvider'
-import AudioVisualizer from './AudioVisualizer'
 import { video_sm } from '../../asset'
+import apiServices from '../../services/cheloniaServices'
+import { UploaderContext } from './CheloniaContextProvider'
+import AudioVisualizer from './AudioVisualizer'
 
-// const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 const now = new Date()
 const getTodayAtSpecificHour = (hour = 12) =>
   set(now, { hours: hour, minutes: 0, seconds: 0, milliseconds: 0 })
@@ -163,7 +162,7 @@ function SelectModal({ setting }) {
               <Button
                 variant="outline-dark"
                 id="button-addon2"
-                title="Search"
+                title="搜 尋"
                 size="sm"
                 // onClick={() => setSearch(tempSearch)}
               >
@@ -215,15 +214,13 @@ function SelectModal({ setting }) {
               <small className="w-15 my-auto text-start ps-2">
                 <span className="fw-regular text-chelonia">24 MB</span>
                 <br />
-                <span className="fw-regular text-chelonia">type｜</span>
+                <span className="fw-regular text-chelonia">類型｜</span>
                 {m.setting.type}
                 <br />
-                <span className="fw-regular text-chelonia">｜</span>
+                <span className="fw-regular text-chelonia">建立者｜</span>
                 {user_name}
                 <br />
-                <span className="fw-regular text-chelonia">
-                  uploaded date ｜
-                </span>
+                <span className="fw-regular text-chelonia">建立時間｜</span>
                 {moment(created_on).format('yyyy-MM-DD')}
               </small>
             </ListGroupItem>
@@ -249,6 +246,8 @@ function SelectModal({ setting }) {
 
 function FilmEditor() {
   //   const navigate = useNavigate()
+  const audioElmRef = useRef(null)
+
   const [warn, setWarn] = useState({
     show: false,
     text: '',
@@ -259,10 +258,10 @@ function FilmEditor() {
     type: '',
     handleClose: () => {},
   })
-  // const [tempFile, settempFile] = useState(null)
+  const [tempFile, settempFile] = useState(null)
 
-  // const { video_id } = useParams()
-  // const [video, setvideo] = useState({})
+  const { video_id } = useParams()
+  const [video, setvideo] = useState({})
   //   const getVideo = async () => {
   //     const res = await apiServices.data({
   //       path: `video/${video_id}`,
@@ -271,46 +270,46 @@ function FilmEditor() {
   //     setvideo(res)
   //   }
 
-  // const { handleUpload, videos } = useContext(UploaderContext)
-  // useEffect(() => {
-  //   if (tempFile) {
-  //     handleUpload(video_id, tempFile, (v) => {
-  //       setvideo(v)
-  //     })
-  //   }
-  // }, [tempFile])
+  const { handleUpload, videos } = useContext(UploaderContext)
+  useEffect(() => {
+    if (tempFile) {
+      handleUpload(video_id, tempFile, (v) => {
+        setvideo(v)
+      })
+    }
+  }, [tempFile])
 
-  // useEffect(() => {
-  //   if (video_id && videos.length) {
-  //     const target = videos.find((v) => v.video_id === video_id)
-  //     setvideo(target)
-  //   }
-  // }, [video_id, videos])
+  useEffect(() => {
+    if (video_id && videos.length) {
+      const target = videos.find((v) => v.video_id === video_id)
+      setvideo(target)
+    }
+  }, [video_id, videos])
 
   const handleVideoClear = async () => {
-    // const newVideo = await apiServices.data({
-    //   path: `video/${video_id}`,
-    //   method: 'put',
-    //   data: {
-    //     uploadedVideo: '',
-    //   },
-    // })
-    // setvideo(newVideo)
+    const newVideo = await apiServices.data({
+      path: `video/${video_id}`,
+      method: 'put',
+      data: {
+        uploadedVideo: '',
+      },
+    })
+    setvideo(newVideo)
   }
 
-  // const handleResortClips = async (e) => {
-  //   const result = Array.from(video.setting.clips)
-  //   const [removed] = result.splice(e.source.index, 1)
-  //   result.splice(e.destination.index, 0, removed)
-  //   const newVideo = await apiServices.data({
-  //     path: `video/${video_id}`,
-  //     method: 'put',
-  //     data: {
-  //       clips: result,
-  //     },
-  //   })
-  //   setvideo(newVideo)
-  // }
+  const handleResortClips = async (e) => {
+    const result = Array.from(video.setting.clips)
+    const [removed] = result.splice(e.source.index, 1)
+    result.splice(e.destination.index, 0, removed)
+    const newVideo = await apiServices.data({
+      path: `video/${video_id}`,
+      method: 'put',
+      data: {
+        clips: result,
+      },
+    })
+    setvideo(newVideo)
+  }
 
   const [selected, setSelected] = useState({
     size: '',
@@ -324,38 +323,82 @@ function FilmEditor() {
       [e.target.name]: e.target.value,
     })
 
+  const [generating, setgenerating] = useState({
+    subline: false,
+    clip: false,
+  })
+
+  const [subtitle, setsubtitle] = useState([])
+  const getSubtitle = async (offset = 0) => {
+    const res = await apiServices.data({
+      path: `subtitle/management/?source_video=${video_id}`,
+      method: 'get',
+    })
+    console.log(res)
+    if (!res.count) return res.data
+    if (res.count <= offset + 100) {
+      const res2 = await getSubtitle(offset + 100)
+      return res.data.concat(res2.data)
+    }
+    return res.data
+  }
+  const refreshSubtitle = async () => {
+    const res = await getSubtitle()
+    if (res.length) {
+      setsubtitle(res)
+    }
+  }
+  useEffect(() => {
+    if (video_id) refreshSubtitle()
+  }, [video_id])
+
   const handleSubline = async () => {
-    // setgenerating({
-    //   ...generating,
-    //   subline: true,
+    setgenerating({
+      ...generating,
+      subline: true,
+    })
+    await delay(5000)
+    // const { duration } = audioElmRef.current
+    const created = await apiServices.data({
+      path: `video/management/${video_id}/subtitle-generation-task/`,
+      method: 'post',
+      data: {
+        language: 'en',
+        prompt: 'This is a speech',
+        temperature: 0.1,
+      },
+    })
+    console.log(created)
+    // await apiServices.data({
+    //   path: `worker/subtitle/subtitle-generation-task/${listed.data[0].task_id}/`,
+    //   method: 'patch',
+    //   data: {
+    //     task_status: 'PROCESSING',
+    //   },
     // })
-    // await delay(5000)
-    // if (!video_id || !video.setting?.uploadedVideo) {
-    //   setWarn({
-    //     show: true,
-    //     text: '請先上傳影片',
-    //     handleClose: () =>
-    //       setWarn({
-    //         ...warn,
-    //         show: false,
-    //       }),
-    //   })
-    //   return
-    // }
-    // const sublined = await apiServices.data({
-    //   path: `video/edit/${video_id}/subline`,
-    //   method: 'post',
-    //   data: {},
-    // })
-    // setvideo(sublined)
-    // setgenerating({
-    //   ...generating,
-    //   subline: false,
-    // })
+    const getStatus = async (clearFunc) => {
+      const task = await apiServices.data({
+        path: `video/management/${video_id}/subtitle-generation-task/`,
+        method: 'get',
+      })
+      if (task.data && task.data.task_status === 'FINISHED') {
+        refreshSubtitle()
+        clearFunc()
+      }
+    }
+
+    getStatus()
+    const interval = setInterval(() => {
+      getStatus(() => clearInterval(interval))
+    }, 5000)
+
+    setgenerating({
+      ...generating,
+      subline: false,
+    })
   }
 
   const [cliper, setCliper] = useState([-1, -1])
-  if (false) console.log(setCliper)
   const handleClip = async () => {
     if (cliper.includes(-1)) {
       setWarn({
@@ -367,22 +410,78 @@ function FilmEditor() {
             show: false,
           }),
       })
-      // return
+      return
     }
-    // const cliped = await apiServices.data({
-    //   path: `video/edit/${video_id}/clip`,
-    //   method: 'post',
-    //   data: {
-    //     start: video.setting?.subline[cliper[0]].start,
-    //     end: video.setting?.subline[cliper[1]].end,
-    //   },
-    // })
-    // setvideo(cliped)
+    const cliped = await apiServices.data({
+      path: `video/edit/${video_id}/clip`,
+      method: 'post',
+      data: {
+        start: video.setting?.subline[cliper[0]].start,
+        end: video.setting?.subline[cliper[1]].end,
+      },
+    })
+    setvideo(cliped)
+  }
+
+  const handleAddMaterial = async (material_ids) => {
+    const cliped = await apiServices.data({
+      path: `video/edit/${video_id}/clip`,
+      method: 'post',
+      data: {
+        material_ids,
+      },
+    })
+    setvideo(cliped)
   }
 
   const formatTime = (second) => {
     if (!second) return '00:00:00'
     return new Date(parseFloat(second) * 1000).toISOString().substr(11, 8)
+  }
+
+  const [selectedClips, setSelectedClips] = useState({})
+  const clipDuration = useMemo(
+    () =>
+      Object.keys(selectedClips)
+        .filter((key) => selectedClips[key])
+        .reduce((prev, cur) => {
+          const target = (video.setting?.clips || []).find(
+            ({ id }) => parseInt(id, 10) === parseInt(cur, 10)
+          )
+          if (!target) return prev
+          return target.start
+            ? prev + (target.end - target.start)
+            : prev + (target.duration || 0)
+        }, 0),
+    [selectedClips]
+  )
+  const handleBindClips = async () => {
+    if (
+      !Object.keys(selectedClips).filter((key) => selectedClips[key]).length
+    ) {
+      setWarn({
+        show: true,
+        text: '請選擇一個以上的片段或素材',
+        handleClose: () =>
+          setWarn({
+            ...warn,
+            show: false,
+          }),
+      })
+      return
+    }
+    const cliped = await apiServices.data({
+      path: `video/edit/${video_id}/bindClips`,
+      method: 'post',
+      data: {
+        clip_ids: Object.keys(selectedClips).filter(
+          (key) => selectedClips[key]
+        ),
+        duration: clipDuration,
+      },
+    })
+    setvideo(cliped)
+    setSelectedClips({})
   }
 
   const grid = 0
@@ -404,70 +503,128 @@ function FilmEditor() {
   const [setSearch] = useState('')
   const [focus, setFocus] = useState(false)
 
-  const audioElmRef = useRef(null)
-
   const [tab, setTab] = useState('audio-visualize')
   const [selectedInterval, setSelectedInterval] = useState([
     selectedStart,
     selectedEnd,
   ])
 
-  // const [clips, setclips] = useState([])
-  // const getClips = async () => {
-  //   const res = await apiServices.data({
-  //     path: '/clip/management/',
-  //     method: 'get',
-  //     params: {
-  //       source_video: video_id,
-  //     },
-  //   })
-  //   setclips(res.data)
-  // }
-  // useEffect(() => {
-  //   if (video_id) getClips()
-  // }, [])
+  const [clips, setclips] = useState([])
+  const getClips = async () => {
+    const res = await apiServices.data({
+      path: '/clip/management/',
+      method: 'get',
+      params: {
+        source_video: video_id,
+      },
+    })
+    setclips(res.data)
+  }
+  useEffect(() => {
+    if (video_id) getClips()
+  }, [])
+
   const getClipRange = async () => {
-    // const { duration } = audioElmRef.current
-    // const max = 3600 * 20
-    // const start = parseInt(
-    //   duration *
-    //     (moment(selectedInterval[0]).diff(moment().startOf('day'), 'seconds') /
-    //       max),
-    //   10
-    // )
-    // const end = parseInt(
-    //   duration *
-    //     (moment(selectedInterval[1]).diff(moment().startOf('day'), 'seconds') /
-    //       max),
-    //   10
-    // )
-    // await apiServices.data({
-    //   path: '/clip/management/',
-    //   method: 'post',
-    //   data: {
-    //     source_video: video_id,
-    //     start,
-    //     end,
-    //     name: 'first clip',
-    //     description: 'my first clip',
-    //   },
-    // })
-    // getClips()
+    const { duration } = audioElmRef.current
+    const max = 3600 * 20
+    const start = parseInt(
+      duration *
+        (moment(selectedInterval[0]).diff(moment().startOf('day'), 'seconds') /
+          max),
+      10
+    )
+    const end = parseInt(
+      duration *
+        (moment(selectedInterval[1]).diff(moment().startOf('day'), 'seconds') /
+          max),
+      10
+    )
+    const created = await apiServices.data({
+      path: 'clip/management/',
+      method: 'post',
+      data: {
+        source_video: video_id,
+        start,
+        end,
+        name: 'first clip',
+        description: 'my first clip',
+      },
+    })
+    getClips()
+    console.log(created)
+    const exporting = await apiServices.data({
+      path: `clip/management/${created.data.clip_id}/clip-exporting-task/`,
+      method: 'post',
+    })
+    console.log(exporting)
+    const getStatus = async (clearFunc) => {
+      const exported = await apiServices.data({
+        path: `clip/management/${created.data.clip_id}/clip-exporting-task/`,
+        method: 'get',
+      })
+      console.log(exported)
+      if (exported.data && exported.data.task_status === 'FINISHED') {
+        console.log(exported)
+        clearFunc()
+      }
+
+      // if (!exported.error) {
+      //   const link = document.createElement('a')
+      //   link.href = exported.data.view_url
+      //   link.setAttribute('download', `clip.mp4`)
+
+      //   // Append to html link element page
+      //   document.body.appendChild(link)
+
+      //   // Start download
+      //   link.click()
+
+      //   // Clean up and remove the link
+      //   link.parentNode.removeChild(link)
+      //   console.log('exported, stop fetch')
+      //   clearFunc()
+      // }
+    }
+
+    getStatus()
+    const interval = setInterval(() => {
+      getStatus(() => clearInterval(interval))
+    }, 5000)
   }
 
-  // const handleDeleteClip = async (id) => {
-  //   await apiServices.data({
-  //     path: `/clip/management//${id}/`,
-  //     method: 'delete',
-  //   })
-  //   getClips()
-  // }
+  const handleDownloadClip = async (clip_id) => {
+    console.log(clip_id)
+    const exported = await apiServices.data({
+      path: `clip/management/${clip_id}/exported-clip/`,
+      method: 'get',
+    })
+    // const videoData = await apiServices.extenal({
+    //   url: exported.data.view_url,
+    //   method: 'get',
+    //   responseType: 'arraybuffer',
+    // })
+    // const blob = new Blob([videoData])
+    const link = document.createElement('a')
+    link.setAttribute('href', exported.data.view_url)
+    link.setAttribute('target', `_blank`)
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+  }
+
+  const handleDeleteClip = async (id) => {
+    await apiServices.data({
+      path: `/clip/management//${id}/`,
+      method: 'delete',
+    })
+    getClips()
+  }
 
   return (
-    <Container className="d-flex h-100 w-100 pe-0">
-      <Row className="pb-2 h-100" style={{ width: '100vw' }}>
+    <Container className="d-flex p-3 h-100 w-100">
+      <Row className="pb-2" style={{ width: '100vw' }}>
         <Col xs={7} className="h-100">
-          <Card className="d-flex w-100" style={{ height: '64.75%' }}>
+          <Card className="d-flex w-100" style={{ height: '54.75%' }}>
             <Form.Control
               className="p-0 m-0 border-0"
               id="file"
@@ -478,28 +635,42 @@ function FilmEditor() {
               // value={fileList}
               onChange={(e) => {
                 // setuploading(true)
-                // settempFile(e.target.files[0])
+                settempFile(e.target.files[0])
                 e.target.value = null
               }}
               style={{
                 visibility: 'hidden',
               }}
             />
-            <Col className="h-100 w-100 d-flex flex-column">
-              <video
-                width="100%"
-                height="auto"
-                className="m-auto"
-                controls
-                ref={audioElmRef}
-                crossOrigin="anonymous"
+            {video.view_url ? (
+              <Col className="h-100 w-100 d-flex bg-black flex-column">
+                <video
+                  width="auto"
+                  height="100%"
+                  className="m-auto"
+                  controls
+                  ref={audioElmRef}
+                  crossOrigin="anonymous"
+                >
+                  <track kind="captions" />
+                  <source src={video.view_url} />
+                </video>
+              </Col>
+            ) : (
+              <FormLabel
+                htmlFor="file"
+                className="d-flex h-100 w-100"
+                style={{ cursor: 'pointer' }}
+                title="影 片 上 傳"
               >
-                <track kind="captions" />
-                <source src="/api/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4" />
-              </video>
-            </Col>
+                <FontAwesomeIcon
+                  icon={faFilm}
+                  className="text-grey h-25 m-auto"
+                />
+              </FormLabel>
+            )}
           </Card>
-          <Card className="w-100 mt-3" style={{ height: '35.25%' }}>
+          <Card className="w-100 mt-3" style={{ height: '42.25%' }}>
             <Row className="h-100 d-flex flex-column">
               <div
                 className="w-100 position-absolute d-flex pe-0"
@@ -510,7 +681,7 @@ function FilmEditor() {
                   className="mt-1 ms-auto"
                   variant="outline-secondary"
                   onClick={handleSubline}
-                  // disabled={!video_id}
+                  disabled={!video_id}
                 >
                   AI自動生成&ensp;
                   <FontAwesomeIcon icon={faSpinner} />
@@ -522,9 +693,9 @@ function FilmEditor() {
                   onClick={
                     tab === 'audio-visualize' ? getClipRange : handleClip
                   }
-                  // disabled={
-                  //   tab !== 'audio-visualize' && !video.setting?.subline
-                  // }
+                  disabled={
+                    tab !== 'audio-visualize' && !video.setting?.subline
+                  }
                 >
                   擷取片段&ensp;
                   <FontAwesomeIcon icon={faVectorSquare} />
@@ -542,14 +713,13 @@ function FilmEditor() {
                   <Tab
                     className="w-100 h-100"
                     eventKey="audio-visualize"
-                    title="Clip"
+                    title="音頻擷取"
                   >
                     <AudioVisualizer
                       setting={{
                         show: tab === 'audio-visualize',
                         audioElmRef,
-                        audioUrl:
-                          '/api/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
+                        audioUrl: video.view_url,
                         selectedInterval,
                         setSelectedInterval,
                       }}
@@ -558,20 +728,20 @@ function FilmEditor() {
                       <br />
                       <br />
                       <br />
-                      <h5 className="text-secondary m-auto">目前尚無資料</h5>
+                      <h5 className="text-grey m-auto">目前尚無資料</h5>
                     </> */}
                   </Tab>
                   {/* <Tab eventKey="pin" title="手動標籤">
                     <br />
                     <br />
                     <br />
-                    <h5 className="text-secondary m-auto">目前尚無資料</h5>
+                    <h5 className="text-grey m-auto">目前尚無資料</h5>
                   </Tab> */}
 
                   <Tab
                     className="w-100 h-100"
                     eventKey="ai_subtitle"
-                    title="AI subtitle"
+                    title="自動字幕"
                   >
                     <Row className="px-2 w-100">
                       {/* Search bar */}
@@ -602,7 +772,7 @@ function FilmEditor() {
                           size="sm"
                           variant="outline-dark"
                           id="button-addon2"
-                          title="Search"
+                          title="搜 尋"
                           onClick={() => setSearch(tempSearch)}
                         >
                           <FontAwesomeIcon icon={faSearch} />
@@ -640,7 +810,7 @@ function FilmEditor() {
                             size="sm"
                           >
                             <option value="" className="d-none">
-                              Font Size
+                              字體大小
                             </option>
                             {['1', '1.2x', '1.5x', '2x'].map((label, i) => (
                               <option key={i} value={label}>
@@ -669,12 +839,71 @@ function FilmEditor() {
                       </Col>
                     </Row>
 
-                    <>
-                      <br />
-                      <br />
-                      <br />
-                      <h5 className="text-secondary m-auto">no data</h5>
-                    </>
+                    {generating.subline ? (
+                      <>
+                        <br />
+                        <br />
+                        <br />
+                        <h5 className="text-grey m-auto d-flex justify-content-center">
+                          <Spinner size="sm" className="me-2 my-auto" />
+                          字幕生成中...
+                        </h5>
+                      </>
+                    ) : subtitle.length ? (
+                      subtitle
+                        .filter(
+                          ({ text, source_video }) =>
+                            !['ddc', 'cc'].includes(text) &&
+                            source_video === video_id
+                        )
+                        .map(({ start, end, text }, i) => (
+                          <Row
+                            key={i}
+                            className="text-start text-nowrap ps-3"
+                            style={{
+                              cursor: 'pointer',
+                              backgroundColor: (
+                                cliper.every((c) => c !== -1)
+                                  ? i <= cliper[1] && i >= cliper[0]
+                                  : cliper.includes(i)
+                              )
+                                ? '#cddfed'
+                                : 'white',
+                            }}
+                            onClick={() => {
+                              if (cliper.includes(i))
+                                setCliper(cliper.map((c) => (c === i ? -1 : c)))
+                              else if (i > cliper[1])
+                                setCliper([
+                                  cliper[0] === -1 ? cliper[1] : cliper[0],
+                                  i,
+                                ])
+                              else setCliper([i, cliper[1]])
+                            }}
+                          >
+                            <Col className="ps-2" xs={2}>
+                              {formatTime(start)}
+                            </Col>
+                            <Col className="ps-2" xs={2}>
+                              {formatTime(end)}
+                            </Col>
+                            <Col
+                              className="ps-2 oneLineEllipsis"
+                              title={text}
+                              xs={8}
+                            >
+                              {text}
+                            </Col>
+                          </Row>
+                        ))
+                    ) : (
+                      <>
+                        <br />
+                        <br />
+                        <br />
+                        <h5 className="text-grey m-auto">目前尚無資料</h5>
+                      </>
+                    )}
                   </Tab>
 
                   {/* <Tab
@@ -688,11 +917,11 @@ function FilmEditor() {
           </Card>
         </Col>
 
-        <Col className="h-100 pe-4" xs={5}>
+        <Col className="h-100 pe-4 overflow-scroll" xs={5}>
           <Card
             className="mb-3 w-100"
             style={{
-              height: '15%',
+              height: '18%',
             }}
           >
             <Row className="d-flex p-3 pt-2 pb-0">
@@ -700,7 +929,7 @@ function FilmEditor() {
                 xs={12}
                 className="fw-bold text-start text-chelonia-light my-auto pe-0"
               >
-                Quick Options
+                快速選項
               </Col>
             </Row>
             <hr className="mx-2 mt-2 mb-1" />
@@ -728,10 +957,13 @@ function FilmEditor() {
                   aria-label="Toolbar with button groups"
                   className="mx-auto"
                 >
-                  <ButtonGroup aria-label="Second group" variant="outline-dark">
-                    <Button variant="outline-dark px-2">¼x</Button>
-                    <Button variant="outline-dark px-2">½x</Button>
-                    <Button variant="outline-dark px-2">1x</Button>
+                  <ButtonGroup
+                    aria-label="Second group"
+                    variant="outline-chelonia"
+                  >
+                    <Button variant="outline-chelonia px-2">¼x</Button>
+                    <Button variant="outline-chelonia px-2">½x</Button>
+                    <Button variant="outline-chelonia px-2">1x</Button>
                   </ButtonGroup>
                 </ButtonToolbar>
               </Col>
@@ -756,18 +988,13 @@ function FilmEditor() {
             </Row>
           </Card>
 
-          <Card
-            className="w-100"
-            style={{
-              height: '55%',
-            }}
-          >
+          <Card className="h-45 w-100">
             <Row className="d-flex p-3 pt-2 pb-0">
               <Col
                 xs={12}
                 className="fw-bold text-start text-chelonia-light my-auto pe-0"
               >
-                Video Clip
+                影片剪輯
               </Col>
             </Row>
             <hr className="mx-2 mt-2 mb-1" />
@@ -778,15 +1005,14 @@ function FilmEditor() {
                 style={{ cursor: 'pointer' }}
                 onClick={handleVideoClear}
               >
-                Clean
-                {/* <FontAwesomeIcon icon={faTrashCan} /> */}
+                清除
               </Col>
               <Col
                 xs={2}
                 className="fw-bold text-start text-danger my-auto px-0"
                 style={{ cursor: 'pointer' }}
               >
-                Sort
+                排列
                 <FontAwesomeIcon icon={faCaretDown} />
               </Col>
               <Col
@@ -794,7 +1020,7 @@ function FilmEditor() {
                 className="fw-bold text-start text-red my-auto px-0"
                 style={{ cursor: 'pointer' }}
               >
-                Script
+                草稿
                 <FontAwesomeIcon icon={faCaretDown} />
               </Col>
               <Col xs={6} className="d-flex ps-0">
@@ -806,7 +1032,7 @@ function FilmEditor() {
                   value={selected.size}
                 >
                   <option value="" className="d-none">
-                    16:9
+                    影片比例
                   </option>
                   {['Horizontal (16:9)'].map((label, i) => (
                     <option key={i} value={label}>
@@ -817,7 +1043,7 @@ function FilmEditor() {
               </Col>
             </Row>
             <hr className="mx-2 mt-2 mb-1" />
-            {/* <Row className="d-flex px-4 py-1">
+            <Row className="d-flex px-4 py-1">
               <Col xs={1} className="d-flex">
                 <FontAwesomeIcon className="my-auto" icon={faBars} />
               </Col>
@@ -830,7 +1056,7 @@ function FilmEditor() {
               </Col>
               <Col xs={5} className="px-2 ps-3 my-auto">
                 <h6 className="text-secondary fw-bold">手動片段</h6>
-                <h6 className="text-secondary fw-bold mb-0">04分06秒</h6>
+                <h6 className="text-grey fw-bold mb-0">04分06秒</h6>
               </Col>
               <Col xs={4} className="px-2 my-auto">
                 <div>
@@ -852,7 +1078,7 @@ function FilmEditor() {
                   </Button>
                 </div>
               </Col>
-            </Row> */}
+            </Row>
             <Row className="d-flex px-4 py-1">
               <Button
                 size="sm"
@@ -863,8 +1089,8 @@ function FilmEditor() {
                   setMaterial({
                     show: true,
                     type: '轉場動畫',
-                    handleClose: () => {
-                      // if (value) handleAddMaterial(value)
+                    handleClose: (value) => {
+                      if (value) handleAddMaterial(value)
                       setMaterial({
                         show: false,
                       })
@@ -872,24 +1098,24 @@ function FilmEditor() {
                   })
                 }
               >
-                add transition&ensp;
+                加入轉場動畫&ensp;
                 <FontAwesomeIcon icon={faCirclePlus} />
               </Button>
               <Button
                 size="sm"
-                className="mt-1 w-48"
+                className="mt-1 w-48 ms-2"
                 variant="outline-secondary"
                 style={{ right: '0%', top: '0%' }}
                 // onClick={() => setshow(true)}
               >
-                add fragment&ensp;
+                手動加入片段&ensp;
                 <FontAwesomeIcon icon={faCirclePlus} />
               </Button>
             </Row>
             <Row className="d-flex p-3 py-2">
               <Form.Group as={Row} className="mb-1" controlId="watermark">
                 <Form.Label column sm="4" className="py-1 px-0">
-                  Watermark
+                  浮水印
                 </Form.Label>
                 <Col sm="8" className="px-0">
                   <Form.Select
@@ -901,15 +1127,13 @@ function FilmEditor() {
                     size="sm"
                   >
                     <option value="" className="d-none">
-                      Choose the watermark...
+                      選擇浮水印
                     </option>
-                    {['Watermark_01', 'Watermark_02', 'Watermark_03'].map(
-                      (label, i) => (
-                        <option key={i} value={label}>
-                          {label}
-                        </option>
-                      )
-                    )}
+                    {['浮水印_01', '浮水印_02', '浮水印_03'].map((label, i) => (
+                      <option key={i} value={label}>
+                        {label}
+                      </option>
+                    ))}
                   </Form.Select>
                 </Col>
               </Form.Group>
@@ -928,7 +1152,7 @@ function FilmEditor() {
                     size="sm"
                   >
                     <option value="" className="d-none">
-                      Choose the PSD Template...
+                      選擇PSD Template
                     </option>
                     {[
                       'PSD Template_01',
@@ -950,7 +1174,7 @@ function FilmEditor() {
                 controlId="transition_effect"
               >
                 <Form.Label column sm="4" className="py-1 px-0 fs-7">
-                  Transition Effect
+                  轉場效果
                 </Form.Label>
                 <Col sm="8" className="px-0">
                   <Form.Select
@@ -962,9 +1186,9 @@ function FilmEditor() {
                     size="sm"
                   >
                     <option value="" className="d-none">
-                      Choose the transition effect...
+                      選擇轉場效果
                     </option>
-                    {['transition_01', 'transition_02', 'transition_03'].map(
+                    {['轉場效果_01', '轉場效果_02', '轉場效果_03'].map(
                       (label, i) => (
                         <option key={i} value={label}>
                           {label}
@@ -976,35 +1200,30 @@ function FilmEditor() {
                 </Col>
               </Form.Group>
             </Row>
-            <Row className="d-flex px-3 py-2 pt-0">
+            <Row className="d-flex px-3 py-2">
               <Button
                 size="md"
                 className="mt-0 ms-auto w-100"
                 variant="danger"
                 style={{ right: '0%', top: '0%' }}
-                // onClick={handleBindClips}
+                onClick={handleBindClips}
               >
                 <FontAwesomeIcon icon={faScissors} />
-                &ensp; Clip&ensp; (00:00:00)
+                &ensp; 影片快剪&ensp; (總長: {formatTime(clipDuration)})
               </Button>
             </Row>
           </Card>
-          <Card
-            className="w-100 mt-3 ps-2"
-            style={{
-              height: '27.4%',
-            }}
-          >
+          <Card className="h-40 w-100 mt-3 ps-2">
             <Row className="d-flex w-100 px-1 py-2 pb-0">
               <Col
                 xs={12}
                 className="fw-bold text-start text-chelonia-light my-auto pe-0"
               >
-                Fragments
+                影片管理
               </Col>
               <hr className="mx-2 mt-2 mb-1" />
             </Row>
-            <DragDropContext onDragEnd={() => {}}>
+            <DragDropContext onDragEnd={handleResortClips}>
               <Droppable droppableId="droppable" direction="vertical">
                 {(dropProvided, dropSnapshot) => (
                   <Row
@@ -1013,7 +1232,7 @@ function FilmEditor() {
                     ref={dropProvided.innerRef}
                     style={getListStyle(dropSnapshot.isDraggingOver)}
                   >
-                    {[].map(({ clip_id, start, end, name }, i) => (
+                    {clips.map(({ clip_id, start, end, name }, i) => (
                       <Draggable
                         key={`${clip_id}`}
                         draggableId={`${clip_id}`}
@@ -1026,20 +1245,20 @@ function FilmEditor() {
                             className="text-start text-nowrap px-2"
                             style={{
                               cursor: 'pointer',
-                              // backgroundColor: selectedClips[clip_id]
-                              //   ? '#cddfed'
-                              //   : 'white',
+                              backgroundColor: selectedClips[clip_id]
+                                ? '#cddfed'
+                                : 'white',
                               ...getItemStyle(
                                 dragSnapshot.isDragging,
                                 dragProvided.draggableProps.style
                               ),
                             }}
-                            // onClick={() =>
-                            // setSelectedClips({
-                            //   ...selectedClips,
-                            //   [clip_id]: !selectedClips[clip_id],
-                            // })
-                            // }
+                            onClick={() =>
+                              setSelectedClips({
+                                ...selectedClips,
+                                [clip_id]: !selectedClips[clip_id],
+                              })
+                            }
                           >
                             <Col className="d-flex ps-0" xs={1}>
                               <Button
@@ -1085,6 +1304,7 @@ function FilmEditor() {
                                 }}
                                 variant="edit"
                                 onClick={() => {
+                                  handleDownloadClip(clip_id)
                                   // if (type === '快剪') {
                                   //   handleDownload('video/file/merged.mp4')
                                   // } else if (type === '轉場動畫') {
@@ -1116,8 +1336,8 @@ function FilmEditor() {
                                   setWarn({
                                     show: true,
                                     text: `確定要刪除${name}嗎`,
-                                    handleClose: () => {
-                                      // if (value) handleDeleteClip(clip_id)
+                                    handleClose: (value) => {
+                                      if (value) handleDeleteClip(clip_id)
                                       setWarn({
                                         ...warn,
                                         show: false,

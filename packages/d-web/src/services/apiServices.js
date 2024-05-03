@@ -35,6 +35,7 @@ const getConfig = (url, method, data, responseType, token, params = {}) => {
   if (responseType) config.responseType = responseType
   return config
 }
+
 export default {
   login(value) {
     return axios(getConfig('api/auth/login', 'post', value))
@@ -55,20 +56,6 @@ export default {
     return axios(
       getConfig(
         `api/${value.path}`,
-        value.method,
-        value.data || {},
-        value.responseType,
-        value.token,
-        value.params
-      )
-    )
-      .then((res) => res.data)
-      .catch((error) => ({ error }))
-  },
-  chelonia(value) {
-    return axios(
-      getConfig(
-        `chelonia/${value.path}`,
         value.method,
         value.data || {},
         value.responseType,

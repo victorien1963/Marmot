@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import {
@@ -20,10 +21,13 @@ const pages = {
 }
 
 function Making() {
-  const { path } = useParams()
+  const { path, video_id } = useParams()
+  console.log(path)
 
   return path ? (
     pages[path]
+  ) : video_id ? (
+    <Edit />
   ) : (
     <PathSelector
       setting={{
