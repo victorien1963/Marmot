@@ -23,7 +23,7 @@ import {
   Modal,
   InputGroup,
   Container,
-  Image,
+  // Image,
 } from 'react-bootstrap'
 // import apiServices from '../services/apiServices'
 // import { video_sm } from '../assets'
@@ -319,6 +319,7 @@ function MaterialList() {
   ]
 
   const [selectedId, setselectedId] = useState('')
+  if (false) console.log(setselectedId)
 
   // const [duration, setDuration] = useState(0)
   // const handleAdd = async () => {
@@ -394,10 +395,10 @@ function MaterialList() {
   const [selected, setselected] = useState('')
 
   return (
-    <Container className="d-flex flex-column pt-3 h-100">
+    <Container className="d-flex flex-column pt-3 pe-0 h-100">
       <Row className="px-5">
         <Col xs={4} className="d-flex">
-          <h5 className="my-auto text-chelonia-light fw-bold">素材管理</h5>
+          <h4 className="my-auto text-secondary">Material List</h4>
         </Col>
         <Col xs={3} className="d-flex justifu-content-end">
           <Form.Select
@@ -407,9 +408,9 @@ function MaterialList() {
             value={selected}
           >
             <option value="" className="d-none">
-              選擇素材類型
+              material type...
             </option>
-            {['浮水印', '轉場動畫', '直播廣告圖卡', 'PSD Template'].map(
+            {['Watermark', 'Transition', 'Ad', 'PSD Template'].map(
               (label, i) => (
                 <option key={i} value={label}>
                   {label}
@@ -421,7 +422,7 @@ function MaterialList() {
         <Col xs={5} className="d-flex pe-0">
           <InputGroup>
             <Form.Control
-              placeholder="輸入關鍵字以搜尋素材..."
+              placeholder="keywords..."
               aria-label="Recipient's username"
               aria-describedby="basic-addon2"
               value={tempSearch}
@@ -440,7 +441,7 @@ function MaterialList() {
             <Button
               variant="outline-dark"
               id="button-addon2"
-              title="搜 尋"
+              title="Search"
               onClick={() => setSearch(tempSearch)}
             >
               <FontAwesomeIcon icon={faSearch} />
@@ -448,20 +449,20 @@ function MaterialList() {
           </InputGroup>
           <Button
             className="ms-4 w-50"
-            variant="outline-dark"
+            variant="mar2"
             onClick={() => {
               // setselectedId('')
               setshow(true)
             }}
           >
-            新增素材&ensp;
+            Upload&ensp;
             <FontAwesomeIcon icon={faCirclePlus} />
           </Button>
         </Col>
       </Row>
       <Row
         className="flex-grow-1 pt-3 pb-5 px-5 h-100"
-        style={{ overflowY: 'auto', overflowX: 'hidden' }}
+        style={{ overflowY: 'auto', overflowX: 'hidden', opacity: '.9' }}
       >
         {materials && materials.length ? (
           <ListGroup className="pe-0">
@@ -471,10 +472,12 @@ function MaterialList() {
                 (
                   {
                     name,
-                    transition_animation_id,
-                    watermark_id,
-                    clip_id,
-                    view_url,
+                    // transition_animation_id,
+                    // watermark_id,
+                    // clip_id,
+                    // view_url,
+                    size,
+                    type,
                     created_on,
                     // type,
                     user_name,
@@ -483,24 +486,15 @@ function MaterialList() {
                 ) => (
                   <ListGroupItem className="d-flex" key={i}>
                     <div style={{ height: '5rem' }}>
-                      {transition_animation_id ? (
-                        <video
-                          width="150px"
-                          height="100%"
-                          className="m-auto pe-2"
-                          controls
-                        >
-                          <track kind="captions" />
-                          <source src={view_url} />
-                        </video>
-                      ) : (
-                        <Image
-                          src={view_url}
-                          width="150px"
-                          height="100%"
-                          className="m-auto pe-2"
-                        />
-                      )}
+                      <video
+                        width="150px"
+                        height="100%"
+                        className="m-auto pe-2"
+                        controls
+                      >
+                        <track kind="captions" />
+                        <source src="/api/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4" />
+                      </video>
                     </div>
                     <p
                       className="w-25 my-auto text-start oneLineEllipsis"
@@ -510,17 +504,17 @@ function MaterialList() {
                       {name}
                     </p>
                     <small className="w-15 my-auto text-start ps-2">
-                      <span className="fw-regular text-chelonia">24 MB</span>
-                      <br />
-                      <span className="fw-regular text-chelonia">類型｜</span>
-                      {/* {setting.type} */}
-                      <br />
-                      <span className="fw-regular text-chelonia">建立者｜</span>
-                      {user_name}
+                      <span className="fw-regular text-chelonia">{size}</span>
                       <br />
                       <span className="fw-regular text-chelonia">
-                        建立時間｜
+                        type｜ {type}
                       </span>
+                      {/* {setting.type} */}
+                      <br />
+                      <span className="fw-regular text-chelonia">editor｜</span>
+                      {user_name}
+                      <br />
+                      <span className="fw-regular text-chelonia">date｜</span>
                       {moment(created_on).format('yyyy-MM-DD')}
                     </small>
                     <Button
@@ -529,16 +523,16 @@ function MaterialList() {
                       variant="edit"
                       onClick={() => {
                         // setselectedId(material_id)
-                        setshow(true)
+                        // setshow(true)
                       }}
-                      title="編 輯 素 材 編 號 ＆ 名 稱"
+                      title="rename"
                       size
                     >
                       <FontAwesomeIcon icon={faPenToSquare} />
                     </Button>
                     <Button
                       style={{ boxShadow: 'none' }}
-                      title="下 載"
+                      title="Dwonload"
                       variant="edit"
                     >
                       <FontAwesomeIcon icon={faDownload} />
@@ -547,15 +541,15 @@ function MaterialList() {
                       style={{ boxShadow: 'none' }}
                       variant="red"
                       onClick={() => {
-                        console.log(
-                          transition_animation_id || watermark_id || clip_id
-                        )
-                        setselectedId(
-                          transition_animation_id || watermark_id || clip_id
-                        )
-                        setdeleteShow(true)
+                        // console.log(
+                        //   transition_animation_id || watermark_id || clip_id
+                        // )
+                        // setselectedId(
+                        //   transition_animation_id || watermark_id || clip_id
+                        // )
+                        // setdeleteShow(true)
                       }}
-                      title="刪 除"
+                      title="delete"
                     >
                       <FontAwesomeIcon icon={faTrashCan} />
                     </Button>

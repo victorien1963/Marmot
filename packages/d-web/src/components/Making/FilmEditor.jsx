@@ -621,10 +621,10 @@ function FilmEditor() {
   }
 
   return (
-    <Container className="d-flex p-3 h-100 w-100">
-      <Row className="pb-2" style={{ width: '100vw' }}>
+    <Container className="d-flex h-100 w-100 pe-0">
+      <Row className="pb-2 h-100" style={{ width: '100vw' }}>
         <Col xs={7} className="h-100">
-          <Card className="d-flex w-100" style={{ height: '54.75%' }}>
+          <Card className="d-flex w-100" style={{ height: '64.75%' }}>
             <Form.Control
               className="p-0 m-0 border-0"
               id="file"
@@ -741,7 +741,7 @@ function FilmEditor() {
                   <Tab
                     className="w-100 h-100"
                     eventKey="ai_subtitle"
-                    title="自動字幕"
+                    title="AI subtitle"
                   >
                     <Row className="px-2 w-100">
                       {/* Search bar */}
@@ -772,7 +772,7 @@ function FilmEditor() {
                           size="sm"
                           variant="outline-dark"
                           id="button-addon2"
-                          title="搜 尋"
+                          title="Search"
                           onClick={() => setSearch(tempSearch)}
                         >
                           <FontAwesomeIcon icon={faSearch} />
@@ -810,7 +810,7 @@ function FilmEditor() {
                             size="sm"
                           >
                             <option value="" className="d-none">
-                              字體大小
+                              Font Size
                             </option>
                             {['1', '1.2x', '1.5x', '2x'].map((label, i) => (
                               <option key={i} value={label}>
@@ -846,7 +846,7 @@ function FilmEditor() {
                         <br />
                         <h5 className="text-grey m-auto d-flex justify-content-center">
                           <Spinner size="sm" className="me-2 my-auto" />
-                          字幕生成中...
+                          Generating...
                         </h5>
                       </>
                     ) : subtitle.length ? (
@@ -901,7 +901,7 @@ function FilmEditor() {
                         <br />
                         <br />
                         <br />
-                        <h5 className="text-grey m-auto">目前尚無資料</h5>
+                        <h5 className="text-grey m-auto">No data</h5>
                       </>
                     )}
                   </Tab>
@@ -917,11 +917,11 @@ function FilmEditor() {
           </Card>
         </Col>
 
-        <Col className="h-100 pe-4 overflow-scroll" xs={5}>
+        <Col className="h-100 pe-4" xs={5}>
           <Card
             className="mb-3 w-100"
             style={{
-              height: '18%',
+              height: '15%',
             }}
           >
             <Row className="d-flex p-3 pt-2 pb-0">
@@ -929,7 +929,7 @@ function FilmEditor() {
                 xs={12}
                 className="fw-bold text-start text-chelonia-light my-auto pe-0"
               >
-                快速選項
+                Quick Options
               </Col>
             </Row>
             <hr className="mx-2 mt-2 mb-1" />
@@ -957,13 +957,10 @@ function FilmEditor() {
                   aria-label="Toolbar with button groups"
                   className="mx-auto"
                 >
-                  <ButtonGroup
-                    aria-label="Second group"
-                    variant="outline-chelonia"
-                  >
-                    <Button variant="outline-chelonia px-2">¼x</Button>
-                    <Button variant="outline-chelonia px-2">½x</Button>
-                    <Button variant="outline-chelonia px-2">1x</Button>
+                  <ButtonGroup aria-label="Second group" variant="outline-dark">
+                    <Button variant="outline-dark px-2">¼x</Button>
+                    <Button variant="outline-dark px-2">½x</Button>
+                    <Button variant="outline-dark px-2">1x</Button>
                   </ButtonGroup>
                 </ButtonToolbar>
               </Col>
@@ -988,13 +985,18 @@ function FilmEditor() {
             </Row>
           </Card>
 
-          <Card className="h-45 w-100">
+          <Card
+            className="w-100"
+            style={{
+              height: '55%',
+            }}
+          >
             <Row className="d-flex p-3 pt-2 pb-0">
               <Col
                 xs={12}
                 className="fw-bold text-start text-chelonia-light my-auto pe-0"
               >
-                影片剪輯
+                Video Clip
               </Col>
             </Row>
             <hr className="mx-2 mt-2 mb-1" />
@@ -1005,14 +1007,14 @@ function FilmEditor() {
                 style={{ cursor: 'pointer' }}
                 onClick={handleVideoClear}
               >
-                清除
+                Clean
               </Col>
               <Col
                 xs={2}
                 className="fw-bold text-start text-danger my-auto px-0"
                 style={{ cursor: 'pointer' }}
               >
-                排列
+                Sort
                 <FontAwesomeIcon icon={faCaretDown} />
               </Col>
               <Col
@@ -1020,7 +1022,7 @@ function FilmEditor() {
                 className="fw-bold text-start text-red my-auto px-0"
                 style={{ cursor: 'pointer' }}
               >
-                草稿
+                Script
                 <FontAwesomeIcon icon={faCaretDown} />
               </Col>
               <Col xs={6} className="d-flex ps-0">
@@ -1032,7 +1034,7 @@ function FilmEditor() {
                   value={selected.size}
                 >
                   <option value="" className="d-none">
-                    影片比例
+                    16:9
                   </option>
                   {['Horizontal (16:9)'].map((label, i) => (
                     <option key={i} value={label}>
@@ -1056,7 +1058,7 @@ function FilmEditor() {
               </Col>
               <Col xs={5} className="px-2 ps-3 my-auto">
                 <h6 className="text-secondary fw-bold">手動片段</h6>
-                <h6 className="text-grey fw-bold mb-0">04分06秒</h6>
+                <h6 className="text-secondary fw-bold mb-0">04分06秒</h6>
               </Col>
               <Col xs={4} className="px-2 my-auto">
                 <div>
@@ -1098,7 +1100,7 @@ function FilmEditor() {
                   })
                 }
               >
-                加入轉場動畫&ensp;
+                add transition&ensp;
                 <FontAwesomeIcon icon={faCirclePlus} />
               </Button>
               <Button
@@ -1108,14 +1110,14 @@ function FilmEditor() {
                 style={{ right: '0%', top: '0%' }}
                 // onClick={() => setshow(true)}
               >
-                手動加入片段&ensp;
+                add fragment&ensp;
                 <FontAwesomeIcon icon={faCirclePlus} />
               </Button>
             </Row>
             <Row className="d-flex p-3 py-2">
               <Form.Group as={Row} className="mb-1" controlId="watermark">
                 <Form.Label column sm="4" className="py-1 px-0">
-                  浮水印
+                  Watermark
                 </Form.Label>
                 <Col sm="8" className="px-0">
                   <Form.Select
@@ -1127,13 +1129,15 @@ function FilmEditor() {
                     size="sm"
                   >
                     <option value="" className="d-none">
-                      選擇浮水印
+                      Choose the watermark...
                     </option>
-                    {['浮水印_01', '浮水印_02', '浮水印_03'].map((label, i) => (
-                      <option key={i} value={label}>
-                        {label}
-                      </option>
-                    ))}
+                    {['Watermark_01', 'Watermark_02', 'Watermark_03'].map(
+                      (label, i) => (
+                        <option key={i} value={label}>
+                          {label}
+                        </option>
+                      )
+                    )}
                   </Form.Select>
                 </Col>
               </Form.Group>
@@ -1152,7 +1156,7 @@ function FilmEditor() {
                     size="sm"
                   >
                     <option value="" className="d-none">
-                      選擇PSD Template
+                      Choose the PSD Template...
                     </option>
                     {[
                       'PSD Template_01',
@@ -1174,7 +1178,7 @@ function FilmEditor() {
                 controlId="transition_effect"
               >
                 <Form.Label column sm="4" className="py-1 px-0 fs-7">
-                  轉場效果
+                  Transition Effect
                 </Form.Label>
                 <Col sm="8" className="px-0">
                   <Form.Select
@@ -1186,9 +1190,9 @@ function FilmEditor() {
                     size="sm"
                   >
                     <option value="" className="d-none">
-                      選擇轉場效果
+                      Choose the transition effect...
                     </option>
-                    {['轉場效果_01', '轉場效果_02', '轉場效果_03'].map(
+                    {['transition_01', 'transition_02', 'transition_03'].map(
                       (label, i) => (
                         <option key={i} value={label}>
                           {label}
@@ -1200,7 +1204,7 @@ function FilmEditor() {
                 </Col>
               </Form.Group>
             </Row>
-            <Row className="d-flex px-3 py-2">
+            <Row className="d-flex px-3 py-2 pt-0">
               <Button
                 size="md"
                 className="mt-0 ms-auto w-100"
@@ -1209,7 +1213,7 @@ function FilmEditor() {
                 onClick={handleBindClips}
               >
                 <FontAwesomeIcon icon={faScissors} />
-                &ensp; 影片快剪&ensp; (總長: {formatTime(clipDuration)})
+                &ensp; Clip&ensp; ({formatTime(clipDuration)})
               </Button>
             </Row>
           </Card>
@@ -1219,7 +1223,7 @@ function FilmEditor() {
                 xs={12}
                 className="fw-bold text-start text-chelonia-light my-auto pe-0"
               >
-                影片管理
+                Fragments
               </Col>
               <hr className="mx-2 mt-2 mb-1" />
             </Row>
