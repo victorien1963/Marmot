@@ -622,7 +622,7 @@ function FilmEditor() {
 
   return (
     <Container className="d-flex h-100 w-100 pe-0">
-      <Row className="pb-2 h-100" style={{ width: '100vw' }}>
+      <Row className="py-2 h-100 w-100">
         <Col xs={7} className="h-100">
           <Card className="d-flex w-100" style={{ height: '64.75%' }}>
             <Form.Control
@@ -640,13 +640,14 @@ function FilmEditor() {
               }}
               style={{
                 visibility: 'hidden',
+                height: '0px',
               }}
             />
             {video.view_url ? (
-              <Col className="h-100 w-100 d-flex bg-black flex-column">
+              <Col className="w-100 d-flex bg-black flex-column">
                 <video
-                  width="auto"
-                  height="100%"
+                  width="100%"
+                  height="auto"
                   className="m-auto"
                   controls
                   ref={audioElmRef}
@@ -661,7 +662,7 @@ function FilmEditor() {
                 htmlFor="file"
                 className="d-flex h-100 w-100"
                 style={{ cursor: 'pointer' }}
-                title="影 片 上 傳"
+                title="Upload"
               >
                 <FontAwesomeIcon
                   icon={faFilm}
@@ -670,7 +671,7 @@ function FilmEditor() {
               </FormLabel>
             )}
           </Card>
-          <Card className="w-100 mt-3" style={{ height: '42.25%' }}>
+          <Card className="w-100 mt-3" style={{ height: '32.25%' }}>
             <Row className="h-100 d-flex flex-column">
               <div
                 className="w-100 position-absolute d-flex pe-0"
@@ -683,7 +684,7 @@ function FilmEditor() {
                   onClick={handleSubline}
                   disabled={!video_id}
                 >
-                  AI自動生成&ensp;
+                  AI Generate&ensp;
                   <FontAwesomeIcon icon={faSpinner} />
                 </Button>
                 <Button
@@ -697,7 +698,7 @@ function FilmEditor() {
                     tab !== 'audio-visualize' && !video.setting?.subline
                   }
                 >
-                  擷取片段&ensp;
+                  Add Clip&ensp;
                   <FontAwesomeIcon icon={faVectorSquare} />
                 </Button>
               </div>
@@ -713,7 +714,7 @@ function FilmEditor() {
                   <Tab
                     className="w-100 h-100"
                     eventKey="audio-visualize"
-                    title="音頻擷取"
+                    title="Audio Clip"
                   >
                     <AudioVisualizer
                       setting={{
@@ -917,7 +918,7 @@ function FilmEditor() {
           </Card>
         </Col>
 
-        <Col className="h-100 pe-4" xs={5}>
+        <Col className="h-100 overflow-scroll" xs={5}>
           <Card
             className="mb-3 w-100"
             style={{
@@ -1057,8 +1058,8 @@ function FilmEditor() {
                 />
               </Col>
               <Col xs={5} className="px-2 ps-3 my-auto">
-                <h6 className="text-secondary fw-bold">手動片段</h6>
-                <h6 className="text-secondary fw-bold mb-0">04分06秒</h6>
+                <h6 className="text-secondary fw-bold">Manual Clip</h6>
+                <h6 className="text-secondary fw-bold mb-0">04:06</h6>
               </Col>
               <Col xs={4} className="px-2 my-auto">
                 <div>
@@ -1066,7 +1067,7 @@ function FilmEditor() {
                     className="ms-auto me-2"
                     style={{ boxShadow: 'none' }}
                     variant="edit me-2"
-                    title="編 輯 影 片 編 號 ＆ 名 稱"
+                    title="Edit Name"
                     size
                   >
                     <FontAwesomeIcon icon={faPenToSquare} />
@@ -1074,19 +1075,19 @@ function FilmEditor() {
                   <Button
                     style={{ boxShadow: 'none' }}
                     variant="red"
-                    title="刪 除"
+                    title="Delete"
                   >
                     <FontAwesomeIcon icon={faTrashCan} />
                   </Button>
                 </div>
               </Col>
             </Row>
-            <Row className="d-flex px-4 py-1">
+            <Row className="d-flex px-4 py-1 w-100">
               <Button
                 size="sm"
-                className="mt-1 ms-auto w-48"
+                className="mt-1 ms-auto"
                 variant="outline-secondary"
-                style={{ right: '0%', top: '0%' }}
+                style={{ right: '0%', top: '0%', width: '48%' }}
                 onClick={() =>
                   setMaterial({
                     show: true,
@@ -1105,9 +1106,9 @@ function FilmEditor() {
               </Button>
               <Button
                 size="sm"
-                className="mt-1 w-48 ms-2"
+                className="mt-1 ms-2"
                 variant="outline-secondary"
-                style={{ right: '0%', top: '0%' }}
+                style={{ right: '0%', top: '0%', width: '48%' }}
                 // onClick={() => setshow(true)}
               >
                 add fragment&ensp;
