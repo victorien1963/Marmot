@@ -13,6 +13,7 @@ import {
   Brand,
   Cooperate,
   AdminProduct,
+  Account,
 } from './components'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-date-range/dist/styles.css'
@@ -31,8 +32,8 @@ function App() {
               <Route path="/user/content" element={<Content />} />
               <Route path="/user/content/:path" element={<Content />} />
               <Route path="/user/making" element={<Making />} />
-              <Route path="/user/making/:path" element={<Making />} />
               <Route path="/user/making/edit/:video_id" element={<Making />} />
+              <Route path="/user/making/:path" element={<Making />} />
               <Route path="/user/analyze" element={<Analyze />} />
               <Route path="/user/analyze/:path" element={<Analyze />} />
               <Route path="/user/paycontent" element={<PayContent />} />
@@ -44,6 +45,8 @@ function App() {
               <Route path="/admin/cooperate" element={<Cooperate />} />
               <Route path="/admin/product" element={<AdminProduct />} />
               <Route path="/admin/product/:path" element={<AdminProduct />} />
+              <Route path="/account" element={<Account />} />
+              <Route path="/account/:path" element={<Account />} />
               <Route path="/*" element={<Home />} />
             </Routes>
           </AppWrapper>

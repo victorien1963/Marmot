@@ -1,16 +1,20 @@
 /* eslint-disable prefer-destructuring */
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Button, ListGroupItem } from 'react-bootstrap'
+import { ListGroupItem, Row } from 'react-bootstrap'
 import {
   faCircleRadiation,
   faClapperboard,
   faCloudArrowUp,
   faFileInvoice,
+  // faGears,
+  faMoneyBill,
   faPhotoFilm,
+  // faReply,
   faSackDollar,
   faUsers,
 } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function SideNavBar() {
   const location = useLocation()
@@ -169,6 +173,26 @@ function SideNavBar() {
           },
         ],
       },
+      {
+        title: 'Account',
+        subTitle: 'account',
+        icon: faMoneyBill,
+        link: '/account',
+        sub: [
+          {
+            title: 'Profile',
+            subTitle: '',
+            link: '/account/profile',
+            type: 'user',
+          },
+          {
+            title: 'Access Authorization',
+            subTitle: '',
+            link: '/account/access',
+            type: 'user',
+          },
+        ],
+      },
     ],
     admin: [
       {
@@ -221,53 +245,87 @@ function SideNavBar() {
       //     : 'bg-user-marmot'
       // }`}
     >
-      {(location.pathname.includes('admin')
-        ? contents.admin
-        : contents.user
-      ).map(({ title, link, sub }) => (
-        <>
-          <ListGroupItem
-            action
-            disabled={location.pathname.includes(link)}
-            key={link}
-            active={location.pathname.includes(link)}
-            onClick={() => navigate(link)}
-            className="mx-auto my-2 text-start text-nowrap btn-sidebar py-2 px-1"
-            style={{
-              width: '88%',
-            }}
-            size="sm"
-          >
-            {title}
-          </ListGroupItem>
-          {location.pathname.includes(link) &&
-            sub &&
-            sub.map((s) => (
-              <ListGroupItem
-                action
-                disabled={location.pathname === s.link}
-                key={s.link}
-                active={location.pathname === s.link}
-                onClick={() => navigate(s.link)}
-                className="mx-auto my-2 text-start text-nowrap btn-sidebar py-2 px-1"
-                style={{
-                  width: '88%',
-                }}
-                size="sm"
-              >
-                ▻ {s.title}
-              </ListGroupItem>
-            ))}
-        </>
-      ))}
-      <Button
-        onClick={() => navigate('/')}
-        className="w-75 mx-auto mt-auto mb-2"
-        variant="outline-marmot"
-        size="sm"
+      <Row
+        className="d-flex flex-column ps-2 flex-nowrap"
+        style={{
+          height: '85%',
+        }}
       >
-        Back
-      </Button>
+        {(location.pathname.includes('admin')
+          ? contents.admin
+          : contents.user
+        ).map(({ title, link, sub }) => (
+          <>
+            <ListGroupItem
+              action
+              disabled={location.pathname.includes(link)}
+              key={link}
+              active={location.pathname.includes(link)}
+              onClick={() => navigate(link)}
+              className="mx-auto my-2 text-start text-nowrap btn-sidebar py-2 px-1"
+              style={{
+                width: '88%',
+              }}
+              size="sm"
+            >
+              {title}
+            </ListGroupItem>
+            {location.pathname.includes(link) &&
+              sub &&
+              sub.map((s) => (
+                <ListGroupItem
+                  action
+                  disabled={location.pathname === s.link}
+                  key={s.link}
+                  active={location.pathname === s.link}
+                  onClick={() => navigate(s.link)}
+                  className="mx-auto text-start text-nowrap btn-sidebar px-1"
+                  style={{
+                    height: '8%',
+                    width: '88%',
+                  }}
+                  size="sm"
+                >
+                  ▻ {s.title}
+                </ListGroupItem>
+              ))}
+          </>
+        ))}
+      </Row>
+      {/* <Row
+        className="d-flex flex-column py-3"
+        style={{
+          height: '35%',
+        }}
+      >
+        <Button
+          onClick={() => navigate('/')}
+          className="w-75 mx-auto mt-auto mb-2 text-start fw-bold"
+          variant="outline-marmot"
+          size="sm"
+        >
+          <FontAwesomeIcon icon={faReply} />
+          &ensp; Back
+        </Button>
+        <Button
+          onClick={() => navigate('/account')}
+          className="w-75 mx-auto mt-auto mb-2 text-start fw-bold"
+          variant="outline-marmot"
+          size="sm"
+        >
+          <FontAwesomeIcon icon={faMoneyBill} />
+          &ensp; Account
+        </Button>
+        <Button
+          onClick={() => navigate('/setting')}
+          className="w-75 mx-auto mt-auto mb-2 text-start fw-bold"
+          variant="outline-marmot"
+          size="sm"
+        >
+          <FontAwesomeIcon icon={faGears} />
+          &ensp; Setting
+        </Button>
+      </Row> */}
     </div>
   )
 }

@@ -9,6 +9,14 @@ import PathSelector from '../PathSelector'
 import Analytics from './Analytics'
 import AM from './AM'
 import Benchmaking from './Benchmaking'
+import {
+  azure,
+  blackboard,
+  moodle,
+  stickermaker,
+  tubular,
+  viewstats,
+} from '../../asset'
 
 const pages = {
   analytics: <Analytics />,
@@ -31,6 +39,16 @@ function Analyze() {
             icon: faUsers,
             link: '/user/analyze/analytics',
             type: 'user',
+            externals: [
+              {
+                image: azure,
+                link: 'https://plaky.com/pricing',
+              },
+              {
+                image: tubular,
+                link: 'https://plaky.com/pricing',
+              },
+            ],
           },
           {
             title: 'Benchmaking',
@@ -38,6 +56,12 @@ function Analyze() {
             icon: faFileInvoice,
             link: '/user/analyze/benchmaking',
             type: 'user',
+            externals: [
+              {
+                image: viewstats,
+                link: 'https://plaky.com/pricing',
+              },
+            ],
           },
           {
             title: 'Alternative Monetization',
@@ -45,6 +69,20 @@ function Analyze() {
             icon: faSackDollar,
             link: '/user/analyze/am',
             type: 'user',
+            externals: [
+              {
+                image: stickermaker,
+                link: 'https://plaky.com/pricing',
+              },
+              {
+                image: blackboard,
+                link: 'https://plaky.com/pricing',
+              },
+              {
+                image: moodle,
+                link: 'https://plaky.com/pricing',
+              },
+            ],
           },
         ],
       }}

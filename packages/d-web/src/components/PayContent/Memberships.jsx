@@ -15,7 +15,16 @@ import {
   faCircleArrowDown,
   faCircleArrowUp,
 } from '@fortawesome/free-solid-svg-icons'
-import { member1, member2, member3 } from '../../asset'
+import { useNavigate } from 'react-router-dom'
+import {
+  emojis,
+  exclusivevideos,
+  member1,
+  member2,
+  member3,
+  perks,
+  posts,
+} from '../../asset'
 import LineChart from '../Content/LineChart'
 
 function PerkModal({ setting }) {
@@ -24,10 +33,13 @@ function PerkModal({ setting }) {
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closebutton>Basic Tier</Modal.Header>
       <Modal.Body>
-        <Row>
-          <Button size="sm" variant="secondary" className="w-25 rounded-pill">
-            BASIC $1.99
+        <Row className="px-3">
+          <Button size="sm" variant="outline-dark" className="w-25">
+            Add Perks
           </Button>
+        </Row>
+        <Row>
+          <Image className="m-auto" width="100%" height="auto" src={perks} />
         </Row>
       </Modal.Body>
     </Modal>
@@ -36,6 +48,7 @@ function PerkModal({ setting }) {
 
 function Memberships() {
   const [show, setshow] = useState(false)
+  const navigate = useNavigate()
   const handleClose = () => setshow(false)
   const data = [
     {
@@ -101,7 +114,7 @@ function Memberships() {
   }, [])
 
   return (
-    <div className="w-100 h-100 p-3">
+    <div className="w-100 h-100 p-3 overflow-scroll">
       <Row className="p-3 pb-5 h-100">
         <h4 className="text-start">Memberships Overview</h4>
         <Col className="h-100 p-4" xs={6}>
@@ -224,6 +237,72 @@ function Memberships() {
             </Card.Body>
           </Card>
         </Col>
+      </Row>
+      <Row className="p-3 pb-5 h-100">
+        <h4>Manage Perks</h4>
+        {[
+          {
+            label: 'Exclusive Videos',
+            src: exclusivevideos,
+          },
+          {
+            label: 'Community Posts',
+            src: posts,
+          },
+          {
+            label: 'Badges',
+            src: emojis,
+          },
+          {
+            label: 'Emojis',
+            src: emojis,
+          },
+        ].map(({ label, src }) => (
+          <Col key={label} className="h-50 pb-3" xs={6}>
+            <Card className="h-100 d-flex flex-column">
+              <Card.Header
+                className="text-start border-0"
+                style={{
+                  backgroundColor: '#fff',
+                }}
+              >
+                {label}
+              </Card.Header>
+              <Card.Body
+                className="d-flex"
+                style={{
+                  height: '65%',
+                }}
+              >
+                <Image
+                  className="m-auto"
+                  width="auto"
+                  height="100%"
+                  src={src}
+                />
+              </Card.Body>
+              <Card.Footer
+                className="d-flex justify-content-end border-0"
+                style={{
+                  backgroundColor: '#fff',
+                }}
+              >
+                <Button variant="outline-dark" onClick={() => handleClose()}>
+                  Manage
+                </Button>
+                <Button
+                  className="ms-2"
+                  variant="mar2"
+                  onClick={() =>
+                    navigate('/user/paycontent/badgeEditor', { replace: true })
+                  }
+                >
+                  Add new
+                </Button>
+              </Card.Footer>
+            </Card>
+          </Col>
+        ))}
       </Row>
       <PerkModal setting={{ show, handleClose }} />
     </div>

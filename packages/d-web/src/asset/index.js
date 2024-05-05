@@ -61,6 +61,22 @@ import assemble from './images/assemble.png'
 import celtx from './images/celtx.png'
 import arcstudio from './images/arcstudio.png'
 import bonito from './images/bonito.png'
+import clipchamp from './images/clipchamp.png'
+import runway from './images/runway.png'
+import veed from './images/veed.png'
+import streamlabs from './images/streamlabs.png'
+import unitedmasters from './images/unitedmasters.png'
+import azure from './images/azure.png'
+import tubular from './images/tubular.png'
+import viewstats from './images/viewstats.png'
+import stickermaker from './images/stickermaker.png'
+import blackboard from './images/blackboard.png'
+import moodle from './images/moodle.png'
+import editor from './images/editor.png'
+import perks from './images/perks.png'
+import emojis from './images/emojis.png'
+import posts from './images/posts.png'
+import exclusivevideos from './images/exclusivevideos.png'
 
 import mappopup from './images/map-popup.png'
 
@@ -125,4 +141,20 @@ export {
   arcstudio,
   bonito,
   mappopup,
+  clipchamp,
+  runway,
+  veed,
+  streamlabs,
+  unitedmasters,
+  azure,
+  tubular,
+  viewstats,
+  stickermaker,
+  blackboard,
+  moodle,
+  editor,
+  perks,
+  emojis,
+  posts,
+  exclusivevideos,
 }

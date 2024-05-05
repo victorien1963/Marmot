@@ -18,6 +18,8 @@ import LoadingButton from './LoadingButton'
 import Loading from './Loading'
 import PathCard from './PathCard'
 
+import Account from './Account'
+
 export {
   // GPTHelper,
   AppWrapper,
@@ -36,4 +38,5 @@ export {
   LoadingButton,
   Loading,
   PathCard,
+  Account,
 }

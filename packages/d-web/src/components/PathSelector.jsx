@@ -35,7 +35,11 @@ function PathSelector({ setting }) {
   return (
     <Row className="w-100 h-100 justify-content-center">
       {paths.map((path) => (
-        <Col className="h-100 py-3" xs={12 / paths.length} key={path.title}>
+        <Col
+          className="h-100 py-3 mx-auto"
+          xs={Math.min(12 / paths.length, 4)}
+          key={path.title}
+        >
           <Row className="h-25">
             <PathSign
               setting={{
