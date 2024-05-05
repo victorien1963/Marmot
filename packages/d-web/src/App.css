@@ -796,6 +796,15 @@
   background: linear-gradient(to right, #89adc9, #a8eef3) !important;
 }
 
+.planner-item {
+  background: #a2c9e6 !important;
+  color: #fff;
+}
+
+.planner-item:hover {
+  background: linear-gradient(to right, #89adc9, #a8eef3) !important;
+}
+
 .hoverCard {
   border: 1px solid transparent !important;
   border-radius: 5px;

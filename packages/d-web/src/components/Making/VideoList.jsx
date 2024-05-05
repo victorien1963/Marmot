@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { useNavigate } from 'react-router-dom'
@@ -28,8 +28,8 @@ import {
   Container,
   FormLabel,
 } from 'react-bootstrap'
-// import apiServices from '../../services/apiServices'
-// import { UploaderContext } from './ContextProvider'
+import apiServices from '../../services/cheloniaServices'
+import { UploaderContext } from './CheloniaContextProvider'
 // import { architecture } from '../../assets'
 // import { nenerabi } from '../../assets'
 
@@ -214,73 +214,73 @@ function ProjectModal({ setting }) {
 function VideoList() {
   const navigate = useNavigate()
 
-  // const { handleUpload, handleDelete, videos, setVideos } =
-  //   useContext(UploaderContext)
-  // const [tempFile, settempFile] = useState(null)
-  // useEffect(() => {
-  //   if (tempFile) {
-  //     handleUpload('', tempFile, (v) => {
-  //       console.log(v)
-  //     })
-  //   }
-  // }, [tempFile])
+  const { handleUpload, handleDelete, videos, setVideos } =
+    useContext(UploaderContext)
+  const [tempFile, settempFile] = useState(null)
+  useEffect(() => {
+    if (tempFile) {
+      handleUpload('', tempFile, (v) => {
+        console.log(v)
+      })
+    }
+  }, [tempFile])
 
-  // const form = [
-  //   {
-  //     name: 'id',
-  //     label: '影片編號',
-  //     placeholder: '',
-  //     type: 'text',
-  //   },
-  //   {
-  //     name: 'name',
-  //     label: '影片名稱',
-  //     placeholder: '',
-  //     type: 'text',
-  //   },
-  // ]
+  const form = [
+    {
+      name: 'id',
+      label: '影片編號',
+      placeholder: '',
+      type: 'text',
+    },
+    {
+      name: 'name',
+      label: '影片名稱',
+      placeholder: '',
+      type: 'text',
+    },
+  ]
 
-  // const [selectedId, setselectedId] = useState('')
+  const [selectedId, setselectedId] = useState('')
 
-  // const handleAdd = async (data) => {
-  //   const res = await apiServices.data({
-  //     path: `video`,
-  //     method: 'post',
-  //     data,
-  //   })
-  //   if (!res.error) setVideos([res, ...videos])
-  //   setselectedId('')
-  // }
+  const handleAdd = async (data) => {
+    const res = await apiServices.data({
+      path: `video`,
+      method: 'post',
+      data,
+    })
+    if (!res.error) setVideos([res, ...videos])
+    setselectedId('')
+  }
 
-  // const handleEdit = async (data) => {
-  //   const res = await apiServices.data({
-  //     path: `video/${selectedId}`,
-  //     method: 'put',
-  //     data,
-  //   })
-  //   if (!res.error)
-  //     setVideos(videos.map((l) => (l.video_id === selectedId ? res : l)))
-  //   setselectedId('')
-  // }
+  const handleEdit = async (data) => {
+    const res = await apiServices.data({
+      path: `video/${selectedId}`,
+      method: 'put',
+      data,
+    })
+    if (!res.error)
+      setVideos(videos.map((l) => (l.video_id === selectedId ? res : l)))
+    setselectedId('')
+  }
 
-  // const [show, setshow] = useState(false)
-  // const handleClose = (value) => {
-  //   setshow(false)
-  //   if (!value) return
-  //   if (selectedId) handleEdit(value)
-  //   else {
-  //     handleAdd(value)
-  //   }
-  // }
+  const [show, setshow] = useState(false)
+  const handleClose = (value) => {
+    setshow(false)
+    if (!value) return
+    if (selectedId) handleEdit(value)
+    else {
+      handleAdd(value)
+    }
+  }
 
-  // const [deleteShow, setdeleteShow] = useState(false)
-  // const handleDeleteClose = (value) => {
-  //   setdeleteShow(false)
-  //   if (value) {
-  //     handleDelete('video', selectedId)
-  //     setselectedId('')
-  //   }
-  // }
+  const [deleteShow, setdeleteShow] = useState(false)
+  const handleDeleteClose = (value) => {
+    setdeleteShow(false)
+    if (value) {
+      handleDelete('video', selectedId)
+      setselectedId('')
+    }
+  }
   const [tempSearch, setTempSearch] = useState('')
   const [search, setSearch] = useState('')
   const [focus, setFocus] = useState(false)
@@ -347,7 +347,7 @@ function VideoList() {
             // value={fileList}
             onChange={(e) => {
               // setuploading(true)
-              // settempFile(e.target.files[0])
+              settempFile(e.target.files[0])
               e.target.value = null
             }}
             style={{
@@ -373,205 +373,100 @@ function VideoList() {
         className="flex-grow-1 pt-3 pb-5 px-5 h-100"
         style={{ overflowY: 'auto', overflowX: 'hidden', opacity: '.9' }}
       >
-        <ListGroup className="pe-0">
-          {[
-            {
-              description: null,
-              duration: 0,
-              location: null,
-              name: '潮網訪談_clip (1).mp4',
-              taken_at: null,
-              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
-              view_url:
-                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
-              view_url_expiration_at: '2024-04-18T10:49:42.302893',
-            },
-            {
-              description: null,
-              duration: 0,
-              location: null,
-              name: '林來瘋再現(1).mp4',
-              taken_at: null,
-              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
-              view_url:
-                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
-              view_url_expiration_at: '2024-04-18T10:49:42.302893',
-            },
-            {
-              description: null,
-              duration: 0,
-              location: null,
-              name: '量子力學破解相對論了？超越時空的量子糾纏，為何連愛因斯坦也不懂？ ft.樂咖｜量子熊 ✕ 泛科學 EP8.mp4',
-              taken_at: null,
-              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
-              view_url:
-                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
-              view_url_expiration_at: '2024-04-18T10:49:42.302893',
-            },
-            {
-              description: null,
-              duration: 0,
-              location: null,
-              name: '當年火遍全網的童年遊戲！十年前我們在玩哪些遊戲？.mp4',
-              taken_at: null,
-              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
-              view_url:
-                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
-              view_url_expiration_at: '2024-04-18T10:49:42.302893',
-            },
-            {
-              description: null,
-              duration: 0,
-              location: null,
-              name: '閃電俠超光速真的就能回到過去？我們如何感受「時間」？為何我們看不到時間旅人？科幻迷必看！.mp4',
-              taken_at: null,
-              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
-              view_url:
-                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
-              view_url_expiration_at: '2024-04-18T10:49:42.302893',
-            },
-            {
-              description: null,
-              duration: 0,
-              location: null,
-              name: '看不到的暗能量，決定我們的未來命運？摸不到的東西，如何證明它存在？.mp4',
-              taken_at: null,
-              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
-              view_url:
-                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
-              view_url_expiration_at: '2024-04-18T10:49:42.302893',
-            },
-            {
-              description: null,
-              duration: 0,
-              location: null,
-              name: 'Video_clip_(2).mp4',
-              taken_at: null,
-              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
-              view_url:
-                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
-              view_url_expiration_at: '2024-04-18T10:49:42.302893',
-            },
-            {
-              description: null,
-              duration: 0,
-              location: null,
-              name: 'Video_clip_(3).mp4',
-              taken_at: null,
-              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
-              view_url:
-                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
-              view_url_expiration_at: '2024-04-18T10:49:42.302893',
-            },
-            {
-              description: null,
-              duration: 0,
-              location: null,
-              name: 'Video_clip_(4).mp4',
-              taken_at: null,
-              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
-              view_url:
-                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
-              view_url_expiration_at: '2024-04-18T10:49:42.302893',
-            },
-            {
-              description: null,
-              duration: 0,
-              location: null,
-              name: 'Video_clip_(5)_9324324142test.mp4',
-              taken_at: null,
-              video_id: '087093fa-c507-47ee-a339-2df1956dfb72',
-              view_url:
-                'http://localhost:7001/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4',
-              view_url_expiration_at: '2024-04-18T10:49:42.302893',
-            },
-          ]
-            .filter(({ name }) => !search || (name && name.includes(search)))
-            .map(({ video_id, name }, i) => (
-              <ListGroupItem className="d-flex" key={i}>
-                <p
-                  className="w-40 my-auto text-start oneLineEllipsis"
-                  title={name}
-                >
-                  <FontAwesomeIcon icon={faVideo} className="text-dark" />
-                  ｜
-                  <span className="fw-regular text-chelonia" />
-                  {/* {setting.date} */}
-                  {name}
-                </p>
-                {/* <small className="w-15 my-auto text-start ps-2">
+        {videos && videos.length ? (
+          <ListGroup className="pe-0">
+            {videos
+              .filter(({ name }) => !search || (name && name.includes(search)))
+              .map(({ video_id, name }, i) => (
+                <ListGroupItem className="d-flex" key={i}>
+                  <p
+                    className="w-40 my-auto text-start oneLineEllipsis"
+                    title={name}
+                  >
+                    <FontAwesomeIcon icon={faVideo} className="text-dark" />
+                    ｜
+                    <span className="fw-regular text-chelonia" />
+                    {/* {setting.date} */}
+                    {name}
+                  </p>
+                  {/* <small className="w-15 my-auto text-start ps-2">
                     <span className="fw-regular text-chelonia">建立者｜</span>
                     {user_name}
                     <br />
                     <span className="fw-regular text-chelonia">建立時間｜</span>
                     {moment(created_on).format('yyyy-MM-DD')}
                   </small> */}
-                <Button
-                  className="ms-auto me-2"
-                  style={{ boxShadow: 'none' }}
-                  variant="edit me-2"
-                  onClick={() => {
-                    // setselectedId(video_id)
-                    // setshow(true)
-                  }}
-                  title="rename"
-                >
-                  <FontAwesomeIcon icon={faPenToSquare} />
-                </Button>
-                <Button
-                  className="me-2"
-                  style={{ boxShadow: 'none' }}
-                  variant="red"
-                  onClick={() => {
-                    // setselectedId(video_id)
-                    // setdeleteShow(true)
-                  }}
-                  title="delete"
-                >
-                  <FontAwesomeIcon icon={faTrashCan} />
-                </Button>
+                  <Button
+                    className="ms-auto me-2"
+                    style={{ boxShadow: 'none' }}
+                    variant="edit me-2"
+                    onClick={() => {
+                      // setselectedId(video_id)
+                      // setshow(true)
+                    }}
+                    title="rename"
+                  >
+                    <FontAwesomeIcon icon={faPenToSquare} />
+                  </Button>
+                  <Button
+                    className="me-2"
+                    style={{ boxShadow: 'none' }}
+                    variant="red"
+                    onClick={() => {
+                      // setselectedId(video_id)
+                      // setdeleteShow(true)
+                    }}
+                    title="delete"
+                  >
+                    <FontAwesomeIcon icon={faTrashCan} />
+                  </Button>
 
-                <h2
-                  className="my-auto text-grey"
-                  style={{ userSelect: 'none' }}
-                >
-                  ｜
-                </h2>
+                  <h2
+                    className="my-auto text-grey"
+                    style={{ userSelect: 'none' }}
+                  >
+                    ｜
+                  </h2>
 
-                <Button
-                  style={{ boxShadow: 'none' }}
-                  variant="youtube"
-                  onClick={() => {
-                    // setselectedId(video_id)
-                    // setdeleteShow(true)
-                  }}
-                  title="Export to youtube"
-                >
-                  <FontAwesomeIcon icon={faYoutube} />
-                </Button>
+                  <Button
+                    style={{ boxShadow: 'none' }}
+                    variant="youtube"
+                    onClick={() => {
+                      // setselectedId(video_id)
+                      // setdeleteShow(true)
+                    }}
+                    title="Export to youtube"
+                  >
+                    <FontAwesomeIcon icon={faYoutube} />
+                  </Button>
 
-                <h2
-                  className="my-auto text-grey"
-                  style={{ userSelect: 'none' }}
-                >
-                  ｜
-                </h2>
+                  <h2
+                    className="my-auto text-grey"
+                    style={{ userSelect: 'none' }}
+                  >
+                    ｜
+                  </h2>
 
-                <Button
-                  className="me-0"
-                  style={{ boxShadow: 'none' }}
-                  variant="edit"
-                  // onClick={() => setId(time_id || range_id || draft_id)}
-                  onClick={() => navigate(`/user/making/edit/${video_id}`)}
-                  title="Clip"
-                >
-                  <FontAwesomeIcon icon={faScissors} />
-                </Button>
-              </ListGroupItem>
-            ))}
-        </ListGroup>
+                  <Button
+                    className="me-0"
+                    style={{ boxShadow: 'none' }}
+                    variant="edit"
+                    // onClick={() => setId(time_id || range_id || draft_id)}
+                    onClick={() => navigate(`/user/making/edit/${video_id}`)}
+                    title="Clip"
+                  >
+                    <FontAwesomeIcon icon={faScissors} />
+                  </Button>
+                </ListGroupItem>
+              ))}
+          </ListGroup>
+        ) : (
+          <div className="d-flex ps-3 border">
+            <h5 className="m-auto text-chelonia-light">目前尚無資料</h5>
+          </div>
+        )}
       </Row>
-      {/* <ProjectModal
+      <ProjectModal
         setting={{
           show,
           form,
@@ -587,7 +482,7 @@ function VideoList() {
           name: videos.find((l) => l.video_id === selectedId)?.name,
           handleClose: handleDeleteClose,
         }}
-      /> */}
+      />
     </Container>
   )
 }

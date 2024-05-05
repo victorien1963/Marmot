@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  common-worker:
+    image: common-worker
+    build:
+      context: ../../..
+      dockerfile: "deployment/dockerfile/dev_packed/Dockerfile"
+    environment:
+      # API server config
+      - API_SERVER_URL=${API_SERVER_URL}
+      # Object store config
+      - CUSTOM_OBJECT_STORE_TYPE=${CUSTOM_OBJECT_STORE_TYPE}
+      - CUSTOM_OBJECT_STORE_ENDPOINT=${CUSTOM_OBJECT_STORE_ENDPOINT}
+      - OBJECT_STORE_BUCKET=${OBJECT_STORE_BUCKET}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}

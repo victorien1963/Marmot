@@ -102,11 +102,17 @@ function AM() {
                 {
                   label: 'Livestream',
                   number: 99,
+                  onClick: () =>
+                    navigate('/user/product/insight', { replace: true }),
                 },
-              ].map(({ label, number }) => (
+              ].map(({ label, number, onClick }) => (
                 <Col
-                  className="d-flex flex-column justify-content-center"
+                  className="d-flex flex-column justify-content-center hoverCard"
                   key={label}
+                  onClick={onClick}
+                  style={{
+                    cursor: onClick ? 'pointer' : 'auto',
+                  }}
                 >
                   <Row className="py-2">
                     <h3>${number}</h3>

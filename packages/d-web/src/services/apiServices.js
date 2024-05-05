@@ -35,6 +35,7 @@ const getConfig = (url, method, data, responseType, token, params = {}) => {
   if (responseType) config.responseType = responseType
   return config
 }
+
 export default {
   login(value) {
     return axios(getConfig('api/auth/login', 'post', value))

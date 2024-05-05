@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import moment from 'moment'
 import { DateRange } from 'react-date-range'
 import {
@@ -10,6 +11,7 @@ import {
   Form,
   InputGroup,
   Button,
+  Modal,
 } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
@@ -21,7 +23,20 @@ import {
   preview03,
   q01,
   time,
+  mappopup,
 } from '../../asset'
+
+function DetailModal({ setting }) {
+  const { show, handleClose } = setting
+  return (
+    <Modal size="lg" show={show} onHide={handleClose}>
+      <Modal.Header closebutton>Details</Modal.Header>
+      <Modal.Body>
+        <Image className="w-100" src={mappopup} />
+      </Modal.Body>
+    </Modal>
+  )
+}
 
 function Analytics() {
   const [showDate, setshowDate] = useState(false)
@@ -38,6 +53,9 @@ function Analytics() {
 
   const onDataChange = (e) =>
     setdata({ ...data, [e.target.name]: e.target.value })
+
+  const [show, setshow] = useState(false)
+  const handleClose = () => setshow(false)
 
   return (
     <div
@@ -233,9 +251,20 @@ function Analytics() {
         src={map01}
         width="1000px"
         style={{ cursor: 'pointer', borderRadius: '5px' }}
+        onClick={() => setshow(true)}
+      />
+      <DetailModal
+        setting={{
+          show,
+          handleClose,
+        }}
       />
     </div>
   )
+}
+
+DetailModal.propTypes = {
+  setting: PropTypes.shape().isRequired,
 }
 
 export default Analytics

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import Peaks from 'peaks.js'
 import TimeRange from 'react-video-timelines-slider'
 import { set, format } from 'date-fns'
-import apiServices from '../../services/apiServices'
+import apiServices from '../../services/cheloniaServices'
 
 const now = new Date()
 const getTodayAtSpecificHour = (hour = 12) =>
@@ -56,13 +56,11 @@ function AudioVisualizer({ setting }) {
   }
   useEffect(() => {
     const getData = async () => {
-      console.log(audioUrl)
       const res = await apiServices.extenal({
         url: audioUrl,
         method: 'get',
         responseType: 'arraybuffer',
       })
-      console.log(res)
       const audioContext = new (window.AudioContext ||
         window.webkitAudioContext)()
       try {

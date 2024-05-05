@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -27,7 +27,7 @@ import {
 } from 'react-bootstrap'
 // import apiServices from '../services/apiServices'
 // import { video_sm } from '../assets'
-// import { UploaderContext } from './ContextProvider'
+import { UploaderContext } from './CheloniaContextProvider'
 // import { architecture } from '../../assets'
 // import { nenerabi } from '../../assets'
 
@@ -287,8 +287,107 @@ function ProjectModal({ setting }) {
 function MaterialList() {
   // const navigate = useNavigate()
 
-  // const { materials, handleUpload, handleDelete } = useContext(UploaderContext)
-  // if (false) handleUpload()
+  const { materials, handleUpload, handleDelete } = useContext(UploaderContext)
+  if (false) handleUpload()
+
+  const form = [
+    // {
+    //   name: 'id',
+    //   label: '素材編號',
+    //   placeholder: '',
+    //   type: 'text',
+    // },
+    {
+      name: 'type',
+      label: '素材類型',
+      placeholder: '',
+      type: 'select',
+      content: ['浮水印', '轉場動畫', '直播廣告圖卡', 'PSD Template'],
+    },
+    // {
+    //   name: 'name',
+    //   label: '素材名稱',
+    //   placeholder: '',
+    //   type: 'text',
+    // },
+    {
+      name: 'file',
+      label: '素材',
+      placeholder: '',
+      type: 'file',
+    },
+  ]
+
+  const [selectedId, setselectedId] = useState('')
+  if (false) console.log(setselectedId)
+
+  // const [duration, setDuration] = useState(0)
+  // const handleAdd = async () => {
+  // console.log(duration)
+  // const res = await apiServices.data({
+  //   path: `material`,
+  //   method: 'post',
+  //   data: {
+  //     ...data,
+  //     duration,
+  //   },
+  // })
+  // if (!res.error) setList([res, ...list])
+  // setselectedId('')
+  // }
+
+  // const handleEdit = async () => {
+  // const res = await apiServices.data({
+  //   path: `material/${selectedId}`,
+  //   method: 'put',
+  //   data,
+  // })
+  // if (!res.error)
+  //   setList(list.map((l) => (l.material_id === selectedId ? res : l)))
+  // setselectedId('')
+  // }
+
+  // const handleDelete = async () => {
+  // const res = await apiServices.data({
+  //   path: `material/${selectedId}`,
+  //   method: 'delete',
+  // })
+  // if (!res.error) setList(list.filter((l) => l.material_id !== selectedId))
+  // setselectedId('')
+  // }
+
+  const [show, setshow] = useState(false)
+  const handleClose = (value) => {
+    setshow(false)
+    if (!value) return
+    console.log(value)
+    const { file, type } = value
+    const types = {
+      浮水印: 'wm',
+      轉場動畫: 'ta',
+      直播廣告圖卡: '',
+      'PSD Template': '',
+    }
+    handleUpload(types[type], file, () => {})
+    // console.log('adding')
+    // if (selectedId) handleEdit(value)
+
+    // handleAdd(value)
+  }
+
+  const [deleteShow, setdeleteShow] = useState(false)
+  const handleDeleteClose = (value) => {
+    setdeleteShow(false)
+    if (value) {
+      handleDelete(
+        materials.find(
+          ({ transition_animation_id, watermark_id, clip_id }) =>
+            (transition_animation_id || watermark_id || clip_id) === selectedId
+        )?.type,
+        selectedId
+      )
+    }
+  }
 
   const [tempSearch, setTempSearch] = useState('')
   const [search, setSearch] = useState('')
@@ -353,7 +452,7 @@ function MaterialList() {
             variant="mar2"
             onClick={() => {
               // setselectedId('')
-              // setshow(true)
+              setshow(true)
             }}
           >
             Upload&ensp;
@@ -365,156 +464,98 @@ function MaterialList() {
         className="flex-grow-1 pt-3 pb-5 px-5 h-100"
         style={{ overflowY: 'auto', overflowX: 'hidden', opacity: '.9' }}
       >
-        <ListGroup className="pe-0">
-          {[
-            {
-              clip_id: '34737549-342d-4f08-a4d1-08412b9a6fd7',
-              description: 'my first clip',
-              end: 198,
-              name: '潮網訪談_(01)',
-              source_video: 'bfd32c58-e1c4-46fa-b322-beb6f1fbd368',
-              start: 3,
-              type: 'Fragments',
-              size: '24 MB',
-            },
-            {
-              clip_id: '34737549-342d-4f08-a4d1-08412b9a6fd7',
-              description: 'my first clip',
-              end: 198,
-              name: 'trasiton_(06)',
-              source_video: 'bfd32c58-e1c4-46fa-b322-beb6f1fbd368',
-              start: 3,
-              type: 'Trasition',
-              size: '10 MB',
-            },
-            {
-              clip_id: '34737549-342d-4f08-a4d1-08412b9a6fd7',
-              description: 'my first clip',
-              end: 198,
-              name: 'project_9054216730',
-              source_video: 'bfd32c58-e1c4-46fa-b322-beb6f1fbd368',
-              start: 3,
-              type: 'Fragments',
-              size: '5 MB',
-            },
-            {
-              clip_id: '34737549-342d-4f08-a4d1-08412b9a6fd7',
-              description: 'my first clip',
-              end: 198,
-              name: 'video_clip_(02)',
-              source_video: 'bfd32c58-e1c4-46fa-b322-beb6f1fbd368',
-              start: 3,
-              type: 'clip',
-              size: '0.3 MB',
-            },
-            {
-              clip_id: '34737549-342d-4f08-a4d1-08412b9a6fd7',
-              description: 'my first clip',
-              end: 198,
-              name: 'video_clip_(03)',
-              source_video: 'bfd32c58-e1c4-46fa-b322-beb6f1fbd368',
-              start: 3,
-              type: 'clip',
-              size: '7.9 MB',
-            },
-          ]
-            .filter(({ name }) => !search || (name && name.includes(search)))
-            .map(
-              (
-                {
-                  name,
-                  // transition_animation_id,
-                  // watermark_id,
-                  // clip_id,
-                  // view_url,
-                  created_on,
-                  type,
-                  user_name,
-                  size,
-                },
-                i
-              ) => (
-                <ListGroupItem className="d-flex" key={i}>
-                  <div style={{ height: '5rem' }}>
-                    {/* {transition_animation_id ? ( */}
-                    <video
-                      width="150px"
-                      height="100%"
-                      className="m-auto pe-2"
-                      controls
-                    >
-                      <track kind="captions" />
-                      <source src="/api/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4" />
-                    </video>
-                    {/* ) : (
-                      <Image
-                        src={view_url}
+        {materials && materials.length ? (
+          <ListGroup className="pe-0">
+            {materials
+              .filter(({ name }) => !search || (name && name.includes(search)))
+              .map(
+                (
+                  {
+                    name,
+                    // transition_animation_id,
+                    // watermark_id,
+                    // clip_id,
+                    // view_url,
+                    size,
+                    type,
+                    created_on,
+                    // type,
+                    user_name,
+                  },
+                  i
+                ) => (
+                  <ListGroupItem className="d-flex" key={i}>
+                    <div style={{ height: '5rem' }}>
+                      <video
                         width="150px"
                         height="100%"
                         className="m-auto pe-2"
-                      />
-                    )} */}
-                  </div>
-                  <p
-                    className="w-25 my-auto text-start oneLineEllipsis"
-                    title={name}
-                  >
-                    {/* {setting.date} */}
-                    {name}
-                  </p>
-                  <small className="w-15 my-auto text-start ps-2">
-                    <span className="fw-regular text-chelonia">{size}</span>
-                    <br />
-                    <span className="fw-regular text-chelonia">
-                      type｜ {type}
-                    </span>
-                    {/* {setting.type} */}
-                    <br />
-                    <span className="fw-regular text-chelonia">editor｜</span>
-                    {user_name}
-                    <br />
-                    <span className="fw-regular text-chelonia">date｜</span>
-                    {moment(created_on).format('yyyy-MM-DD')}
-                  </small>
-                  <Button
-                    className="ms-auto"
-                    style={{ boxShadow: 'none' }}
-                    variant="edit"
-                    onClick={() => {
-                      // setselectedId(material_id)
-                      // setshow(true)
-                    }}
-                    title="rename"
-                    size
-                  >
-                    <FontAwesomeIcon icon={faPenToSquare} />
-                  </Button>
-                  <Button
-                    style={{ boxShadow: 'none' }}
-                    title="Dwonload"
-                    variant="edit"
-                  >
-                    <FontAwesomeIcon icon={faDownload} />
-                  </Button>
-                  <Button
-                    style={{ boxShadow: 'none' }}
-                    variant="red"
-                    onClick={() => {
-                      // console.log(
-                      //   transition_animation_id || watermark_id || clip_id
-                      // )
-                      // setselectedId(
-                      //   transition_animation_id || watermark_id || clip_id
-                      // )
-                      // setdeleteShow(true)
-                    }}
-                    title="delete"
-                  >
-                    <FontAwesomeIcon icon={faTrashCan} />
-                  </Button>
+                        controls
+                      >
+                        <track kind="captions" />
+                        <source src="/api/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4" />
+                      </video>
+                    </div>
+                    <p
+                      className="w-25 my-auto text-start oneLineEllipsis"
+                      title={name}
+                    >
+                      {/* {setting.date} */}
+                      {name}
+                    </p>
+                    <small className="w-15 my-auto text-start ps-2">
+                      <span className="fw-regular text-chelonia">{size}</span>
+                      <br />
+                      <span className="fw-regular text-chelonia">
+                        type｜ {type}
+                      </span>
+                      {/* {setting.type} */}
+                      <br />
+                      <span className="fw-regular text-chelonia">editor｜</span>
+                      {user_name}
+                      <br />
+                      <span className="fw-regular text-chelonia">date｜</span>
+                      {moment(created_on).format('yyyy-MM-DD')}
+                    </small>
+                    <Button
+                      className="ms-auto"
+                      style={{ boxShadow: 'none' }}
+                      variant="edit"
+                      onClick={() => {
+                        // setselectedId(material_id)
+                        // setshow(true)
+                      }}
+                      title="rename"
+                      size
+                    >
+                      <FontAwesomeIcon icon={faPenToSquare} />
+                    </Button>
+                    <Button
+                      style={{ boxShadow: 'none' }}
+                      title="Dwonload"
+                      variant="edit"
+                    >
+                      <FontAwesomeIcon icon={faDownload} />
+                    </Button>
+                    <Button
+                      style={{ boxShadow: 'none' }}
+                      variant="red"
+                      onClick={() => {
+                        // console.log(
+                        //   transition_animation_id || watermark_id || clip_id
+                        // )
+                        // setselectedId(
+                        //   transition_animation_id || watermark_id || clip_id
+                        // )
+                        // setdeleteShow(true)
+                      }}
+                      title="delete"
+                    >
+                      <FontAwesomeIcon icon={faTrashCan} />
+                    </Button>
 
-                  {/* <h2
-                    className="my-auto text-secondary"
+                    {/* <h2
+                    className="my-auto text-grey"
                     style={{ userSelect: 'none' }}
                   >
                     ｜
@@ -530,11 +571,40 @@ function MaterialList() {
                   >
                     <FontAwesomeIcon icon={faScissors} />
                   </Button> */}
-                </ListGroupItem>
-              )
-            )}
-        </ListGroup>
+                  </ListGroupItem>
+                )
+              )}
+          </ListGroup>
+        ) : (
+          <div className="d-flex ps-3 border">
+            <h5 className="m-auto text-chelonia-light">目前尚無資料</h5>
+          </div>
+        )}
       </Row>
+      <ProjectModal
+        setting={{
+          show,
+          form,
+          duration: '',
+          setDuration: '',
+          // defaultValue: selectedId
+          //   ? list.find((l) => l.material_id === selectedId)
+          //   : {},
+          defaultValue: {},
+          handleClose,
+        }}
+      />
+      <DeleteModal
+        setting={{
+          show: deleteShow,
+          name: materials.find(
+            ({ transition_animation_id, watermark_id, clip_id }) =>
+              (transition_animation_id || watermark_id || clip_id) ===
+              selectedId
+          )?.name,
+          handleClose: handleDeleteClose,
+        }}
+      />
     </Container>
   )
 }

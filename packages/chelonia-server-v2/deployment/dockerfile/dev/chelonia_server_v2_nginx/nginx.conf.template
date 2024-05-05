@@ -1,0 +1,22 @@
+upstream chelonia_server_v2_gunicorn {
+    server ${CHELONIA_SERVER_V2_GUNICORN_HOST}:${CHELONIA_SERVER_V2_GUNICORN_PORT};
+}
+
+server {
+    listen ${NGINX_PORT};
+    client_max_body_size 4G;
+    keepalive_timeout 5;
+
+    location / {
+        proxy_pass http://chelonia_server_v2_gunicorn;
+
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+
+        proxy_connect_timeout 3600;
+        proxy_send_timeout 3600;
+        proxy_read_timeout 3600;
+    }
+}

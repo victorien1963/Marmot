@@ -5,11 +5,14 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
+  faCheck,
   faCircleExclamation,
-  //   faCirclePlus,
-  faDownload,
-  faPenToSquare,
+  faFile,
+  faMagnifyingGlass,
+  faPen,
+  faPenRuler,
   faSearch,
+  faTimes,
   faTrashCan,
 } from '@fortawesome/free-solid-svg-icons'
 import { DateRange } from 'react-date-range'
@@ -23,13 +26,117 @@ import {
   Modal,
   InputGroup,
   Container,
-  // Image,
 } from 'react-bootstrap'
-// import apiServices from '../services/apiServices'
-// import { video_sm } from '../assets'
-// import { UploaderContext } from './ContextProvider'
-// import { architecture } from '../../assets'
-// import { nenerabi } from '../../assets'
+
+function MetadataModal({ setting }) {
+  const { show, handleClose } = setting
+
+  return (
+    <Modal
+      style={{ zIndex: '1501' }}
+      show={show}
+      onHide={() => handleClose()}
+      className="py-2 px-4"
+    >
+      <Modal.Header closeButton>Courses metadata</Modal.Header>
+      <Modal.Body className="p-4 d-flex flex-column">
+        <Form.Label>Playlist title(required)</Form.Label>
+        <Form.Control as="textarea" className="flex-fill" />
+        <Form.Label className="mt-3">Visibility</Form.Label>
+        <Form.Select>
+          <option>Public</option>
+          <option>Private</option>
+        </Form.Select>
+      </Modal.Body>
+      <Modal.Footer className="justify-content-end d-flex">
+        <Button
+          className="ms-auto me-2"
+          style={{ boxShadow: 'none' }}
+          variant="secondary"
+          onClick={() => handleClose()}
+        >
+          Cancel
+        </Button>
+        <Button
+          className="ms-2"
+          style={{ boxShadow: 'none' }}
+          variant="outline-dark"
+          onClick={() => handleClose(true)}
+        >
+          Create
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  )
+}
+
+function SupplementalModal({ setting }) {
+  const { show, handleClose } = setting
+
+  return (
+    <Modal
+      style={{ zIndex: '1501' }}
+      show={show}
+      onHide={() => handleClose()}
+      className="py-2 px-4"
+    >
+      <Modal.Header closeButton>Supplemental material</Modal.Header>
+      <Modal.Body className="p-4 d-flex flex-column">
+        <Button variant="outline-dark" size="sm" className="w-25 my-2">
+          Add
+        </Button>
+        {[
+          'Worksheet - Plants and insects (3 pages)',
+          'Flash cards - Plants (52 cards)',
+          'Flash cards - Insects (40 cards)',
+          'Quiz #1',
+        ].map((key) => (
+          <ListGroupItem className="d-flex my-2 border-bottom" action key={key}>
+            {key}
+            <FontAwesomeIcon className="ms-auto" icon={faPen} />
+            <FontAwesomeIcon className="ms-3" icon={faTrashCan} />
+          </ListGroupItem>
+        ))}
+      </Modal.Body>
+    </Modal>
+  )
+}
+
+function QuizzesModal({ setting }) {
+  const { show, handleClose } = setting
+
+  return (
+    <Modal
+      style={{ zIndex: '1501' }}
+      show={show}
+      onHide={() => handleClose()}
+      className="py-2 px-4"
+    >
+      <Modal.Header closeButton>Create/ manage quizzes</Modal.Header>
+      <Modal.Body className="p-4 d-flex flex-column">
+        <ListGroupItem className="d-flex my-2 border-bottom" action>
+          Question 1
+          <FontAwesomeIcon className="ms-auto" icon={faPen} />
+          <FontAwesomeIcon className="ms-3" icon={faTrashCan} />
+        </ListGroupItem>
+        <ListGroupItem className="my-2" action>
+          <Form.Label>Question</Form.Label>
+          <Form.Control placeholder="Add Text" />
+        </ListGroupItem>
+        {['Option 1', 'Option 2', 'Option 3'].map((key) => (
+          <ListGroupItem className="my-2" action key={key}>
+            <Form.Label>{key}</Form.Label>
+            <div className="d-flex">
+              <Form.Control className="w-75" placeholder="Add Text" />
+              <FontAwesomeIcon className="ms-auto my-auto" icon={faCheck} />
+              <FontAwesomeIcon className="ms-3 my-auto" icon={faTimes} />
+            </div>
+          </ListGroupItem>
+        ))}
+      </Modal.Body>
+    </Modal>
+  )
+}
 
 function DeleteModal({ setting }) {
   const { show, name, handleClose } = setting
@@ -211,25 +318,6 @@ function ProjectModal({ setting }) {
                     name={f.name}
                     type={f.type}
                     onChange={async (e) => {
-                      // const formData = new FormData()
-                      // formData.append('file', e.target.files[0])
-                      // const temp = URL.createObjectURL(e.target.files[0])
-                      // const audio = document.createElement('audio')
-                      // audio.muted = true
-                      // const source = document.createElement('source')
-                      // source.src = temp // --> blob URL
-                      // audio.preload = 'metadata'
-                      // audio.appendChild(source)
-                      // audio.onloadedmetadata = () => {
-                      //   setDuration(audio.duration)
-                      // }
-                      // const uploaded = await apiServices.data({
-                      //   path: `material/file`,
-                      //   method: 'post',
-                      //   data: formData,
-                      //   contentType: 'multipart/form-data',
-                      // })
-                      // console.log(uploaded)
                       onDataChange({
                         target: {
                           name: f.name,
@@ -294,6 +382,8 @@ function Courses() {
   const [search, setSearch] = useState('')
   const [focus, setFocus] = useState(false)
   const [selected, setselected] = useState('')
+
+  const [show, setshow] = useState({})
 
   return (
     <Container className="d-flex flex-column pt-3 pe-0 h-100">
@@ -362,10 +452,10 @@ function Courses() {
         </Col>
       </Row>
       <Row
-        className="flex-grow-1 pt-3 pb-5 px-5 h-100"
+        className="flex-grow-1 pt-3 pb-5 px-5 h-100 w-100"
         style={{ overflowY: 'auto', overflowX: 'hidden', opacity: '.9' }}
       >
-        <ListGroup className="pe-0">
+        <ListGroup className="pe-0 w-100">
           {[
             {
               clip_id: '34737549-342d-4f08-a4d1-08412b9a6fd7',
@@ -419,34 +509,20 @@ function Courses() {
             },
           ]
             .filter(({ name }) => !search || (name && name.includes(search)))
-            .map(
-              (
-                {
-                  name,
-                  // transition_animation_id,
-                  // watermark_id,
-                  // clip_id,
-                  // view_url,
-                  created_on,
-                  type,
-                  user_name,
-                  size,
-                },
-                i
-              ) => (
-                <ListGroupItem className="d-flex" key={i}>
-                  <div style={{ height: '5rem' }}>
-                    {/* {transition_animation_id ? ( */}
-                    <video
-                      width="150px"
-                      height="100%"
-                      className="m-auto pe-2"
-                      controls
-                    >
-                      <track kind="captions" />
-                      <source src="/api/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4" />
-                    </video>
-                    {/* ) : (
+            .map(({ name, clip_id, created_on, type, user_name, size }, i) => (
+              <ListGroupItem className="d-flex w-100" key={i}>
+                <div style={{ height: '5rem' }}>
+                  {/* {transition_animation_id ? ( */}
+                  <video
+                    width="150px"
+                    height="100%"
+                    className="m-auto pe-2"
+                    controls
+                  >
+                    <track kind="captions" />
+                    <source src="/api/static/884b9d16-12bf-4104-b230-88674d26ca2e.mp4" />
+                  </video>
+                  {/* ) : (
                       <Image
                         src={view_url}
                         width="150px"
@@ -454,89 +530,155 @@ function Courses() {
                         className="m-auto pe-2"
                       />
                     )} */}
-                  </div>
-                  <p
-                    className="w-25 my-auto text-start oneLineEllipsis"
-                    title={name}
-                  >
-                    {/* {setting.date} */}
-                    {name}
-                  </p>
-                  <small className="w-15 my-auto text-start ps-2">
-                    <span className="fw-regular text-chelonia">{size}</span>
-                    <br />
-                    <span className="fw-regular text-chelonia">
-                      type｜ {type}
-                    </span>
-                    {/* {setting.type} */}
-                    <br />
-                    <span className="fw-regular text-chelonia">editor｜</span>
-                    {user_name}
-                    <br />
-                    <span className="fw-regular text-chelonia">date｜</span>
-                    {moment(created_on).format('yyyy-MM-DD')}
-                  </small>
+                </div>
+                <p
+                  className="w-25 my-auto text-start oneLineEllipsis"
+                  title={name}
+                >
+                  {/* {setting.date} */}
+                  {name}
+                </p>
+                <small className="w-15 my-auto text-start ps-2">
+                  <span className="fw-regular text-chelonia">{size}</span>
+                  <br />
+                  <span className="fw-regular text-chelonia">
+                    type｜ {type}
+                  </span>
+                  {/* {setting.type} */}
+                  <br />
+                  <span className="fw-regular text-chelonia">editor｜</span>
+                  {user_name}
+                  <br />
+                  <span className="fw-regular text-chelonia">date｜</span>
+                  {moment(created_on).format('yyyy-MM-DD')}
+                </small>
+                <div className="d-flex w-25 ms-auto flex-wrap">
                   <Button
-                    className="ms-auto"
+                    className="w-50"
                     style={{ boxShadow: 'none' }}
                     variant="edit"
-                    onClick={() => {
-                      // setselectedId(material_id)
-                      // setshow(true)
-                    }}
+                    onClick={() =>
+                      setshow({
+                        ...show,
+                        Metadata: true,
+                      })
+                    }
                     title="rename"
                     size
                   >
-                    <FontAwesomeIcon icon={faPenToSquare} />
+                    <FontAwesomeIcon icon={faMagnifyingGlass} />
                   </Button>
                   <Button
+                    className="w-50"
                     style={{ boxShadow: 'none' }}
                     title="Dwonload"
                     variant="edit"
+                    onClick={() =>
+                      setshow({
+                        ...show,
+                        supplemental: true,
+                      })
+                    }
                   >
-                    <FontAwesomeIcon icon={faDownload} />
+                    <FontAwesomeIcon icon={faFile} />
                   </Button>
                   <Button
+                    className="w-50"
                     style={{ boxShadow: 'none' }}
                     variant="red"
                     onClick={() => {
-                      // console.log(
-                      //   transition_animation_id || watermark_id || clip_id
-                      // )
-                      // setselectedId(
-                      //   transition_animation_id || watermark_id || clip_id
-                      // )
-                      // setdeleteShow(true)
+                      setselected(clip_id)
+                      setshow({
+                        ...show,
+                        delete: true,
+                      })
                     }}
                     title="delete"
                   >
                     <FontAwesomeIcon icon={faTrashCan} />
                   </Button>
-
-                  {/* <h2
-                    className="my-auto text-secondary"
-                    style={{ userSelect: 'none' }}
-                  >
-                    ｜
-                  </h2>
-
                   <Button
-                    className="me-0"
+                    className="w-50"
                     style={{ boxShadow: 'none' }}
-                    variant="edit"
-                    // onClick={() => setId(time_id || range_id || draft_id)}
-                    onClick={() => navigate('/Hightlights')}
-                    title="影 片 剪 輯"
+                    variant="red"
+                    onClick={() =>
+                      setshow({
+                        ...show,
+                        quizzes: true,
+                      })
+                    }
+                    title="delete"
                   >
-                    <FontAwesomeIcon icon={faScissors} />
-                  </Button> */}
-                </ListGroupItem>
-              )
-            )}
+                    <FontAwesomeIcon icon={faPenRuler} />
+                  </Button>
+                </div>
+              </ListGroupItem>
+            ))}
         </ListGroup>
       </Row>
+      {show.Metadata && (
+        <MetadataModal
+          setting={{
+            show: show.Metadata,
+            handleClose: () =>
+              setshow({
+                ...show,
+                Metadata: false,
+              }),
+          }}
+        />
+      )}
+      {show.supplemental && (
+        <SupplementalModal
+          setting={{
+            show: show.supplemental,
+            handleClose: () =>
+              setshow({
+                ...show,
+                supplemental: false,
+              }),
+          }}
+        />
+      )}
+      {show.delete && (
+        <DeleteModal
+          setting={{
+            show: show.delete,
+            name: 'Course name',
+            handleClose: () =>
+              setshow({
+                ...show,
+                delete: false,
+              }),
+          }}
+        />
+      )}
+      {show.quizzes && (
+        <QuizzesModal
+          setting={{
+            show: show.quizzes,
+            handleClose: () =>
+              setshow({
+                ...show,
+                quizzes: false,
+              }),
+          }}
+        />
+      )}
     </Container>
   )
+}
+
+MetadataModal.propTypes = {
+  setting: PropTypes.shape().isRequired,
+}
+
+SupplementalModal.propTypes = {
+  setting: PropTypes.shape().isRequired,
+}
+
+QuizzesModal.propTypes = {
+  setting: PropTypes.shape().isRequired,
 }
 
 DeleteModal.propTypes = {
